@@ -2,8 +2,8 @@ document.getElementById('header-container').innerHTML = `
   <header class="header">
     <a href="/livee-beta/index.html" class="logo">Livee</a>
     <div class="right-icons">
-      <span id="welcomeMsg" style="display: none;"></span>
-      <i class="ri-user-3-line" id="userIcon" onclick="handleUserIconClick()"></i>
+      <span id="welcomeMsg">사용자님</span>
+      <i class="ri-user-line"></i>
     </div>
   </header>
 `;
