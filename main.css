@@ -97,3 +97,58 @@ body {
   color: #7b4fff;
   font-weight: bold;
 }
+
+.main-slide-section {
+  margin-top: 10px;
+  height: 220px;
+  overflow: hidden;
+  background: #f5f3ff;
+  position: relative;
+}
+
+.main-swiper {
+  height: 100%;
+}
+
+.main-swiper .swiper-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20px;
+  height: 100%;
+}
+
+.main-swiper .sub {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 5px;
+}
+
+.main-swiper h2 {
+  font-size: 18px;
+  margin: 2px 0;
+  font-weight: bold;
+}
+
+.main-swiper .desc {
+  font-size: 14px;
+  color: #666;
+}
+
+/* dot 스타일 */
+.swiper-pagination {
+  position: absolute;
+  bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+/* 화살표 스타일 */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #aaa;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 25px;
+  height: 25px;
+}
