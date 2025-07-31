@@ -4,9 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Livee Beta - 홈</title>
-  <link rel="stylesheet" href="main.css?v=1.0">
+  <link rel="stylesheet" href="main.css?v=1.0" />
 </head>
 <body>
+  <!-- 공통 상단탭 삽입 영역 -->
+  <div id="top-tab-container"></div>
+
   <header class="main-header">
     <h1>Livee</h1>
     <p>라이브커머스 구직 플랫폼</p>
@@ -37,13 +40,11 @@
     </section>
   </main>
 
-  <footer>
-    <nav class="bottom-tab">
-      <a href="index.html" class="active">홈</a>
-      <a href="showhost.html">쇼호스트</a>
-      <a href="recruitlist.html">공고</a>
-      <a href="login.html">로그인</a>
-    </nav>
-  </footer>
+  <!-- 공통 하단탭 삽입 영역 -->
+  <div id="bottom-tab-container"></div>
+
+  <!-- 공통 JS 삽입 -->
+  <script src="js/top-tab.js"></script>
+  <script src="js/bottom-tab.js"></script>
 </body>
 </html>
