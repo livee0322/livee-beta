@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Livee Beta - 홈</title>
-  <link rel="stylesheet" href="/livee-beta/main.css?v=1.07" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="/livee-beta/main.css?v=1.06" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 <body>
-  <!-- 상단탭 삽입 영역 -->
+  <!-- 상단탭 -->
   <div id="top-tab-container"></div>
 
   <!-- 메인 슬라이드 -->
@@ -32,31 +32,21 @@
         </div>
       </div>
 
-      <!-- 화살표 네비게이션 -->
+      <!-- 화살표 및 dot -->
       <div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>
-
-      <!-- 페이지네이션 dot -->
       <div class="swiper-pagination"></div>
     </div>
   </section>
 
-  <header class="main-header">
-    <h1>Livee</h1>
-    <p>라이브커머스 구직 플랫폼</p>
-  </header>
-
+  <!-- 등록 버튼 -->
   <main class="main-home">
-    <section class="intro-section">
-      <h2>🎥 새로운 쇼호스트 구직 플랫폼</h2>
-      <p>믿을 수 있는 계약, 정당한 출연료, 라이브의 모든 것</p>
-    </section>
-
     <section class="entry-buttons">
       <button onclick="location.href='/livee-beta/frontend/showhost-register.html'">+ 쇼호스트 등록</button>
       <button onclick="location.href='/livee-beta/frontend/showhost-request.html'">+ 업체 등록</button>
     </section>
 
+    <!-- 문제 해결 소개 -->
     <section class="about-service">
       <h3>Livee는 이런 문제를 해결합니다</h3>
       <ul>
@@ -66,32 +56,30 @@
       </ul>
     </section>
 
+    <!-- 미리보기 배너 -->
     <section class="preview-banner">
       <img src="/livee-beta/frontend/banner-preview.png" alt="서비스 미리보기" />
     </section>
   </main>
 
-  <!-- 하단탭 삽입 영역 -->
+  <!-- 하단탭 -->
   <div id="bottom-tab-container"></div>
 
   <!-- 스크립트 -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="/livee-beta/frontend/js/top-tab.js"></script>
   <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
   <script>
-    new Swiper(".main-swiper", {
+    const swiper = new Swiper('.main-swiper', {
       loop: true,
-      autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
+      pagination: { el: '.swiper-pagination', clickable: true },
       navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
       },
     });
   </script>
