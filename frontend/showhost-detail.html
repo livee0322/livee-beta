@@ -6,7 +6,7 @@
   <title>쇼호스트 상세</title>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
   <link rel="stylesheet" href="/main.css?v=1.06" />
-  <link rel="stylesheet" href="/showhost.css?v=1.0" />
+  <link rel="stylesheet" href="/showhost-detail.css?v=1.0" />
 </head>
 <body>
   <!-- ✅ 공통 헤더 -->
@@ -15,9 +15,31 @@
   <!-- ✅ 상단탭 -->
   <nav class="top-tabs" id="top-tab-container"></nav>
 
-  <!-- ✅ 콘텐츠 -->
-  <main class="showhost-detail">
-    <p>불러오는 중입니다...</p>
+  <!-- ✅ 상세 콘텐츠 -->
+  <main class="showhost-detail-container">
+    <div class="profile-section">
+      <img id="hostPhoto" src="/default-profile.png" alt="프로필 이미지" />
+      <div>
+        <h2 id="hostName">이름</h2>
+        <p id="hostCategory">카테고리</p>
+        <p id="hostFee">출연료</p>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h3>소개</h3>
+      <p id="hostIntro">소개 내용 로딩중...</p>
+
+      <h3>SNS / 포트폴리오</h3>
+      <p id="hostSNS">링크 없음</p>
+
+      <h3>희망 조건</h3>
+      <p id="hostCondition">조건 정보 없음</p>
+
+      <button class="contract-btn" onclick="alert('계약 요청은 추후 기능으로 연결됩니다')">
+        계약 요청하기
+      </button>
+    </div>
   </main>
 
   <!-- ✅ 하단탭 -->
@@ -27,8 +49,6 @@
   <script src="/js/header.js"></script>
   <script src="/js/top-tab.js"></script>
   <script src="/js/bottom-tab.js"></script>
-
-  <!-- ✅ 상세 스크립트 -->
   <script src="/js/showhost-detail.js?v=1.0"></script>
 </body>
 </html>
