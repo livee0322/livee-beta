@@ -6,31 +6,21 @@
   <title>쇼호스트 상세보기</title>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
   <link rel="stylesheet" href="/main.css?v=1.06" />
-  <link rel="stylesheet" href="/showhost-detail.css?v=1.0" />
+  <link rel="stylesheet" href="/showhost.css?v=1.0" />
 </head>
 <body>
   <!-- ✅ 공통 헤더 -->
   <div id="header-container"></div>
 
-  <!-- ✅ 상단탭 -->
-  <div id="top-tab-container"></div>
+  <!-- ✅ 공통 상단탭 -->
+  <nav class="top-tabs" id="top-tab-container"></nav>
 
   <!-- ✅ 상세 콘텐츠 -->
-  <main class="showhost-detail-container">
-    <div id="showhostDetail">
-      <p>로딩 중입니다...</p>
+  <main class="showhost-detail">
+    <div class="showhost-card">
+      <p>불러오는 중입니다...</p>
     </div>
   </main>
 
-  <!-- ✅ 하단탭 -->
-  <div id="bottom-tab-container"></div>
-
-  <!-- ✅ 공통 스크립트 -->
-  <script src="/js/header.js"></script>
-  <script src="/js/top-tab.js"></script>
-  <script src="/js/bottom-tab.js"></script>
-
-  <!-- ✅ 상세 스크립트 -->
-  <script src="/js/showhost-detail.js?v=1.0"></script>
-</body>
-</html>
+  <!-- ✅ 공통 하단탭 -->
+  <nav class="bottom-tab" id="bottom-tab-container"></nav>
