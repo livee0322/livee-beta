@@ -9,15 +9,15 @@
 </head>
 <body>
 
-  <!-- ✅ 띠배너 -->
+  <!-- ✅ 베타 띠배너 -->
   <div class="beta-banner">현재 클로즈 베타 테스트 중입니다</div>
 
-  <!-- ✅ 헤더 / 상단탭 -->
+  <!-- ✅ 공통 헤더/상단탭 -->
   <div id="header-container"></div>
   <div id="top-tab-container"></div>
 
   <!-- ✅ 메인 슬라이드 -->
-  <section class="main-slide-section swiper">
+  <section class="main-slide-section">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
         <div class="text-group">
@@ -41,12 +41,20 @@
         </div>
       </div>
     </div>
+
+    <!-- ✅ 슬라이드 네비게이션 -->
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
     <div class="swiper-pagination"></div>
   </section>
 
-  <!-- ✅ 메인 콘텐츠 -->
+  <!-- ✅ 메인 버튼 영역 -->
+  <div class="entry-buttons">
+    <button>쇼핑라이브 보러가기</button>
+    <button>쇼호스트 등록</button>
+  </div>
+
+  <!-- ✅ 주요 메시지 섹션 -->
   <section class="recruit-section">
     <div class="section-head">
       <h2>Livee는 이런 문제를 해결합니다</h2>
@@ -61,10 +69,10 @@
   <!-- ✅ 하단탭 -->
   <div id="bottom-tab-container"></div>
 
-  <!-- ✅ 스크립트 -->
+  <!-- ✅ JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <script>
-    const swiper = new Swiper('.swiper', {
+    const swiper = new Swiper('.main-slide-section', {
       loop: true,
       pagination: { el: '.swiper-pagination' },
       navigation: {
