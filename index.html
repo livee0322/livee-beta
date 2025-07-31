@@ -31,6 +31,12 @@
           <p class="desc">쇼호스트 권리를 Livee가 지켜드립니다.</p>
         </div>
       </div>
+
+      <!-- 화살표 네비게이션 -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+
+      <!-- 페이지네이션 dot -->
       <div class="swiper-pagination"></div>
     </div>
   </section>
@@ -68,7 +74,7 @@
   <!-- 하단탭 삽입 영역 -->
   <div id="bottom-tab-container"></div>
 
-  <!-- 스크립트 삽입 -->
+  <!-- 스크립트 -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="/livee-beta/frontend/js/top-tab.js"></script>
   <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
@@ -76,12 +82,16 @@
     new Swiper(".main-swiper", {
       loop: true,
       autoplay: {
-        delay: 3500,
+        delay: 4000,
         disableOnInteraction: false,
       },
       pagination: {
         el: ".swiper-pagination",
         clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
       },
     });
   </script>
