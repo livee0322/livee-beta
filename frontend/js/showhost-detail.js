@@ -1,37 +1,53 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get('id');
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = urlParams.get('id');
+  const detailContainer = document.querySelector('.showhost-detail-container');
 
-  const container = document.querySelector('.showhost-container') || document.querySelector('.showhost-detail');
-
-  if (!id || !container) {
-    container.innerHTML = `<p>잘못된 접근입니다.</p>`;
+  if (!id) {
+    detailContainer.innerHTML = '<p>잘못된 접근입니다.</p>';
     return;
   }
 
   try {
     const res = await fetch(`https://livee-server-dev.onrender.com/portfolio/${id}`);
-    if (!res.ok) throw new Error('데이터를 불러올 수 없습니다.');
+    if (!res.ok) throw new Error('데이터 불러오기 실패');
 
     const data = await res.json();
 
-    container.innerHTML = `
-      <div class="showhost-card">
+    detailContainer.innerHTML = `
+      <section class="profile-section">
         <img src="${data.photo || '/default-profile.png'}" alt="프로필 이미지" />
-        <div class="info">
-          <h3>${data.title || '제목 없음'}</h3>
-          <p><strong>이름:</strong> ${data.name || '-'}</p>
-          <p><strong>경력:</strong> ${data.career || '-'}</p>
-          <p><strong>활동:</strong> ${data.activity || '-'}</p>
-          <p><strong>성격:</strong> ${data.character || '-'}</p>
-          <p><strong>출연료:</strong> ${data.fee || '-'}</p>
-          <p><strong>카테고리:</strong> ${data.category || '-'}</p>
+        <div>
+          <h2>${data.name || '이름 없음'}</h2>
+          <p>${data.title || '소개 없음'}</p>
+          <p>카테고리: ${data.category || '-'}</p>
         </div>
-        <button class="btn-request" onclick="location.href='/host-request.html?id=${data._id}'">섭외 요청하기</button>
-      </div>
+      </section>
+
+      <section class="info-section">
+        <h3>희망 출연료</h3>
+        <p>${data.fee || '-'}</p>
+
+        <h3>경력</h3>
+        <p>${data.career || '-'}</p>
+
+        <h3>활동</h3>
+        <p>${data.activity || '-'}</p>
+
+        <h3>성격</h3>
+        <p>${data.character || '-'}</p>
+
+        <h3>출연 조건</h3>
+        <p>${data.condition || '-'}</p>
+
+        <h3>링크</h3>
+        <p>${data.link || '-'}</p>
+
+        <button class="contract-btn" onclick="location.href='/showhost-request.html?id=${data._id}'">계약 요청하기</button>
+      </section>
     `;
   } catch (err) {
-    console.error('❌ 상세정보 오류:', err);
-    container.innerHTML = `<p>데이터를 불러오는 중 오류가 발생했습니다.</p>`;
+    console.error('❌ 쇼호스트 상세 오류:', err);
+    detailContainer.innerHTML = `<p>상세 정보를 불러오는 중 오류가 발생했어요. 😢</p>`;
   }
 });
