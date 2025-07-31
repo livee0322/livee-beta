@@ -1,0 +1,52 @@
+/* 쇼호스트 상세페이지 레이아웃 */
+.showhost-detail-container {
+  padding: 20px 16px 100px;
+  background: #f9f9fb;
+  min-height: 100vh;
+}
+
+.showhost-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* 프로필 이미지 */
+.showhost-card img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+/* 기본 정보 */
+.showhost-card h2 {
+  font-size: 1.3rem;
+  margin: 0 0 10px;
+  color: #333;
+}
+.showhost-card p {
+  margin: 6px 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* 섭외 요청 버튼 */
+.btn-request {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  font-size: 1rem;
+  background: #6A4FE0;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+}
+.btn-request:hover {
+  background: #5639cb;
+}
