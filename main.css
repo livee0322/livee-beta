@@ -1,4 +1,4 @@
-/* 기본 초기화 */
+/* 초기화 */
 * {
   margin: 0;
   padding: 0;
@@ -18,13 +18,13 @@ button {
   font-family: inherit;
 }
 
-/* 공통 상단/하단 탭 컨테이너 */
+/* 상단탭/하단탭 컨테이너 */
 #top-tab-container,
 #bottom-tab-container {
   z-index: 10;
 }
 
-/* 메인 슬라이드 섹션 */
+/* 메인 슬라이드 영역 */
 .main-slide-section {
   position: relative;
   background: linear-gradient(135deg, #8169f1, #a984f8);
@@ -59,7 +59,7 @@ button {
   opacity: 0.85;
 }
 
-/* 슬라이드 화살표 - 둥글고 작게 */
+/* 슬라이드 화살표 */
 .swiper-button-next,
 .swiper-button-prev {
   width: 32px;
@@ -120,7 +120,7 @@ button {
   margin-bottom: 6px;
 }
 
-/* 미리보기 배너 제거됨 */
+/* 미리보기 배너 제거 */
 .preview-banner {
   display: none;
 }
