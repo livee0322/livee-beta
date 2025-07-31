@@ -6,63 +6,63 @@
   <title>쇼호스트 등록 요청</title>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
   <link rel="stylesheet" href="/main.css?v=1.06" />
-  <link rel="stylesheet" href="/css/host-register.css?v=1.0" />
+  <link rel="stylesheet" href="/css/host-request.css?v=1.0" />
 </head>
 <body>
   <!-- ✅ 공통 헤더 -->
   <div id="header-container"></div>
 
-  <!-- ✅ 상단탭 -->
+  <!-- ✅ 공통 상단탭 -->
   <nav class="top-tabs" id="top-tab-container"></nav>
 
   <!-- ✅ 콘텐츠 -->
-  <main class="host-register-container">
+  <main class="host-request-container">
     <h2>쇼호스트 등록 요청</h2>
 
     <form id="hostRegisterForm">
       <div class="form-group">
         <label for="name">이름</label>
-        <input type="text" id="name" name="name" placeholder="본명을 입력해주세요" required />
+        <input type="text" id="name" required />
       </div>
 
       <div class="form-group">
-        <label for="sns">SNS 주소</label>
-        <input type="text" id="sns" name="sns" placeholder="인스타그램, 유튜브 등" required />
+        <label for="contact">연락처 (비공개)</label>
+        <input type="text" id="contact" required />
       </div>
 
       <div class="form-group">
-        <label for="category">진행 가능한 카테고리</label>
-        <input type="text" id="category" name="category" placeholder="예: 뷰티, 음식, 가전" />
+        <label for="category">진행 가능 카테고리</label>
+        <select id="category" required>
+          <option value="">선택해주세요</option>
+          <option value="뷰티">뷰티</option>
+          <option value="음식">음식</option>
+          <option value="가전">가전</option>
+        </select>
       </div>
 
       <div class="form-group">
-        <label for="fee">희망 출연료</label>
-        <input type="text" id="fee" name="fee" placeholder="예: 10만원~30만원" />
-      </div>
-
-      <div class="form-group">
-        <label for="intro">자기소개</label>
-        <textarea id="intro" name="intro" rows="5" placeholder="간단한 소개글을 입력해주세요" required></textarea>
+        <label for="message">소개 및 요청 메시지</label>
+        <textarea id="message" rows="4" required></textarea>
       </div>
 
       <div class="alert-box">
-        ※ 등록 요청 후 관리자가 검토하여 공개됩니다.<br />
-        ※ 연락처 등 민감 정보는 절대 입력하지 마세요.
+        입력하신 연락처는 상대방에게 공개되지 않습니다.  
+        추후 계약이 체결되면 자동으로 공유됩니다.
       </div>
 
-      <button type="submit">요청하기</button>
+      <button type="submit">등록 요청하기</button>
     </form>
   </main>
 
-  <!-- ✅ 하단탭 -->
+  <!-- ✅ 공통 하단탭 -->
   <nav class="bottom-tab" id="bottom-tab-container"></nav>
 
-  <!-- ✅ 공통 JS -->
+  <!-- ✅ 공통 스크립트 -->
   <script src="/js/header.js"></script>
   <script src="/js/top-tab.js"></script>
   <script src="/js/bottom-tab.js"></script>
 
-  <!-- ✅ 전용 JS -->
+  <!-- ✅ 전용 스크립트 -->
   <script src="/js/host-register.js?v=1.0"></script>
 </body>
 </html>
