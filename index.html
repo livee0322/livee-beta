@@ -5,10 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Livee Beta - 홈</title>
   <link rel="stylesheet" href="/livee-beta/main.css?v=1.06" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 </head>
 <body>
   <!-- 상단탭 삽입 영역 -->
   <div id="top-tab-container"></div>
+
+  <!-- 메인 슬라이드 -->
+  <section class="main-slide-section">
+    <div class="swiper-container main-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <p class="sub">Livee가 열어가는</p>
+          <h2>새로운 쇼호스트 구직 플랫폼</h2>
+          <p class="desc">계약부터 출연까지, 브랜드와 당신을 연결해드립니다.</p>
+        </div>
+        <div class="swiper-slide">
+          <p class="sub">이젠 DM 섭외 NO</p>
+          <h2>공개 매칭 시스템</h2>
+          <p class="desc">안전하고 공정한 섭외 문화를 만듭니다.</p>
+        </div>
+        <div class="swiper-slide">
+          <p class="sub">정당한 출연료</p>
+          <h2>신뢰 기반 계약</h2>
+          <p class="desc">쇼호스트 권리를 Livee가 지켜드립니다.</p>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
 
   <header class="main-header">
     <h1>Livee</h1>
@@ -43,7 +68,22 @@
   <!-- 하단탭 삽입 영역 -->
   <div id="bottom-tab-container"></div>
 
+  <!-- 스크립트 삽입 -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="/livee-beta/frontend/js/top-tab.js"></script>
   <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
+  <script>
+    new Swiper(".main-swiper", {
+      loop: true,
+      autoplay: {
+        delay: 3500,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+  </script>
 </body>
 </html>
