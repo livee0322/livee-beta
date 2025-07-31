@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>등록 요청 완료</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/main.css?v=1.06" />
+  <style>
+    .success-container {
+      padding: 60px 20px 100px;
+      text-align: center;
+      background: #f9f9fb;
+      min-height: 100vh;
+    }
+    .success-container i {
+      font-size: 48px;
+      color: #6a4fe0;
+      margin-bottom: 20px;
+    }
+    .success-container h2 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+    .success-container p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 30px;
+    }
+    .success-container button {
+      padding: 12px 20px;
+      font-size: 1rem;
+      background: #6a4fe0;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- ✅ 공통 헤더 -->
+  <div id="header-container"></div>
+
+  <!-- ✅ 상단탭 -->
+  <nav class="top-tabs" id="top-tab-container"></nav>
+
+  <!-- ✅ 콘텐츠 -->
+  <main class="success-container">
+    <i class="ri-checkbox-circle-line"></i>
+    <h2>등록 요청 완료!</h2>
+    <p>쇼호스트 등록 요청이 정상적으로 접수되었습니다.<br/>검토 후 빠르게 연락드릴게요 🙌</p>
+    <button onclick="location.href='/showhost.html'">쇼호스트 리스트로 이동</button>
+  </main>
+
+  <!-- ✅ 공통 하단탭 -->
+  <nav class="bottom-tab" id="bottom-tab-container"></nav>
+
+  <!-- ✅ 공통 스크립트 -->
+  <script src="/js/header.js"></script>
+  <script src="/js/top-tab.js"></script>
+  <script src="/js/bottom-tab.js"></script>
+</body>
+</html>
