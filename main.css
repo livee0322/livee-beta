@@ -1,6 +1,4 @@
-/* main.css v1.08 - io 스타일 기반 beta용 */
-
-/* ✅ 기본 설정 */
+/* 기본 설정 */
 body {
   margin: 0;
   font-family: 'Pretendard', sans-serif;
@@ -22,9 +20,10 @@ ul {
 }
 a {
   text-decoration: none;
+  color: inherit;
 }
 
-/* ✅ 베타 띠배너 */
+/* 띠배너 */
 .beta-banner {
   background-color: #6755f5;
   color: #fff;
@@ -33,7 +32,7 @@ a {
   padding: 6px 0;
 }
 
-/* ✅ 공통 헤더 */
+/* 헤더 */
 .header {
   display: flex;
   justify-content: space-between;
@@ -47,7 +46,6 @@ a {
   font-weight: bold;
   color: #6A4DF4;
   text-decoration: none;
-  white-space: nowrap;
 }
 .right-icons {
   display: flex;
@@ -63,17 +61,15 @@ a {
   text-overflow: ellipsis;
 }
 .right-icons i {
-  margin-left: 12px;
   font-size: 1.2rem;
   color: #333;
 }
 
-/* ✅ 상단탭 */
+/* 상단탭 */
 .top-tabs {
   display: flex;
   overflow-x: auto;
   background-color: #fff;
-  white-space: nowrap;
   border-bottom: 1px solid #eee;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -94,7 +90,7 @@ a {
   border-bottom: 2px solid #6755f5;
 }
 
-/* ✅ 하단탭 */
+/* 하단탭 */
 .bottom-tab {
   position: fixed;
   bottom: 0;
@@ -113,7 +109,6 @@ a {
   align-items: center;
   font-size: 0.75rem;
   color: #999;
-  text-decoration: none;
   padding: 4px 0;
 }
 .bottom-tab a.active {
@@ -124,7 +119,7 @@ a {
   margin-bottom: 4px;
 }
 
-/* ✅ 메인 슬라이드 */
+/* 메인 슬라이드 */
 .main-slide-section {
   position: relative;
   background: linear-gradient(135deg, #8169f1, #a984f8);
@@ -132,29 +127,27 @@ a {
   padding: 40px 0 60px;
   overflow: hidden;
 }
-.swiper-container {
-  width: 100%;
-  max-width: 100%;
+.main-slide-section .swiper-wrapper {
+  display: flex;
 }
-.swiper-slide {
+.main-slide-section .swiper-slide {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: center;
+  padding: 0 20px;
   height: 220px;
-  padding: 0 16px;
 }
-.swiper-slide .sub {
+.main-slide-section .sub {
   font-size: 14px;
   opacity: 0.9;
   margin-bottom: 6px;
 }
-.swiper-slide h2 {
+.main-slide-section h2 {
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 8px;
 }
-.swiper-slide .desc {
+.main-slide-section .desc {
   font-size: 13px;
   opacity: 0.85;
 }
@@ -181,45 +174,25 @@ a {
 }
 .swiper-pagination-bullet {
   background-color: rgba(255, 255, 255, 0.5);
-  opacity: 1;
 }
 .swiper-pagination-bullet-active {
   background-color: #fff;
 }
 
-/* ✅ 메인 버튼 & 소개 */
-.entry-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin: 24px 0;
+/* 메인 콘텐츠 */
+.recruit-section {
+  padding: 20px;
 }
-.entry-buttons button {
-  padding: 10px 16px;
-  font-size: 15px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  background: #fff;
+.section-head h2 {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
 }
-.about-service {
-  padding: 0 20px;
-  margin-bottom: 20px;
-}
-.about-service h3 {
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-.about-service ul li {
-  font-size: 14px;
+.recruit-section ul li {
+  font-size: 0.95rem;
   margin-bottom: 6px;
 }
 
-/* ✅ 미리보기 배너 제거 */
-.preview-banner {
-  display: none;
-}
-
-/* ✅ 모바일 대응 */
+/* 반응형 */
 @media (max-width: 360px) {
   .logo {
     font-size: 1rem;
