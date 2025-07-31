@@ -1,8 +1,14 @@
-/* 기본 설정 */
-body {
+/* ✅ 기본 초기화 */
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
   font-family: 'Pretendard', sans-serif;
   background-color: #f9f9fb;
+  color: #222;
+  line-height: 1.5;
   padding-bottom: 80px;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -10,20 +16,19 @@ body {
 body::-webkit-scrollbar {
   display: none;
 }
-* {
-  box-sizing: border-box;
-}
 ul {
   list-style: none;
-  padding: 0;
-  margin: 0;
 }
 a {
   text-decoration: none;
   color: inherit;
 }
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
 
-/* 띠배너 */
+/* ✅ 베타 띠배너 */
 .beta-banner {
   background-color: #6755f5;
   color: #fff;
@@ -32,7 +37,7 @@ a {
   padding: 6px 0;
 }
 
-/* 헤더 */
+/* ✅ 공통 헤더 */
 .header {
   display: flex;
   justify-content: space-between;
@@ -45,7 +50,7 @@ a {
   font-size: 1.2rem;
   font-weight: bold;
   color: #6A4DF4;
-  text-decoration: none;
+  white-space: nowrap;
 }
 .right-icons {
   display: flex;
@@ -61,15 +66,17 @@ a {
   text-overflow: ellipsis;
 }
 .right-icons i {
+  margin-left: 12px;
   font-size: 1.2rem;
   color: #333;
 }
 
-/* 상단탭 */
+/* ✅ 상단탭 */
 .top-tabs {
   display: flex;
   overflow-x: auto;
   background-color: #fff;
+  white-space: nowrap;
   border-bottom: 1px solid #eee;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -90,7 +97,7 @@ a {
   border-bottom: 2px solid #6755f5;
 }
 
-/* 하단탭 */
+/* ✅ 하단탭 */
 .bottom-tab {
   position: fixed;
   bottom: 0;
@@ -109,6 +116,7 @@ a {
   align-items: center;
   font-size: 0.75rem;
   color: #999;
+  text-decoration: none;
   padding: 4px 0;
 }
 .bottom-tab a.active {
@@ -119,12 +127,11 @@ a {
   margin-bottom: 4px;
 }
 
-/* 메인 슬라이드 */
+/* ✅ 메인 슬라이드 */
 .main-slide-section {
   position: relative;
   background: linear-gradient(135deg, #8169f1, #a984f8);
   color: #fff;
-  padding: 40px 0 60px;
   overflow: hidden;
 }
 .main-slide-section .swiper-wrapper {
@@ -134,23 +141,25 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 20px;
   height: 220px;
+  padding: 0 16px;
 }
-.main-slide-section .sub {
+.main-slide-section .swiper-slide .sub {
   font-size: 14px;
   opacity: 0.9;
   margin-bottom: 6px;
 }
-.main-slide-section h2 {
+.main-slide-section .swiper-slide h2 {
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 8px;
 }
-.main-slide-section .desc {
+.main-slide-section .swiper-slide .desc {
   font-size: 13px;
   opacity: 0.85;
 }
+
+/* ✅ 슬라이드 화살표 */
 .swiper-button-next,
 .swiper-button-prev {
   width: 32px;
@@ -169,30 +178,49 @@ a {
   font-size: 16px;
   font-weight: bold;
 }
+
+/* ✅ 페이지네이션 */
 .swiper-pagination {
   bottom: 10px !important;
 }
 .swiper-pagination-bullet {
   background-color: rgba(255, 255, 255, 0.5);
+  opacity: 1;
 }
 .swiper-pagination-bullet-active {
   background-color: #fff;
 }
 
-/* 메인 콘텐츠 */
-.recruit-section {
-  padding: 20px;
+/* ✅ 메인 버튼 영역 */
+.entry-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 24px 0;
 }
-.section-head h2 {
-  font-size: 1.1rem;
+.entry-buttons button {
+  padding: 10px 16px;
+  font-size: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #fff;
+}
+
+/* ✅ 소개 섹션 */
+.recruit-section {
+  padding: 0 20px;
+  margin-bottom: 30px;
+}
+.recruit-section h2 {
+  font-size: 18px;
   margin-bottom: 12px;
 }
 .recruit-section ul li {
-  font-size: 0.95rem;
+  font-size: 14px;
   margin-bottom: 6px;
 }
 
-/* 반응형 */
+/* ✅ 모바일 대응 */
 @media (max-width: 360px) {
   .logo {
     font-size: 1rem;
