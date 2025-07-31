@@ -18,22 +18,23 @@ button {
   font-family: inherit;
 }
 
-/* 상단탭 & 하단탭 공통 여백 확보 */
+/* 공통 상단/하단 탭 컨테이너 */
 #top-tab-container,
 #bottom-tab-container {
   z-index: 10;
 }
 
-/* 메인 슬라이드 영역 */
+/* 메인 슬라이드 섹션 */
 .main-slide-section {
   position: relative;
   background: linear-gradient(135deg, #8169f1, #a984f8);
   color: #fff;
-  padding: 40px 20px 60px;
+  padding: 40px 0 60px;
   overflow: hidden;
 }
 .swiper-container {
   width: 100%;
+  max-width: 100%;
 }
 .swiper-slide {
   display: flex;
@@ -58,24 +59,32 @@ button {
   opacity: 0.85;
 }
 
-/* 슬라이드 버튼 */
+/* 슬라이드 화살표 - 둥글고 작게 */
 .swiper-button-next,
 .swiper-button-prev {
+  width: 32px;
+  height: 32px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #fff;
   top: 50%;
   transform: translateY(-50%);
 }
 .swiper-button-next::after,
 .swiper-button-prev::after {
-  font-size: 20px;
+  font-size: 16px;
+  font-weight: bold;
 }
 
-/* dot (pagination) */
+/* dot pagination */
 .swiper-pagination {
   bottom: 10px !important;
 }
 .swiper-pagination-bullet {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.5);
   opacity: 1;
 }
 .swiper-pagination-bullet-active {
@@ -111,13 +120,7 @@ button {
   margin-bottom: 6px;
 }
 
-/* 미리보기 배너 */
+/* 미리보기 배너 제거됨 */
 .preview-banner {
-  padding: 0 20px;
-  margin-bottom: 40px;
-}
-.preview-banner img {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  display: none;
 }
