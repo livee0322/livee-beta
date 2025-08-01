@@ -4,22 +4,16 @@
   <meta charset="UTF-8" />
   <title>이미지 자르기</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- CropperJS CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
   <link rel="stylesheet" href="/livee-beta/frontend/css/canvas.css" />
 </head>
 <body>
-  <header class="canvas-header">
-    <button id="backBtn">←</button>
-    <h2>프로필 이미지 설정</h2>
-    <button id="cropBtn">저장</button>
-  </header>
-
-  <div class="canvas-body">
-    <img id="image" alt="선택한 이미지" />
+  <h2>이미지 자르기</h2>
+  <div class="cropper-container">
+    <img id="image" style="max-width: 100%;" />
   </div>
+  <button id="cropBtn">자르기 & 저장</button>
 
-  <!-- JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
   <script src="/livee-beta/frontend/js/canvas.js"></script>
 </body>
