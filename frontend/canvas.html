@@ -1,27 +1,25 @@
-<!-- ✅ canvas.html -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <title>이미지 자르기</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/livee-beta/frontend/css/canvas.css" />
+  <!-- CropperJS CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
+  <link rel="stylesheet" href="/livee-beta/frontend/css/canvas.css" />
 </head>
 <body>
-  <div class="canvas-header">
-    <button onclick="history.back()">←</button>
-    <h3>이미지 자르기</h3>
-    <button id="saveBtn">저장</button>
+  <header class="canvas-header">
+    <button id="backBtn">←</button>
+    <h2>프로필 이미지 설정</h2>
+    <button id="cropBtn">저장</button>
+  </header>
+
+  <div class="canvas-body">
+    <img id="image" alt="선택한 이미지" />
   </div>
 
-  <input type="file" id="upload" accept="image/*" hidden />
-  <label for="upload" class="upload-label">이미지 선택</label>
-
-  <div class="crop-container">
-    <img id="image" />
-  </div>
-
+  <!-- JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
   <script src="/livee-beta/frontend/js/canvas.js"></script>
 </body>
