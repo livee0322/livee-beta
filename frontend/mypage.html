@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>마이페이지 - Livee</title>
+  <link rel="stylesheet" href="/livee-beta/main.css?v=1.06" />
+  <link rel="stylesheet" href="/livee-beta/frontend/css/mypage.css?v=1.0" />
+</head>
+<body>
+  <!-- ✅ 띠배너 -->
+  <div class="beta-banner">현재 클로즈 베타 테스트 중입니다</div>
+
+  <!-- ✅ 공통 모듈 -->
+  <div id="header-container"></div>
+  <div id="top-tab-container"></div>
+
+  <!-- ✅ 마이페이지 콘텐츠 -->
+  <main class="mypage-container">
+    <h2>마이페이지</h2>
+    <ul class="mypage-menu">
+      <li><button onclick="location.href='/livee-beta/frontend/myportfolio.html'">내 포트폴리오</button></li>
+      <li><button onclick="logout()">로그아웃</button></li>
+    </ul>
+  </main>
+
+  <!-- ✅ 하단탭 -->
+  <div id="bottom-tab-container"></div>
+
+  <!-- ✅ 공통 JS -->
+  <script src="/livee-beta/frontend/js/header.js"></script>
+  <script src="/livee-beta/frontend/js/top-tab.js"></script>
+  <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
+
+  <!-- ✅ 로그아웃 스크립트 -->
+  <script>
+    function logout() {
+      localStorage.removeItem('liveeToken');
+      alert('로그아웃되었습니다.');
+      location.href = '/livee-beta/frontend/login.html';
+    }
+  </script>
+</body>
+</html>
