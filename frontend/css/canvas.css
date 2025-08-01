@@ -1,38 +1,37 @@
 body {
-  font-family: sans-serif;
-  background: #f4f4f4;
   margin: 0;
   padding: 0;
+  background-color: #f9f9f9;
+  font-family: sans-serif;
 }
 
 .canvas-top-bar {
   display: flex;
   justify-content: space-between;
-  padding: 10px 16px;
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  padding: 12px 16px;
 }
 
 .canvas-top-bar button {
-  background: #6c5ce7;
-  color: #fff;
+  background-color: #8c6eff;
+  color: white;
   border: none;
-  padding: 8px 14px;
-  border-radius: 6px;
+  border-radius: 8px;
+  padding: 10px 16px;
   font-size: 14px;
   cursor: pointer;
 }
 
 .cropper-container {
-  padding: 20px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding: 12px;
+  overflow: hidden;
 }
 
 .cropper-container img {
   max-width: 100%;
-  max-height: 80vh;
+  max-height: 70vh;
+  object-fit: contain;
+  display: block;
 }
