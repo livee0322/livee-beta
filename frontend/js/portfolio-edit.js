@@ -1,59 +1,14 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const imageInput = document.getElementById("imageInput");
-  const canvas = document.getElementById("imageCanvas");
-  const cropBox = document.getElementById("cropBox");
-  const ctx = canvas.getContext("2d");
+// /livee-beta/frontend/js/portfolio-edit.js
 
-  let img = new Image();
-  let startX = 0;
-  let startY = 0;
-  let dragging = false;
+// 이미지 불러오기
+const croppedImage = document.getElementById("croppedImage");
+const savedImage = localStorage.getItem("croppedImage");
+if (croppedImage && savedImage) {
+  croppedImage.src = savedImage;
+}
 
-  imageInput.addEventListener("change", (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      img.onload = () => {
-        // 이미지가 로드된 후에 그리기
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      };
-      img.src = event.target.result;
-    };
-    reader.readAsDataURL(file);
-  });
-
-  cropBox.addEventListener("mousedown", (e) => {
-    dragging = true;
-    startX = e.offsetX;
-    startY = e.offsetY;
-  });
-
-  document.addEventListener("mousemove", (e) => {
-    if (dragging) {
-      const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left - startX;
-      const y = e.clientY - rect.top - startY;
-      cropBox.style.left = `${x}px`;
-      cropBox.style.top = `${y}px`;
-    }
-  });
-
-  document.addEventListener("mouseup", () => {
-    dragging = false;
-  });
-
-  document.getElementById("saveBtn")?.addEventListener("click", () => {
-    alert("포트폴리오가 저장되었습니다!");
-    window.location.href = "/livee-beta/frontend/mypage.html";
-  });
-
-  const toggle = document.getElementById("isPublic");
-  if (toggle) {
-    toggle.addEventListener("change", () => {
-      console.log("공개여부:", toggle.checked ? "공개" : "비공개");
-    });
-  }
+// 저장하기 버튼
+document.getElementById("saveBtn").addEventListener("click", () => {
+  alert("포트폴리오가 저장되었습니다!");
+  window.location.href = "/livee-beta/frontend/mypage.html";
 });
