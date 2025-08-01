@@ -1,35 +1,38 @@
+/* ✅ 전체 배경 및 폰트 */
 body {
   font-family: sans-serif;
-  background: #f5f5f5;
   margin: 0;
-  padding: 0;
+  padding: 16px;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
 }
 
+/* ✅ 상단 버튼 영역 */
 .canvas-top-bar {
   display: flex;
   justify-content: space-between;
-  padding: 12px 16px;
-  background: #fff;
-  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
 }
 
-#cropBtn,
-#backBtn {
-  padding: 8px 12px;
+/* ✅ 뒤로가기 / 저장 버튼 공통 스타일 */
+.canvas-top-bar button {
+  padding: 10px 16px;
   font-size: 14px;
-  background-color: #6c5ce7;
-  color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
+  background-color: #7b61ff;
+  color: white;
   cursor: pointer;
 }
 
+/* ✅ 크롭 이미지 표시 영역 */
 .cropper-container {
-  padding: 16px;
   max-width: 100%;
+  margin: 0 auto;
   text-align: center;
 }
 
+/* ✅ 크롭 대상 이미지 */
 #imageToCrop {
   max-width: 100%;
   height: auto;
