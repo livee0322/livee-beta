@@ -1,38 +1,59 @@
-<!-- ✅ portfolio-edit.html 리팩토링 --><!DOCTYPE html><html lang="ko">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <title>포트폴리오 수정</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- ✅ 공통 CSS -->
   <link rel="stylesheet" href="/livee-beta/main.css" />
   <link rel="stylesheet" href="/livee-beta/frontend/css/portfolio-edit.css" />
 </head>
 <body>
-  <!-- ✅ 공통 모듈 -->
   <div class="beta-banner">현재 클로즈 베타 테스트 중입니다</div>
   <div id="header-container"></div>
-  <div id="top-tab-container"></div>  <!-- ✅ 프로필 카드 -->  <section class="profile-card">
-    <div class="image-wrapper">
-      <label class="upload-label">
+  <div id="top-tab-container"></div>
+
+  <!-- ✅ 카드 전체 -->
+  <div class="portfolio-card">
+    <div class="image-upload">
+      <label for="imageInput" class="upload-area">
         <input type="file" accept="image/*" id="imageInput" hidden />
-        <div id="imagePlaceholder">
-          <button type="button">파일 선택</button>
+        <div class="image-preview" id="imagePreview">
+          <span>파일 선택</span>
         </div>
-        <img id="imagePreview" alt="미리보기" style="display:none;" />
       </label>
     </div>
-    <div class="info-wrapper">
-      <input type="text" placeholder="이름" />
-      <input type="text" placeholder="나이" />
-      <input type="text" placeholder="경력" />
-      <input type="text" placeholder="지역" />
-      <input type="text" placeholder="SNS 주소" />
-      <label class="checkbox-wrapper">
-        <span>공개여부</span>
-        <input type="checkbox" />
-      </label>
+
+    <div class="profile-text-section">
+      <label>이름</label>
+      <input type="text" id="name" />
+
+      <label>나이</label>
+      <input type="number" id="age" />
+
+      <label>경력</label>
+      <input type="text" id="experience" />
+
+      <label>지역</label>
+      <input type="text" id="region" />
+
+      <label>SNS 주소</label>
+      <input type="url" id="sns" />
     </div>
-  </section>  <div class="button-wrapper">
-    <button type="button">저장하기</button>
-  </div>  <!-- ✅ 공통 하단탭 -->  <div id="bottom-tab-container"></div>  <!-- ✅ 공통 JS -->  <script src="/livee-beta/frontend/js/header.js"></script>  <script src="/livee-beta/frontend/js/top-tab.js"></script>  <script src="/livee-beta/frontend/js/bottom-tab.js"></script>  <script src="/livee-beta/frontend/js/portfolio-edit.js"></script></body>
+
+    <!-- ✅ 공개여부는 맨 아래에 단독으로 -->
+    <div class="checkbox-wrapper">
+      <input type="checkbox" id="isPublic" />
+      <label for="isPublic">공개 여부</label>
+    </div>
+  </div>
+
+  <button class="submit-button">저장하기</button>
+
+  <div id="bottom-tab-container"></div>
+
+  <script src="/livee-beta/frontend/js/header.js"></script>
+  <script src="/livee-beta/frontend/js/top-tab.js"></script>
+  <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
+  <script src="/livee-beta/frontend/js/portfolio-edit.js"></script>
+</body>
 </html>
