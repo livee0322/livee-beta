@@ -1,16 +1,16 @@
-/* /livee-beta/frontend/css/canvas.css */
-
 body {
   padding: 20px;
   text-align: center;
 }
-canvas {
-  border: 1px solid #ccc;
+.cropper-container {
+  max-width: 100%;
+  max-height: 80vh;
   margin-top: 20px;
+  overflow: hidden;
 }
 button {
   margin-top: 20px;
-  padding: 8px 16px;
+  padding: 10px 20px;
   background: #6c4fef;
   color: white;
   border: none;
