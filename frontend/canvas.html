@@ -1,13 +1,18 @@
-<!DOCTYPE html><html lang="ko">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>이미지 크롭</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <link rel="stylesheet" href="/livee-beta/frontend/css/canvas.css" />
 </head>
 <body>
-  <div class="canvas-container">
-    <canvas id="imageCanvas" width="300" height="300"></canvas>
-    <button id="cropSave">저장</button>
-  </div>  <script src="/livee-beta/frontend/js/canvas.js"></script></body>
+  <h2>이미지 자르기</h2>
+  <input type="file" id="upload" accept="image/*" />
+  <canvas id="canvas" width="400" height="300"></canvas>
+  <button id="cropBtn">자르기 & 저장</button>
+
+  <script src="/livee-beta/frontend/js/canvas.js"></script>
+</body>
 </html>
