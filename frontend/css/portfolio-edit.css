@@ -1,88 +1,64 @@
-.portfolio-card {
+.profile-card {
   display: flex;
-  flex-direction: row;
-  gap: 12px;
-  padding: 16px;
-  border-radius: 12px;
+  gap: 16px;
+  padding: 20px;
   background: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  margin: 20px auto;
-  max-width: 600px;
+  border-radius: 16px;
+  margin: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   align-items: flex-start;
 }
 
-/* 📸 왼쪽 이미지영역 */
-.left-image-section {
-  width: 35%;
-  aspect-ratio: 3 / 4;
-  position: relative;
+.image-upload-area {
+  width: 120px;
+  flex-shrink: 0;
 }
 
-.image-placeholder {
+#imagePreviewWrapper {
   width: 100%;
-  height: 0;
-  padding-top: 133.33%; /* 4:3 비율 → 3:4용이면 133.33% */
-  position: relative;
-  background: #f5f5f5;
-  border: 1px dashed #ccc;
+  aspect-ratio: 3 / 4;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
   border-radius: 8px;
-  overflow: hidden;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
-.upload-text {
-  position: absolute;
-  color: #999;
-  font-size: 14px;
-}
-
-.image-placeholder img {
-  position: absolute;
+#imagePreviewWrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  top: 0;
-  left: 0;
 }
 
-/* 📝 오른쪽 텍스트 입력 */
-.right-info-section {
-  flex: 1;
+#uploadButton {
+  background: white;
+  color: #666;
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.info-fields {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.right-info-section input {
+.info-fields input {
   padding: 8px;
   font-size: 14px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   border-radius: 6px;
-  width: 100%;
 }
 
-/* ✅ 공개 여부 + 저장버튼 */
-.portfolio-extra-options {
-  margin: 16px auto;
-  max-width: 600px;
+.options-row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 16px;
-}
-
-.portfolio-extra-options label {
-  font-size: 14px;
-}
-
-.portfolio-extra-options button {
-  background: #7b61ff;
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 6px;
-  font-size: 14px;
+  gap: 10px;
+  padding: 0 20px;
+  margin-top: 10px;
 }
