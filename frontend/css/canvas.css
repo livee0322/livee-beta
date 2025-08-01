@@ -1,48 +1,21 @@
 body {
   margin: 0;
-  padding: 0;
   background: #f9f9f9;
-  font-family: sans-serif;
 }
-
-.crop-header {
+.canvas-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 14px 16px;
-  background-color: #ffffff;
-  border-bottom: 1px solid #e0e0e0;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-.icon-btn {
-  font-size: 16px;
-  background: none;
-  border: none;
-  color: #5f5f5f;
-  cursor: pointer;
-}
-
-.icon-btn.save {
-  color: #6b46ff;
+  padding: 1rem;
+  background: white;
+  border-bottom: 1px solid #ddd;
   font-weight: bold;
 }
-
-.crop-title {
-  font-size: 16px;
-  font-weight: bold;
+.cropper-container {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
 }
-
-.crop-wrapper {
-  width: 100%;
-  height: calc(100vh - 60px);
-  overflow: hidden;
-  position: relative;
-}
-
-.crop-wrapper img {
+#image {
   max-width: 100%;
-  display: block;
+  height: auto;
 }
