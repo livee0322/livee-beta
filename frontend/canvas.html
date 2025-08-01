@@ -2,17 +2,23 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>이미지 크롭</title>
+  <title>이미지 자르기</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- CropperJS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
   <link rel="stylesheet" href="/livee-beta/frontend/css/canvas.css" />
 </head>
 <body>
   <h2>이미지 자르기</h2>
   <input type="file" id="upload" accept="image/*" />
-  <canvas id="canvas" width="400" height="300"></canvas>
+  <div class="cropper-container">
+    <img id="image" style="max-width: 100%;" />
+  </div>
   <button id="cropBtn">자르기 & 저장</button>
 
+  <!-- CropperJS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
   <script src="/livee-beta/frontend/js/canvas.js"></script>
 </body>
 </html>
