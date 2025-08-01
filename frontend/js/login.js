@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const password = form.password.value;
 
     try {
-      const res = await fetch("https://livee-server-dev.onrender.com/api/auth/login", {
+      const res = await fetch("https://main-server-ekgr.onrender.com/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
