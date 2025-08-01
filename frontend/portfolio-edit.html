@@ -4,43 +4,47 @@
   <meta charset="UTF-8" />
   <title>포트폴리오 수정</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- ✅ 공통 CSS -->
+
+  <!-- 공통 CSS -->
   <link rel="stylesheet" href="/livee-beta/main.css" />
   <link rel="stylesheet" href="/livee-beta/frontend/css/portfolio-edit.css" />
 </head>
 <body>
-  <!-- ✅ 베타 배너 & 공통 모듈 -->
+  <!-- ✅ 공통 모듈 -->
   <div class="beta-banner">현재 클로즈 베타 테스트 중입니다</div>
   <div id="header-container"></div>
   <div id="top-tab-container"></div>
 
-  <!-- ✅ 프로필 이미지 -->
+  <!-- ✅ 이미지 업로드 -->
   <section class="profile-image-section">
-    <input type="file" accept="image/*" id="imageInput" class="image-input" />
-    <button id="selectFileBtn" type="button" class="select-btn">파일 선택</button>
-
+    <input type="file" id="imageInput" accept="image/*" hidden />
+    <label for="imageInput" class="select-btn">파일 선택</label>
     <div class="preview-wrapper">
       <img id="imagePreview" alt="미리보기" />
     </div>
   </section>
 
-  <!-- ✅ 포트폴리오 입력 폼 -->
-  <section class="form-section">
-    <form id="portfolioForm">
-      <label>이름 <input type="text" /></label>
-      <label>나이 <input type="text" /></label>
-      <label>경력 <input type="text" /></label>
-      <label>지역 <input type="text" /></label>
-      <label>SNS 주소 <input type="text" /></label>
-      <label>공개여부 <input type="checkbox" id="isPublic" /></label>
-      <button type="submit" id="saveBtn">저장</button>
-    </form>
+  <!-- ✅ 입력 폼 -->
+  <section class="info-form">
+    <label>이름 <input type="text" id="name" /></label>
+    <label>나이 <input type="number" id="age" /></label>
+    <label>경력 <input type="text" id="career" /></label>
+    <label>지역 <input type="text" id="location" /></label>
+    <label>SNS 주소 <input type="url" id="sns" /></label>
+    <label class="toggle-wrap">
+      공개여부 <input type="checkbox" id="isPublic" />
+    </label>
   </section>
+
+  <!-- ✅ 저장 버튼 -->
+  <div class="button-wrap">
+    <button id="saveBtn">저장하기</button>
+  </div>
 
   <!-- ✅ 하단탭 -->
   <div id="bottom-tab-container"></div>
 
-  <!-- ✅ JS -->
+  <!-- ✅ 공통 JS -->
   <script src="/livee-beta/frontend/js/header.js"></script>
   <script src="/livee-beta/frontend/js/top-tab.js"></script>
   <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
