@@ -4,27 +4,34 @@
   <meta charset="UTF-8" />
   <title>포트폴리오 수정</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- 공통 스타일 -->
   <link rel="stylesheet" href="/livee-beta/main.css" />
+  <!-- 포트폴리오 수정 전용 스타일 -->
   <link rel="stylesheet" href="/livee-beta/frontend/css/portfolio-edit.css" />
 </head>
 <body>
+  <!-- 띠배너 -->
   <div class="beta-banner">현재 클로즈 베타 테스트 중입니다</div>
+
+  <!-- 공통 헤더/탭 -->
   <div id="header-container"></div>
   <div id="top-tab-container"></div>
 
-  <!-- ✅ 프로필 카드 -->
+  <!-- 프로필 카드 -->
   <section class="profile-card">
-    <!-- 이미지 + 버튼 -->
+    <!-- 이미지 업로드 영역 -->
     <div class="image-upload-area">
       <label class="upload-label">
+        <!-- 실제 input은 숨김 -->
         <input type="file" accept="image/*" id="imageInput" hidden />
+        <!-- 이미지 또는 버튼이 표시될 영역 -->
         <div id="imagePreviewWrapper">
           <button type="button" id="uploadButton">파일 선택</button>
         </div>
       </label>
     </div>
 
-    <!-- 정보 입력 -->
+    <!-- 텍스트 입력 필드 -->
     <div class="info-fields">
       <input type="text" placeholder="이름" />
       <input type="text" placeholder="나이" />
@@ -34,17 +41,20 @@
     </div>
   </section>
 
-  <!-- 공개여부 + 저장 -->
+  <!-- 공개 여부 + 저장 버튼 -->
   <div class="options-row">
     <label><input type="checkbox" /> 공개 여부</label>
     <button>저장하기</button>
   </div>
 
+  <!-- 하단탭 -->
   <div id="bottom-tab-container"></div>
 
+  <!-- 공통 JS -->
   <script src="/livee-beta/frontend/js/header.js"></script>
   <script src="/livee-beta/frontend/js/top-tab.js"></script>
   <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
+  <!-- 포트폴리오 JS -->
   <script src="/livee-beta/frontend/js/portfolio-edit.js"></script>
 </body>
 </html>
