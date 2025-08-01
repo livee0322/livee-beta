@@ -1,69 +1,65 @@
 .profile-image-section {
-  padding: 1rem;
+  padding: 16px;
   text-align: center;
 }
 
 .select-btn {
-  padding: 8px 16px;
+  display: inline-block;
   background-color: #6c5ce7;
   color: #fff;
-  border: none;
-  border-radius: 6px;
-  margin-bottom: 10px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
   cursor: pointer;
-}
-
-.image-input {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
+  margin-bottom: 12px;
 }
 
 .preview-wrapper {
-  width: 100%;
-  max-width: 320px;
-  margin: 0 auto;
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 8px;
-  background-color: #f8f8f8;
+  margin-top: 12px;
 }
 
 .preview-wrapper img {
   width: 100%;
-  object-fit: cover;
-  border-radius: 4px;
+  max-width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
 }
 
-.form-section {
-  padding: 1rem;
+.info-form {
+  padding: 0 16px;
 }
 
-.form-section form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.info-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 15px;
 }
 
-.form-section label {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.form-section input[type="text"] {
-  flex: 1;
-  padding: 6px;
+.info-form input {
+  width: 100%;
+  padding: 8px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 6px;
+  margin-top: 4px;
+}
+
+.toggle-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.button-wrap {
+  padding: 16px;
+  text-align: center;
 }
 
 #saveBtn {
-  padding: 10px;
+  padding: 10px 20px;
   background-color: #6c5ce7;
   color: #fff;
   border: none;
-  border-radius: 6px;
-  margin-top: 12px;
+  border-radius: 8px;
+  font-size: 15px;
   cursor: pointer;
 }
