@@ -1,38 +1,57 @@
-<!DOCTYPE html><html lang="ko">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>로그인 - Livee</title>
-  <link rel="stylesheet" href="/livee-beta/css/main.css?v=1.06" />
-  <link rel="stylesheet" href="/livee-beta/css/login.css?v=1.0" />
-  <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- ✅ CSS 경로 절대경로로 수정 -->
+  <link rel="stylesheet" href="/livee-beta/main.css?v=1.06" />
+  <link rel="stylesheet" href="/livee-beta/login.css?v=1.0" />
 </head>
 <body>
-  <!-- ✅ 상단 베타 배너 -->
-  <div class="beta-banner">현재 클로즈 베타 테스트 중입니다</div>  <!-- ✅ 헤더 및 탭 영역 -->  <div id="header-container"></div>
-  <div id="top-tab-container"></div>  <!-- ✅ 로그인 폼 -->  <main class="login-container">
+  <!-- ✅ 베타 띠배너 -->
+  <div class="beta-banner">현재 클로즈 베타 테스트 중입니다</div>
+
+  <!-- ✅ 상단탭/헤더 -->
+  <div id="header-container"></div>
+  <div id="top-tab-container"></div>
+
+  <!-- ✅ 로그인 영역 -->
+  <main class="login-container">
     <h2>로그인</h2>
     <form id="loginForm">
       <div class="form-group">
         <label for="email">이메일</label>
-        <input type="email" id="email" name="email" required />
+        <input type="email" id="email" required />
       </div>
       <div class="form-group">
         <label for="password">비밀번호</label>
-        <input type="password" id="password" name="password" required />
+        <input type="password" id="password" required />
       </div>
       <button type="submit">로그인</button>
       <p id="loginError" class="error-message"></p>
-    </form><!-- ✅ SNS 로그인 -->
-<div class="social-login">
-  <button class="btn-social naver">네이버로 로그인</button>
-  <button class="btn-social apple">Apple로 로그인</button>
-</div>
+    </form>
 
-<!-- ✅ 기타 링크 -->
-<div class="login-links">
-  <a href="#">비밀번호 찾기</a> | <a href="/livee-beta/frontend/signup.html">회원가입</a>
-</div>
+    <!-- ✅ SNS 로그인 버튼 -->
+    <div class="social-login">
+      <button class="btn-social naver">네이버로 로그인</button>
+      <button class="btn-social apple">Apple로 로그인</button>
+    </div>
 
-  </main>  <!-- ✅ 하단탭 -->  <div id="bottom-tab-container"></div>  <!-- ✅ JS 스크립트 -->  <script src="/livee-beta/js/header.js"></script>  <script src="/livee-beta/js/top-tab.js"></script>  <script src="/livee-beta/js/bottom-tab.js"></script>  <script src="/livee-beta/js/login.js"></script></body>
+    <!-- ✅ 추가 링크 -->
+    <div class="login-links">
+      <a href="#">비밀번호 찾기</a> | <a href="/livee-beta/signup.html">회원가입</a>
+    </div>
+  </main>
+
+  <!-- ✅ 하단탭 -->
+  <div id="bottom-tab-container"></div>
+
+  <!-- ✅ JS 절대경로로 수정 -->
+  <script src="/livee-beta/js/header.js"></script>
+  <script src="/livee-beta/js/top-tab.js"></script>
+  <script src="/livee-beta/js/bottom-tab.js"></script>
+  <script src="/livee-beta/js/login.js"></script>
+</body>
 </html>
