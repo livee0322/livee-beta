@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>내 포트폴리오</title>
+  <link rel="stylesheet" href="/livee-beta/main.css?v=1.06" />
+  <link rel="stylesheet" href="/livee-beta/frontend/css/portfolio.css?v=1.0" />
+</head>
+<body>
+  <!-- 🔸 띠배너 -->
+  <div class="beta-banner">현재 클로즈 베타 테스트 중입니다</div>
+
+  <!-- 🔸 공통 헤더/탭 -->
+  <div id="header-container"></div>
+  <div id="top-tab-container"></div>
+
+  <main class="portfolio-wrapper">
+    <h2>내 포트폴리오</h2>
+
+    <div id="portfolioList" class="portfolio-list">
+      <!-- JS로 포트폴리오 카드 또는 빈 메시지 삽입 -->
+    </div>
+  </main>
+
+  <!-- 🔸 + 버튼 -->
+  <button id="fabBtn" class="fab-btn" onclick="location.href='/livee-beta/frontend/portfolio-edit.html'">+</button>
+
+  <!-- 🔸 하단탭 -->
+  <div id="bottom-tab-container"></div>
+
+  <!-- 🔸 공통 스크립트 -->
+  <script src="/livee-beta/frontend/js/header.js"></script>
+  <script src="/livee-beta/frontend/js/top-tab.js"></script>
+  <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
+
+  <!-- 🔸 포트폴리오 로딩 스크립트 -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const portfolioList = document.getElementById("portfolioList");
+
+      // 🔄 포트폴리오 임시 데이터 불러오기 (추후 서버연동 가능)
+      const saved = localStorage.getItem("myPortfolio");
+      if (saved) {
+        const data = JSON.parse(saved);
+        const card = document.createElement("div");
+        card.className = "portfolio-card";
+        card.innerHTML = `
+          <div class="card-header">
+            <div class="card-title">"${data.title || '쇼호스트'}" 님</div>
+          </div>
+          <div class="card-body">
+            <p><strong>이름:</strong> ${data.name}</p>
+            <p><strong>나이:</strong> ${data.age}</p>
+            <p><strong>경력:</strong> ${data.career}</p>
+            <p><strong>지역:</strong> ${data.region}</p>
+            <p><strong>SNS:</strong> <a href="${data.sns}" target="_blank">${data.sns}</a></p>
+            <p><strong>태그:</strong> ${data.tags}</p>
+            <p><strong>공개여부:</strong> ${data.isPublic ? '공개' : '비공개'}</p>
+          </div>
+        `;
+        portfolioList.appendChild(card);
+      } else {
+        portfolioList.innerHTML = `<p class="no-portfolio">현재 작성한 포트폴리오가 없습니다.</p>`;
+      }
+    });
+  </script>
+</body>
+</html>
