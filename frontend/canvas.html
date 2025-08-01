@@ -4,38 +4,55 @@
   <meta charset="UTF-8" />
   <title>이미지 자르기</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/livee-beta/main.css" />
   <link rel="stylesheet" href="/livee-beta/frontend/css/canvas.css" />
 </head>
 <body>
-  <!-- 띠배너 -->
-  <div class="beta-banner">현재 클로즈 베타 테스트 중입니다</div>
-
-  <!-- 공통 헤더/탭 -->
-  <div id="header-container"></div>
-  <div id="top-tab-container"></div>
 
   <!-- 상단 버튼 -->
   <div class="canvas-buttons">
-    <button id="backButton">뒤로가기</button>
-    <button id="saveButton">저장</button>
+    <button onclick="goBack()">뒤로가기</button>
+    <button id="cropBtn">저장하기</button>
   </div>
 
-  <!-- 프로필카드 안에 캔버스 삽입 -->
-  <section class="profile-card">
-    <div class="image-upload-area" style="width: 100%">
-      <div id="canvasWrapper">
-        <canvas id="canvas"></canvas>
-      </div>
-    </div>
-  </section>
+  <!-- 캔버스 영역 -->
+  <div id="canvasWrapper">
+    <canvas id="canvas"></canvas>
+  </div>
 
-  <!-- 공통 하단탭 -->
-  <div id="bottom-tab-container"></div>
+  <script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
 
-  <script src="/livee-beta/frontend/js/header.js"></script>
-  <script src="/livee-beta/frontend/js/top-tab.js"></script>
-  <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
-  <script src="/livee-beta/frontend/js/canvas.js"></script>
+    // 로컬스토리지에서 원본 이미지 불러오기
+    const originalImage = localStorage.getItem("cropImage");
+    if (!originalImage) {
+      alert("이미지가 없습니다.");
+      history.back();
+    }
+
+    const img = new Image();
+    img.src = originalImage;
+
+    img.onload = () => {
+      // 캔버스 크기 조절 (3:4 비율 유지)
+      const width = 300;
+      const height = 400;
+      canvas.width = width;
+      canvas.height = height;
+      ctx.drawImage(img, 0, 0, width, height);
+    };
+
+    // 저장 버튼 클릭 → 자른 이미지 저장 후 돌아감
+    document.getElementById("cropBtn").addEventListener("click", () => {
+      const cropped = canvas.toDataURL("image/png");
+      localStorage.setItem("croppedImage", cropped);
+      location.href = "/livee-beta/frontend/portfolio-edit.html";
+    });
+
+    // 뒤로가기
+    function goBack() {
+      history.back();
+    }
+  </script>
 </body>
 </html>
