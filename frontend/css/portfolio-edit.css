@@ -1,93 +1,29 @@
-/* /livee-beta/frontend/css/portfolio-edit.css */
-
-#portfolioEditContent {
-  padding: 20px;
-}
-.title {
-  font-size: 1.4rem;
-  margin-bottom: 20px;
-  font-weight: 600;
+.profile-image-section {
   text-align: center;
+  padding: 2rem 1rem;
 }
-.image-upload-container {
-  text-align: center;
-  margin-bottom: 20px;
+.upload-label button {
+  padding: 0.5rem 1rem;
+  background-color: #7c3aed;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
 }
-.file-label {
-  display: inline-block;
-  padding: 8px 16px;
-  background: #fff;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  margin-bottom: 10px;
-}
-.image-preview-wrapper {
+.preview-wrapper {
+  margin-top: 1rem;
   width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-  border: 1px solid #eee;
-  padding: 10px;
-  box-sizing: border-box;
-}
-.image-preview-wrapper img {
-  width: 100%;
-  object-fit: cover;
+  max-width: 300px;
   aspect-ratio: 4 / 3;
-}
-.info-section label,
-.tag-section label {
-  display: block;
-  margin-top: 10px;
-  font-weight: 500;
-}
-.info-section input,
-.tag-section input {
-  width: 100%;
-  padding: 8px;
-  margin-top: 4px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-.toggle-wrap {
+  border: 2px dashed #ccc;
   display: flex;
   align-items: center;
-  margin-top: 10px;
+  justify-content: center;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
 }
-.toggle-wrap .toggle {
-  width: 40px;
-  height: 20px;
-  margin-left: 10px;
-  background: #ccc;
-  border-radius: 10px;
-  position: relative;
-}
-.toggle-wrap input[type="checkbox"]:checked + .toggle {
-  background: #6c4fef;
-}
-.toggle::after {
-  content: "";
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 16px;
-  height: 16px;
-  background: #fff;
-  border-radius: 50%;
-  transition: all 0.3s;
-}
-input[type="checkbox"]:checked + .toggle::after {
-  left: 22px;
-}
-.button-wrap {
-  margin-top: 30px;
-  text-align: center;
-}
-.button-wrap button {
-  background: #6c4fef;
-  color: white;
-  padding: 10px 30px;
-  border-radius: 5px;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
+#imagePreview {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
