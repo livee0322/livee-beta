@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>로그인 - Livee</title>
 
-  <!-- ✅ CSS 경로 절대경로로 수정 -->
+  <!-- ✅ CSS 경로 (절대경로 기준) -->
   <link rel="stylesheet" href="/livee-beta/main.css?v=1.06" />
   <link rel="stylesheet" href="/livee-beta/frontend/css/login.css?v=1.0" />
 </head>
@@ -13,11 +13,11 @@
   <!-- ✅ 베타 띠배너 -->
   <div class="beta-banner">현재 클로즈 베타 테스트 중입니다</div>
 
-  <!-- ✅ 헤더 / 상단탭 -->
+  <!-- ✅ 공통 모듈 -->
   <div id="header-container"></div>
   <div id="top-tab-container"></div>
 
-  <!-- ✅ 로그인 컨테이너 -->
+  <!-- ✅ 로그인 폼 -->
   <main class="login-container">
     <h2>로그인</h2>
     <form id="loginForm">
@@ -25,15 +25,20 @@
         <label for="email">이메일</label>
         <input type="email" id="email" required />
       </div>
+
       <div class="form-group">
         <label for="password">비밀번호</label>
-        <input type="password" id="password" required />
+        <div class="password-wrapper">
+          <input type="password" id="password" required />
+          <button type="button" class="toggle-password" data-target="password">👁</button>
+        </div>
       </div>
+
       <button type="submit">로그인</button>
       <p id="loginError" class="error-message"></p>
     </form>
 
-    <!-- ✅ SNS 로그인 버튼 -->
+    <!-- ✅ 소셜 로그인 -->
     <div class="social-login">
       <button class="btn-social naver">네이버로 로그인</button>
       <button class="btn-social apple">Apple로 로그인</button>
@@ -48,7 +53,7 @@
   <!-- ✅ 하단탭 -->
   <div id="bottom-tab-container"></div>
 
-  <!-- ✅ JS 경로 절대경로로 수정 -->
+  <!-- ✅ JS 경로 (모두 절대경로로 통일) -->
   <script src="/livee-beta/frontend/js/header.js"></script>
   <script src="/livee-beta/frontend/js/top-tab.js"></script>
   <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
