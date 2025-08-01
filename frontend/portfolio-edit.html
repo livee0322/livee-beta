@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>내 포트폴리오 작성</title>
+  <link rel="stylesheet" href="/livee-beta/main.css?v=1.06" />
+  <link rel="stylesheet" href="/livee-beta/frontend/css/portfolio.css?v=1.0" />
+</head>
+<body>
+  <!-- 🔸 띠배너 -->
+  <div class="beta-banner">현재 클로즈 베타 테스트 중입니다</div>
+
+  <!-- 🔸 공통 헤더/탭 -->
+  <div id="header-container"></div>
+  <div id="top-tab-container"></div>
+
+  <!-- 🔸 포트폴리오 작성 영역 -->
+  <main class="portfolio-wrapper">
+    <h2>성실한 쇼호스트 <input type="text" id="titleName" placeholder="@@"/> 님입니다</h2>
+
+    <!-- 🔸 프로필 이미지 등록 -->
+    <div class="profile-section">
+      <label for="profileImage">
+        <div class="image-box" id="imagePreview">이미지 업로드</div>
+      </label>
+      <input type="file" id="profileImage" accept="image/*" hidden />
+    </div>
+
+    <!-- 🔸 기본정보 입력 -->
+    <div class="info-form">
+      <input type="text" id="name" placeholder="이름" />
+      <input type="number" id="age" placeholder="나이" />
+      <input type="text" id="career" placeholder="경력 (예: 3년)" />
+      <input type="text" id="region" placeholder="지역 (예: 서울 강남)" />
+      <input type="url" id="sns" placeholder="SNS 주소 (인스타 등)" />
+      <label class="checkbox-wrap">
+        <input type="checkbox" id="isPublic" />
+        <span>공개 여부</span>
+      </label>
+    </div>
+
+    <!-- 🔸 관련 태그 -->
+    <div class="tag-form">
+      <label for="tags">관련 태그 (예: 귀여운, 말잘하는, 먹방전문가)</label>
+      <input type="text" id="tags" placeholder="태그를 ,로 구분해서 입력해주세요" />
+    </div>
+
+    <!-- 🔸 저장버튼 -->
+    <button class="save-btn" onclick="savePortfolio()">저장하기</button>
+  </main>
+
+  <!-- 🔸 하단탭 -->
+  <div id="bottom-tab-container"></div>
+
+  <!-- 🔸 공통 스크립트 -->
+  <script src="/livee-beta/frontend/js/header.js"></script>
+  <script src="/livee-beta/frontend/js/top-tab.js"></script>
+  <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
+
+  <!-- 🔸 작성 저장 스크립트 -->
+  <script>
+    // 이미지 미리보기
+    document.getElementById('profileImage').addEventListener('change', function (e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (evt) {
+          document.getElementById('imagePreview').style.backgroundImage = `url(${evt.target.result})`;
+          document.getElementById('imagePreview').textContent = '';
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    function savePortfolio() {
+      alert("포트폴리오가 저장되었습니다!");
+      window.location.href = "/livee-beta/frontend/mypage.html";
+    }
+  </script>
+</body>
+</html>
