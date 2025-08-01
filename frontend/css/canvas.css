@@ -1,52 +1,48 @@
-/* canvas.css */
-
-.canvas-main {
-  padding: 20px;
-  text-align: center;
+body {
+  margin: 0;
+  padding: 0;
+  background: #f9f9f9;
+  font-family: sans-serif;
 }
 
-.canvas-title {
-  font-size: 1.4rem;
-  margin-bottom: 16px;
-  font-weight: bold;
+.crop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-.file-input {
-  display: block;
-  margin: 0 auto 16px auto;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
-.cropper-wrapper {
-  max-width: 100%;
-  max-height: 400px;
-  margin: 0 auto 20px auto;
-  overflow: hidden;
-  border: 1px solid #eee;
-  border-radius: 10px;
-}
-
-.cropper-wrapper img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: contain;
-}
-
-/* 버튼 공통 스타일 */
-.purple-btn {
-  background-color: #7a5fff;
-  color: white;
+.icon-btn {
+  font-size: 16px;
+  background: none;
   border: none;
-  padding: 12px 20px;
-  border-radius: 10px;
-  font-size: 1rem;
+  color: #5f5f5f;
   cursor: pointer;
 }
 
-.purple-btn:hover {
-  background-color: #674de0;
+.icon-btn.save {
+  color: #6b46ff;
+  font-weight: bold;
+}
+
+.crop-title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.crop-wrapper {
+  width: 100%;
+  height: calc(100vh - 60px);
+  overflow: hidden;
+  position: relative;
+}
+
+.crop-wrapper img {
+  max-width: 100%;
+  display: block;
 }
