@@ -7,18 +7,46 @@
 
   <!-- CropperJS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
+
+  <!-- 공통 스타일 -->
+  <link rel="stylesheet" href="/livee-beta/main.css" />
+
+  <!-- 페이지 전용 스타일 -->
   <link rel="stylesheet" href="/livee-beta/frontend/css/canvas.css" />
 </head>
 <body>
-  <h2>이미지 자르기</h2>
-  <input type="file" id="upload" accept="image/*" />
-  <div class="cropper-container">
-    <img id="image" style="max-width: 100%;" />
-  </div>
-  <button id="cropBtn">자르기 & 저장</button>
+  <!-- ✅ 베타 띠배너 -->
+  <div class="beta-banner">현재 클로즈 베타 테스트 중입니다</div>
+
+  <!-- ✅ 공통 모듈 -->
+  <div id="header-container"></div>
+  <div id="top-tab-container"></div>
+
+  <!-- ✅ 본문 -->
+  <main class="canvas-main">
+    <h2 class="canvas-title">이미지 자르기</h2>
+
+    <input type="file" id="upload" accept="image/*" class="file-input" />
+
+    <div class="cropper-wrapper">
+      <img id="image" style="max-width: 100%; display: none;" />
+    </div>
+
+    <button id="cropBtn" class="purple-btn">자르기 & 저장</button>
+  </main>
+
+  <!-- ✅ 하단탭 -->
+  <div id="bottom-tab-container"></div>
 
   <!-- CropperJS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+
+  <!-- 공통 모듈 스크립트 -->
+  <script src="/livee-beta/frontend/js/header.js"></script>
+  <script src="/livee-beta/frontend/js/top-tab.js"></script>
+  <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
+
+  <!-- 페이지 전용 스크립트 -->
   <script src="/livee-beta/frontend/js/canvas.js"></script>
 </body>
 </html>
