@@ -1,27 +1,37 @@
-document.getElementById('loginForm').addEventListener('submit', async function (e) {
-  e.preventDefault();
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("loginForm");
+  const errorMsg = document.getElementById("loginError");
 
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value.trim();
-  const errorBox = document.getElementById('loginError');
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  try {
-    const res = await fetch('https://livee-server-dev.onrender.com/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    });
+    const email = form.email.value.trim();
+    const password = form.password.value;
 
-    const data = await res.json();
+    try {
+      const res = await fetch("https://livee-server-dev.onrender.com/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-    if (res.ok && data.token) {
-      localStorage.setItem('liveeToken', data.token);
-      location.href = 'mypage.html';
-    } else {
-      errorBox.textContent = data.message || '로그인에 실패했습니다.';
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "로그인에 실패했습니다.");
+      }
+
+      // ✅ 토큰 저장
+      localStorage.setItem("liveeToken", data.token);
+
+      // ✅ 로그인 후 이동
+      alert("로그인 성공!");
+      window.location.href = "/livee-beta/mypage.html";
+    } catch (err) {
+      console.error("로그인 에러:", err);
+      errorMsg.textContent = err.message || "로그인에 실패했습니다.";
     }
-  } catch (err) {
-    console.error(err);
-    errorBox.textContent = '서버 오류가 발생했습니다.';
-  }
+  });
 });
