@@ -1,0 +1,19 @@
+/* /livee-beta/frontend/css/canvas.css */
+
+body {
+  padding: 20px;
+  text-align: center;
+}
+canvas {
+  border: 1px solid #ccc;
+  margin-top: 20px;
+}
+button {
+  margin-top: 20px;
+  padding: 8px 16px;
+  background: #6c4fef;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
