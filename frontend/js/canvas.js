@@ -1,28 +1,41 @@
-// ✅ canvas.js
-let cropper;
-
-document.getElementById("upload").addEventListener("change", (e) => {
-  const file = e.target.files[0];
-  if (!file) return alert("이미지를 선택해주세요.");
+document.addEventListener("DOMContentLoaded", () => {
   const image = document.getElementById("image");
-  image.src = URL.createObjectURL(file);
-  image.onload = () => {
-    if (cropper) cropper.destroy();
+  const cropBtn = document.getElementById("cropBtn");
+  const backBtn = document.getElementById("backBtn");
+
+  const cropImageData = localStorage.getItem("cropImage");
+  if (!cropImageData) {
+    alert("잘못된 접근입니다.");
+    window.location.href = "/livee-beta/frontend/portfolio-edit.html";
+    return;
+  }
+
+  image.src = cropImageData;
+
+  let cropper;
+  image.addEventListener("load", () => {
     cropper = new Cropper(image, {
       aspectRatio: 4 / 3,
       viewMode: 1,
-      movable: true,
-      zoomable: true,
-      scalable: false,
-      rotatable: false,
+      autoCropArea: 1,
     });
-  };
-});
+  });
 
-document.getElementById("saveBtn").addEventListener("click", () => {
-  if (!cropper) return alert("이미지를 먼저 선택해주세요.");
-  const canvas = cropper.getCroppedCanvas({ width: 400, height: 300 });
-  const imageData = canvas.toDataURL("image/jpeg");
-  localStorage.setItem("croppedImage", imageData);
-  window.location.href = "/livee-beta/frontend/portfolio-edit.html";
+  cropBtn.addEventListener("click", () => {
+    if (!cropper) return;
+
+    const canvas = cropper.getCroppedCanvas({
+      width: 400,
+      height: 300,
+    });
+
+    const croppedDataUrl = canvas.toDataURL("image/jpeg");
+    localStorage.setItem("croppedImage", croppedDataUrl);
+    localStorage.removeItem("cropImage");
+    window.location.href = "/livee-beta/frontend/portfolio-edit.html";
+  });
+
+  backBtn.addEventListener("click", () => {
+    window.history.back();
+  });
 });
