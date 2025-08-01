@@ -17,23 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     reader.onload = (event) => {
       img.onload = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        const canvasRatio = canvas.width / canvas.height;
-        const imgRatio = img.width / img.height;
-
-        let drawWidth, drawHeight;
-        if (imgRatio > canvasRatio) {
-          drawWidth = canvas.width;
-          drawHeight = canvas.width / imgRatio;
-        } else {
-          drawHeight = canvas.height;
-          drawWidth = canvas.height * imgRatio;
-        }
-
-        const offsetX = (canvas.width - drawWidth) / 2;
-        const offsetY = (canvas.height - drawHeight) / 2;
-
-        ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
       };
       img.src = event.target.result;
     };
@@ -66,7 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const toggle = document.getElementById("isPublic");
-  toggle?.addEventListener("change", () => {
-    console.log("공개여부:", toggle.checked ? "공개" : "비공개");
-  });
+  if (toggle) {
+    toggle.addEventListener("change", () => {
+      console.log("공개여부:", toggle.checked ? "공개" : "비공개");
+    });
+  }
 });
