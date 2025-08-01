@@ -1,78 +1,85 @@
-.profile-card {
-  display: flex;
-  gap: 16px;
-  padding: 16px;
+.portfolio-card {
+  max-width: 90%;
+  margin: 20px auto;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-  margin: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
   align-items: flex-start;
 }
 
-.profile-image-section {
-  width: 180px;
-  aspect-ratio: 3 / 4;
-  position: relative;
-  background: #f1f1f1;
-  border-radius: 8px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.image-upload {
+  flex: 1;
+  max-width: 40%;
 }
 
-.profile-image-section button {
+.upload-area {
+  display: block;
   width: 100%;
-  height: 100%;
-  background: #7a5fff;
-  color: white;
-  border: none;
-  font-size: 16px;
-  border-radius: 8px;
+  aspect-ratio: 3 / 4;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f7f7f7;
+  position: relative;
+  cursor: pointer;
 }
 
-.profile-image-section img {
+.image-preview {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #888;
+}
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .profile-text-section {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .profile-text-section label {
-  font-weight: bold;
-  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
-.profile-text-section input[type="text"],
-.profile-text-section input[type="number"],
-.profile-text-section input[type="url"] {
-  width: 100%;
-  padding: 8px;
+.profile-text-section input {
+  padding: 6px 10px;
+  font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 6px;
 }
 
-.profile-text-section .checkbox-wrapper {
+.checkbox-wrapper {
+  margin-top: 12px;
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-top: 4px;
+  font-size: 14px;
 }
 
-.save-btn {
-  margin: 20px;
-  padding: 12px;
-  width: calc(100% - 40px);
-  background: #7a5fff;
+.submit-button {
+  margin: 20px auto;
+  display: block;
+  padding: 10px 20px;
+  background-color: #7b4eff;
   color: white;
-  font-size: 16px;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
 }
