@@ -5,19 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>로그인 - Livee</title>
 
-  <!-- ✅ CSS 경로 절대경로로 수정 -->
+  <!-- ✅ CSS 절대경로 -->
   <link rel="stylesheet" href="/livee-beta/main.css?v=1.06" />
   <link rel="stylesheet" href="/livee-beta/login.css?v=1.0" />
 </head>
 <body>
-  <!-- ✅ 베타 띠배너 -->
-  <div class="beta-banner">현재 클로즈 베타 테스트 중입니다</div>
+  <!-- ✅ 베타 띠배너 모듈 -->
+  <div id="beta-banner-container"></div>
 
-  <!-- ✅ 상단탭/헤더 -->
+  <!-- ✅ 헤더/상단탭 모듈 -->
   <div id="header-container"></div>
   <div id="top-tab-container"></div>
 
-  <!-- ✅ 로그인 영역 -->
+  <!-- ✅ 로그인 폼 -->
   <main class="login-container">
     <h2>로그인</h2>
     <form id="loginForm">
@@ -33,25 +33,27 @@
       <p id="loginError" class="error-message"></p>
     </form>
 
-    <!-- ✅ SNS 로그인 버튼 -->
+    <!-- ✅ SNS 로그인 -->
     <div class="social-login">
       <button class="btn-social naver">네이버로 로그인</button>
       <button class="btn-social apple">Apple로 로그인</button>
     </div>
 
-    <!-- ✅ 추가 링크 -->
+    <!-- ✅ 링크 -->
     <div class="login-links">
-      <a href="#">비밀번호 찾기</a> | <a href="/livee-beta/signup.html">회원가입</a>
+      <a href="#">비밀번호 찾기</a> | 
+      <a href="/livee-beta/signup.html">회원가입</a>
     </div>
   </main>
 
-  <!-- ✅ 하단탭 -->
+  <!-- ✅ 하단탭 모듈 -->
   <div id="bottom-tab-container"></div>
 
-  <!-- ✅ JS 절대경로로 수정 -->
-  <script src="/livee-beta/js/header.js"></script>
-  <script src="/livee-beta/js/top-tab.js"></script>
-  <script src="/livee-beta/js/bottom-tab.js"></script>
-  <script src="/livee-beta/js/login.js"></script>
+  <!-- ✅ JS 경로: frontend/js 기준 -->
+  <script src="/livee-beta/frontend/js/banner.js"></script>
+  <script src="/livee-beta/frontend/js/header.js"></script>
+  <script src="/livee-beta/frontend/js/top-tab.js"></script>
+  <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
+  <script src="/livee-beta/frontend/js/login.js"></script>
 </body>
 </html>
