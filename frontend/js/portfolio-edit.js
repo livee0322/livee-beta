@@ -1,14 +1,23 @@
-// /livee-beta/frontend/js/portfolio-edit.js
+document.addEventListener("DOMContentLoaded", () => {
+  const imageInput = document.getElementById("imageInput");
+  const imagePreview = document.getElementById("imagePreview");
 
-// 이미지 불러오기
-const croppedImage = document.getElementById("croppedImage");
-const savedImage = localStorage.getItem("croppedImage");
-if (croppedImage && savedImage) {
-  croppedImage.src = savedImage;
-}
+  imageInput.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
 
-// 저장하기 버튼
-document.getElementById("saveBtn").addEventListener("click", () => {
-  alert("포트폴리오가 저장되었습니다!");
-  window.location.href = "/livee-beta/frontend/mypage.html";
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      localStorage.setItem("cropImage", e.target.result); // 임시 저장
+      window.location.href = "/livee-beta/frontend/canvas.html";
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // 캔버스에서 저장한 이미지 불러오기 (저장 후 돌아왔을 때)
+  const savedImage = localStorage.getItem("croppedImage");
+  if (savedImage) {
+    imagePreview.src = savedImage;
+    localStorage.removeItem("croppedImage"); // 재사용 방지
+  }
 });
