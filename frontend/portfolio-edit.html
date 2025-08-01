@@ -13,6 +13,7 @@
   <div id="top-tab-container"></div>
 
   <section class="profile-card">
+    <!-- ✅ 이미지 업로드 영역 -->
     <div class="image-upload-area">
       <label class="upload-label">
         <input type="file" accept="image/*" id="imageInput" hidden />
@@ -22,21 +23,25 @@
       </label>
     </div>
 
+    <!-- ✅ 프로필 정보 입력 -->
     <div class="info-fields">
-      <input type="text" placeholder="이름" />
-      <input type="text" placeholder="나이" />
-      <input type="text" placeholder="경력" />
-      <input type="text" placeholder="지역" />
-      <input type="text" placeholder="SNS 주소" />
+      <input type="text" id="name" placeholder="이름" />
+      <input type="text" id="age" placeholder="나이" />
+      <input type="text" id="career" placeholder="경력" />
+      <input type="text" id="location" placeholder="지역" />
+      <input type="text" id="sns" placeholder="SNS 주소" />
     </div>
   </section>
 
+  <!-- ✅ 옵션 및 저장 -->
   <div class="options-row">
-    <label><input type="checkbox" /> 공개 여부</label>
-    <button>저장하기</button>
+    <label><input type="checkbox" id="public" /> 공개 여부</label>
+    <button id="saveBtn">저장하기</button>
   </div>
 
   <div id="bottom-tab-container"></div>
+
+  <!-- ✅ JS 모듈 연결 -->
   <script src="/livee-beta/frontend/js/header.js"></script>
   <script src="/livee-beta/frontend/js/top-tab.js"></script>
   <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
