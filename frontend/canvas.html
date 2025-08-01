@@ -1,58 +1,79 @@
-<!DOCTYPE html>
-<html lang="ko">
+<!DOCTYPE html><html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>이미지 자르기</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/livee-beta/frontend/css/canvas.css" />
-</head>
+  <title>이미지 자르기</title>  <!-- Cropper.js CDN -->  <link rel="stylesheet" href="https://unpkg.com/cropperjs/dist/cropper.min.css" />
+  <script src="https://unpkg.com/cropperjs"></script>  <!-- 사용자 정의 스타일 -->  <style>
+    body {
+      font-family: sans-serif;
+      padding: 16px;
+      background: #f9f9f9;
+      text-align: center;
+    }
+
+    .top-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .top-buttons button {
+      padding: 10px 20px;
+      font-size: 14px;
+      border: none;
+      border-radius: 6px;
+      background: #6c5ce7;
+      color: white;
+      cursor: pointer;
+    }
+
+    #canvasWrapper {
+      max-width: 90%;
+      margin: 0 auto;
+    }
+
+    #canvasWrapper img {
+      max-width: 100%;
+    }
+  </style></head>
 <body>
-
-  <!-- 상단 버튼 -->
-  <div class="canvas-buttons">
-    <button onclick="goBack()">뒤로가기</button>
+  <div class="top-buttons">
+    <button onclick="history.back()">뒤로가기</button>
     <button id="cropBtn">저장하기</button>
-  </div>
-
-  <!-- 캔버스 영역 -->
-  <div id="canvasWrapper">
-    <canvas id="canvas"></canvas>
-  </div>
-
-  <script>
-    const canvas = document.getElementById("canvas");
-    const ctx = canvas.getContext("2d");
-
-    // 로컬스토리지에서 원본 이미지 불러오기
+  </div>  <div id="canvasWrapper"></div>  <script>
+    let cropper;
     const originalImage = localStorage.getItem("cropImage");
+
     if (!originalImage) {
-      alert("이미지가 없습니다.");
-      history.back();
-    }
-
-    const img = new Image();
-    img.src = originalImage;
-
-    img.onload = () => {
-      // 캔버스 크기 조절 (3:4 비율 유지)
-      const width = 300;
-      const height = 400;
-      canvas.width = width;
-      canvas.height = height;
-      ctx.drawImage(img, 0, 0, width, height);
-    };
-
-    // 저장 버튼 클릭 → 자른 이미지 저장 후 돌아감
-    document.getElementById("cropBtn").addEventListener("click", () => {
-      const cropped = canvas.toDataURL("image/png");
-      localStorage.setItem("croppedImage", cropped);
+      alert("이미지가 없습니다. 다시 업로드해주세요.");
       location.href = "/livee-beta/frontend/portfolio-edit.html";
-    });
+    } else {
+      const imageEl = document.createElement("img");
+      imageEl.src = originalImage;
+      imageEl.id = "imageToCrop";
+      imageEl.style.maxWidth = "100%";
 
-    // 뒤로가기
-    function goBack() {
-      history.back();
+      document.getElementById("canvasWrapper").appendChild(imageEl);
+
+      cropper = new Cropper(imageEl, {
+        aspectRatio: 3 / 4,
+        viewMode: 1,
+        autoCropArea: 1,
+        responsive: true,
+        background: false,
+      });
     }
-  </script>
-</body>
+
+    document.getElementById("cropBtn").addEventListener("click", () => {
+      if (cropper) {
+        const croppedCanvas = cropper.getCroppedCanvas({
+          width: 300,
+          height: 400,
+        });
+        const croppedImage = croppedCanvas.toDataURL("image/png");
+        localStorage.setItem("croppedImage", croppedImage);
+        location.href = "/livee-beta/frontend/portfolio-edit.html";
+      }
+    });
+  </script></body>
 </html>
