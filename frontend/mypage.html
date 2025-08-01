@@ -5,39 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>마이페이지 - Livee</title>
   <link rel="stylesheet" href="/livee-beta/main.css?v=1.06" />
-  <link rel="stylesheet" href="/livee-beta/frontend/css/mypage.css?v=1.0" />
+  <link rel="stylesheet" href="/livee-beta/frontend/css/mypage.css?v=1.1" />
 </head>
 <body>
-  <!-- ✅ 띠배너 -->
+  <!-- 🔸 띠배너 -->
   <div class="beta-banner">현재 클로즈 베타 테스트 중입니다</div>
 
-  <!-- ✅ 공통 모듈 -->
+  <!-- 🔸 공통 헤더/탭 -->
   <div id="header-container"></div>
   <div id="top-tab-container"></div>
 
-  <!-- ✅ 마이페이지 콘텐츠 -->
-  <main class="mypage-container">
-    <h2>마이페이지</h2>
-    <ul class="mypage-menu">
-      <li><button onclick="location.href='/livee-beta/frontend/myportfolio.html'">내 포트폴리오</button></li>
-      <li><button onclick="logout()">로그아웃</button></li>
-    </ul>
+  <!-- 🔸 마이페이지 콘텐츠 -->
+  <main class="mypage-wrapper">
+    <section class="mypage-section">
+      <h3 class="section-title">쇼호스트</h3>
+      <div class="mypage-item" onclick="location.href='/livee-beta/frontend/myportfolio.html'">
+        <span>내 포트폴리오</span>
+        <span class="arrow">＞</span>
+      </div>
+    </section>
+
+    <section class="mypage-section">
+      <h3 class="section-title">내 정보</h3>
+      <div class="mypage-item" onclick="logout()">
+        <span>로그아웃</span>
+        <span class="arrow">＞</span>
+      </div>
+    </section>
   </main>
 
-  <!-- ✅ 하단탭 -->
+  <!-- 🔸 하단탭 -->
   <div id="bottom-tab-container"></div>
 
-  <!-- ✅ 공통 JS -->
+  <!-- 🔸 공통 스크립트 -->
   <script src="/livee-beta/frontend/js/header.js"></script>
   <script src="/livee-beta/frontend/js/top-tab.js"></script>
   <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
 
-  <!-- ✅ 로그아웃 스크립트 -->
+  <!-- 🔒 로그아웃 -->
   <script>
     function logout() {
-      localStorage.removeItem('liveeToken');
-      alert('로그아웃되었습니다.');
-      location.href = '/livee-beta/frontend/login.html';
+      localStorage.removeItem("liveeToken");
+      alert("로그아웃 되었습니다.");
+      window.location.href = "/livee-beta/frontend/login.html";
     }
   </script>
 </body>
