@@ -8,10 +8,10 @@
   <!-- Remixicon -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
 
-  <!-- ✅ 공통 CSS (루트) -->
+  <!-- 공통 CSS -->
   <link rel="stylesheet" href="/livee-beta/main.css" />
 
-  <!-- ✅ 전용 CSS -->
+  <!-- 전용 CSS -->
   <link rel="stylesheet" href="/livee-beta/frontend/css/portfolio-edit.css" />
 </head>
 <body>
@@ -25,14 +25,12 @@
   <main id="portfolioEditContent">
     <h2 class="title">성실한 쇼호스트 <span class="user-name">@@</span>입니다</h2>
 
-    <!-- 프로필 이미지 업로드 -->
+    <!-- 프로필 이미지 -->
     <section class="profile-section">
       <div class="image-upload-container">
-        <label for="imageInput" class="file-label">파일 선택</label>
-        <input type="file" id="imageInput" accept="image/*" />
+        <button onclick="window.location.href='/livee-beta/frontend/canvas.html'" class="file-label">파일 선택</button>
         <div class="image-preview-wrapper">
-          <canvas id="imageCanvas" width="400" height="300"></canvas>
-          <div class="crop-box" id="cropBox"></div>
+          <img id="croppedImage" src="" alt="프로필 미리보기" />
         </div>
       </div>
     </section>
@@ -63,16 +61,15 @@
     </div>
   </main>
 
-  <!-- ✅ 공통 하단탭 -->
-  <footer id="bottom-tab-container"></footer>
+  <div id="bottom-tab-container"></div>
 
-  <!-- ✅ 공통 JS -->
-  <script src="/livee-beta/frontend/js/banner.js"></script>
-  <script src="/livee-beta/frontend/js/header.js"></script>
-  <script src="/livee-beta/frontend/js/top-tab.js"></script>
-  <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
+  <!-- 공통 JS -->
+  <script src="/livee-beta/js/banner.js"></script>
+  <script src="/livee-beta/js/header.js"></script>
+  <script src="/livee-beta/js/top-tab.js"></script>
+  <script src="/livee-beta/js/bottom-tab.js"></script>
 
-  <!-- ✅ 전용 JS -->
+  <!-- 전용 JS -->
   <script src="/livee-beta/frontend/js/portfolio-edit.js"></script>
 </body>
 </html>
