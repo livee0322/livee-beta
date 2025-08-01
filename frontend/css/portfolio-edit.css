@@ -1,73 +1,140 @@
-.portfolio-wrapper {
+/* portfolio-edit.css */
+
+/* 📌 전체 레이아웃 */
+.portfolio-edit-container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 24px 16px 80px;
-  font-family: 'Pretendard', sans-serif;
+  padding: 20px;
+  background: #fff;
 }
 
-.portfolio-wrapper h2 {
-  font-size: 18px;
-  margin-bottom: 20px;
+/* 📌 제목 */
+.portfolio-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 16px;
 }
 
-#titleName {
-  width: 140px;
-  font-size: 16px;
-  padding: 4px;
-  margin-left: 8px;
-}
-
+/* 📌 프로필 영역 */
 .profile-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   margin-bottom: 20px;
 }
 
-.image-box {
+.profile-image-wrapper {
+  position: relative;
   width: 100%;
   max-width: 100%;
-  height: 200px;
-  background-color: #eee;
-  border: 2px dashed #ccc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #999;
-  font-size: 15px;
-  background-size: cover;
-  background-position: center;
-  cursor: pointer;
-}
-
-.info-form input,
-.tag-form input {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 12px;
-  font-size: 16px;
-  border: 1px solid #ddd;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: #f1f1f1;
   border-radius: 8px;
 }
 
-.checkbox-wrap {
+.profile-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-upload-input {
+  display: none;
+}
+
+.upload-label {
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: #6c63ff;
+  color: white;
+  border-radius: 6px;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* 📌 기본 입력 폼 */
+.portfolio-form-group {
+  margin-bottom: 16px;
+}
+
+.portfolio-form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.portfolio-form-group input,
+.portfolio-form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* 📌 공개 여부 토글 */
+.toggle-container {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.toggle-switch {
+  width: 40px;
+  height: 22px;
+  background: #ccc;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.toggle-switch::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s;
+}
+
+.toggle-switch.active {
+  background: #6c63ff;
+}
+
+.toggle-switch.active::before {
+  transform: translateX(18px);
+}
+
+/* 📌 태그 입력 */
+.tags-wrapper {
+  display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
-.save-btn {
-  width: 100%;
-  padding: 14px;
-  background-color: #6b4eff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 12px;
+.tag-item {
+  background-color: #eee;
+  border-radius: 16px;
+  padding: 6px 10px;
+  font-size: 13px;
 }
 
-.save-btn:hover {
-  background-color: #5941e2;
+/* 📌 저장 버튼 */
+.save-button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #6c63ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
