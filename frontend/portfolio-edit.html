@@ -13,41 +13,29 @@
   <div id="top-tab-container"></div>
 
   <!-- ✅ 카드 전체 -->
-  <div class="portfolio-card">
-    <div class="image-upload">
-      <label for="imageInput" class="upload-area">
-        <input type="file" accept="image/*" id="imageInput" hidden />
-        <div class="image-preview" id="imagePreview">
-          <span>파일 선택</span>
-        </div>
-      </label>
-    </div>
-
-    <div class="profile-text-section">
-      <label>이름</label>
-      <input type="text" id="name" />
-
-      <label>나이</label>
-      <input type="number" id="age" />
-
-      <label>경력</label>
-      <input type="text" id="experience" />
-
-      <label>지역</label>
-      <input type="text" id="region" />
-
-      <label>SNS 주소</label>
-      <input type="url" id="sns" />
-    </div>
-
-    <!-- ✅ 공개여부는 맨 아래에 단독으로 -->
-    <div class="checkbox-wrapper">
-      <input type="checkbox" id="isPublic" />
-      <label for="isPublic">공개 여부</label>
-    </div>
+  <section class="portfolio-card">
+  <div class="left-image-section">
+    <label class="upload-label">
+      <input type="file" accept="image/*" id="imageInput" hidden />
+      <div class="image-placeholder" id="imagePlaceholder">
+        <img id="imagePreview" alt="미리보기" />
+        <span class="upload-text">파일 선택</span>
+      </div>
+    </label>
   </div>
+  <div class="right-info-section">
+    <input type="text" placeholder="이름" />
+    <input type="text" placeholder="나이" />
+    <input type="text" placeholder="경력" />
+    <input type="text" placeholder="지역" />
+    <input type="text" placeholder="SNS 주소" />
+  </div>
+</section>
 
-  <button class="submit-button">저장하기</button>
+<div class="portfolio-extra-options">
+  <label><input type="checkbox" /> 공개 여부</label>
+  <button type="button">저장하기</button>
+</div>
 
   <div id="bottom-tab-container"></div>
 
