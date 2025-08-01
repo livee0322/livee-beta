@@ -3,14 +3,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const uploadButton = document.getElementById("uploadButton");
   const imagePreviewWrapper = document.getElementById("imagePreviewWrapper");
 
-  // ✅ 버튼 누르면 숨겨진 input 클릭
+  // 버튼 클릭 → input 클릭
   if (uploadButton && imageInput) {
     uploadButton.addEventListener("click", () => {
       imageInput.click();
     });
   }
 
-  // ✅ 이미지 선택 → cropImage 저장 후 canvas로 이동
+  // 이미지 선택 → cropImage 저장 후 이동
   imageInput.addEventListener("change", (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     reader.readAsDataURL(file);
   });
 
-  // ✅ 크롭된 이미지 미리보기 삽입
+  // 크롭된 이미지 미리보기 표시
   const savedImage = localStorage.getItem("croppedImage");
   if (savedImage && imagePreviewWrapper) {
     imagePreviewWrapper.innerHTML = `<img src="${savedImage}" alt="미리보기" />`;
