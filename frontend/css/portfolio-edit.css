@@ -108,3 +108,7 @@ input[type="file"] {
   border-radius: 0.5rem;
   font-size: 1rem;
 }
+
+input[type="file"] {
+  display: none;
+}
