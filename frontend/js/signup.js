@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       alert('회원가입 성공! 로그인 페이지로 이동합니다.');
-      window.location.href = '/livee-beta/login.html';
+      window.location.href = '/livee-beta/frontend/login.html';  // 🔁 여기 수정
 
     } catch (err) {
       errorDisplay.textContent = err.message;
