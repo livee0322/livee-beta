@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko">
-<!DOCTYPE html>
-<html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,10 +8,10 @@
   <!-- ✅ Remixicon -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
 
-  <!-- ✅ 공통 스타일 -->
+  <!-- ✅ 공통 CSS -->
   <link rel="stylesheet" href="/livee-beta/frontend/css/main.css" />
 
-  <!-- ✅ 개별 스타일 -->
+  <!-- ✅ 전용 CSS -->
   <link rel="stylesheet" href="/livee-beta/frontend/css/portfolio-edit.css" />
 </head>
 <body>
@@ -34,6 +32,7 @@
     <!-- ✅ 프로필 업로드 (크롭 및 고정비율 4:3 지원) -->
     <section class="profile-section">
       <div class="image-upload-container">
+        <label for="imageInput" class="file-label">파일 선택</label>
         <input type="file" id="imageInput" accept="image/*" />
         <div class="image-preview-wrapper">
           <canvas id="imageCanvas" width="400" height="300"></canvas>
@@ -79,74 +78,7 @@
   <script src="/livee-beta/js/top-tab.js"></script>
   <script src="/livee-beta/js/bottom-tab.js"></script>
 
-  <!-- ✅ 전용 스크립트 -->
-  <script src="/livee-beta/js/portfolio-edit.js"></script>
-</body>
-</html>
-<body>
-
-  <!-- ✅ 띠배너 -->
-  <div id="banner-container"></div>
-
-  <!-- ✅ 헤더 -->
-  <header id="header-container"></header>
-
-  <!-- ✅ 상단탭 -->
-  <nav id="top-tab-container"></nav>
-
-  <!-- ✅ 메인 콘텐츠 -->
-  <main id="portfolioEditContent">
-    <h2 class="title">성실한 쇼호스트 <span class="user-name">@@</span>입니다</h2>
-
-    <!-- ✅ 프로필 업로드 (크롭 및 고정비율 4:3 지원) -->
-    <section class="profile-section">
-      <div class="image-upload-container">
-        <input type="file" id="imageInput" accept="image/*" />
-        <div class="image-preview-wrapper">
-          <canvas id="imageCanvas" width="400" height="300"></canvas>
-          <div class="crop-box" id="cropBox"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ✅ 기본 정보 입력 -->
-    <section class="info-section">
-      <label>이름 <input type="text" id="name" /></label>
-      <label>나이 <input type="number" id="age" /></label>
-      <label>경력 <input type="text" id="career" /></label>
-      <label>지역 <input type="text" id="location" /></label>
-      <label>SNS 주소 <input type="url" id="sns" /></label>
-
-      <!-- ✅ 공개 여부 토글 -->
-      <label class="toggle-wrap">
-        <span>공개여부</span>
-        <input type="checkbox" id="isPublic" />
-        <span class="toggle"></span>
-      </label>
-    </section>
-
-    <!-- ✅ 태그 입력 -->
-    <section class="tag-section">
-      <label>관련 태그</label>
-      <input type="text" id="tags" placeholder="예: 귀여운, 말잘하는, 먹방전문가 등 쉼표로 구분" />
-    </section>
-
-    <!-- ✅ 저장 버튼 -->
-    <div class="button-wrap">
-      <button id="saveBtn">저장하기</button>
-    </div>
-  </main>
-
-  <!-- ✅ 하단탭 -->
-  <footer id="bottom-tab-container"></footer>
-
-  <!-- ✅ 공통 JS -->
-  <script src="/livee-beta/js/banner.js"></script>
-  <script src="/livee-beta/js/header.js"></script>
-  <script src="/livee-beta/js/top-tab.js"></script>
-  <script src="/livee-beta/js/bottom-tab.js"></script>
-
-  <!-- ✅ 전용 스크립트 -->
+  <!-- ✅ 전용 JS -->
   <script src="/livee-beta/js/portfolio-edit.js"></script>
 </body>
 </html>
