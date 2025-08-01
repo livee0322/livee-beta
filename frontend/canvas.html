@@ -4,27 +4,19 @@
   <meta charset="UTF-8" />
   <title>이미지 자르기</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- ✅ CropperJS CDN -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/cropperjs/dist/cropper.min.css"
-  />
+  <link rel="stylesheet" href="https://unpkg.com/cropperjs/dist/cropper.min.css" />
   <link rel="stylesheet" href="/livee-beta/frontend/css/canvas.css" />
 </head>
 <body>
-  <!-- ✅ 상단 버튼 -->
   <div class="canvas-top-bar">
     <button id="backBtn">← 뒤로가기</button>
     <button id="cropBtn">저장하기</button>
   </div>
 
-  <!-- ✅ 이미지 영역 -->
-  <div class="cropper-container">
+  <div class="cropper-wrapper">
     <img id="imageToCrop" alt="이미지 크롭 대상" />
   </div>
 
-  <!-- ✅ CropperJS -->
   <script src="https://unpkg.com/cropperjs/dist/cropper.min.js"></script>
   <script src="/livee-beta/frontend/js/canvas.js"></script>
 </body>
