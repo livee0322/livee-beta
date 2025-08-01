@@ -1,0 +1,46 @@
+.portfolio-list {
+  margin-top: 20px;
+}
+
+.portfolio-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.card-body p {
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.no-portfolio {
+  text-align: center;
+  color: #888;
+  margin-top: 40px;
+  font-size: 16px;
+}
+
+.fab-btn {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  background-color: #6b4eff;
+  color: #fff;
+  font-size: 32px;
+  font-weight: bold;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  cursor: pointer;
+  z-index: 1000;
+}
