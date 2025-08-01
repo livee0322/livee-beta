@@ -1,75 +1,21 @@
-<!DOCTYPE html>
-<html lang="ko">
+<!-- ✅ portfolio-edit.html --><!DOCTYPE html><html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>포트폴리오 작성</title>
-
-  <!-- Remixicon -->
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
-
-  <!-- 공통 CSS -->
-  <link rel="stylesheet" href="/livee-beta/main.css" />
-
-  <!-- 전용 CSS -->
+  <title>포트폴리오 수정</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  <!-- ✅ 공통 CSS -->  <link rel="stylesheet" href="/livee-beta/main.css" />
   <link rel="stylesheet" href="/livee-beta/frontend/css/portfolio-edit.css" />
 </head>
 <body>
-  <!-- ✅ 베타 띠배너 -->
-  <div class="beta-banner">현재 클로즈 베타 테스트 중입니다</div>
-
   <!-- ✅ 공통 모듈 -->
+  <div class="beta-banner">현재 클로즈 베타 테스트 중입니다</div>
   <div id="header-container"></div>
-  <div id="top-tab-container"></div>
-
-  <main id="portfolioEditContent">
-    <h2 class="title">성실한 쇼호스트 <span class="user-name">@@</span>입니다</h2>
-
-    <!-- 프로필 이미지 -->
-    <section class="profile-section">
-      <div class="image-upload-container">
-        <button onclick="window.location.href='/livee-beta/frontend/canvas.html'" class="file-label">파일 선택</button>
-        <div class="image-preview-wrapper">
-          <img id="croppedImage" src="" alt="프로필 미리보기" />
-        </div>
-      </div>
-    </section>
-
-    <!-- 기본 정보 -->
-    <section class="info-section">
-      <label>이름 <input type="text" id="name" /></label>
-      <label>나이 <input type="number" id="age" /></label>
-      <label>경력 <input type="text" id="career" /></label>
-      <label>지역 <input type="text" id="location" /></label>
-      <label>SNS 주소 <input type="url" id="sns" /></label>
-
-      <label class="toggle-wrap">
-        <span>공개여부</span>
-        <input type="checkbox" id="isPublic" />
-        <span class="toggle"></span>
-      </label>
-    </section>
-
-    <!-- 태그 -->
-    <section class="tag-section">
-      <label>관련 태그</label>
-      <input type="text" id="tags" placeholder="예: 귀여운, 먹방전문가 등 쉼표로 구분" />
-    </section>
-
-    <div class="button-wrap">
-      <button id="saveBtn">저장하기</button>
+  <div id="top-tab-container"></div>  <!-- ✅ 이미지 업로드 영역 -->  <section class="profile-image-section">
+    <label class="upload-label">
+      <input type="file" accept="image/*" id="imageInput" hidden />
+      <button type="button">파일 선택</button>
+    </label>
+    <div class="preview-wrapper">
+      <img id="imagePreview" alt="미리보기" />
     </div>
-  </main>
-
-  <div id="bottom-tab-container"></div>
-
-  <!-- 공통 JS -->
-  <script src="/livee-beta/frontend/js/banner.js"></script>
-  <script src="/livee-beta/frontend/js/header.js"></script>
-  <script src="/livee-beta/frontend/js/top-tab.js"></script>
-  <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
-
-  <!-- 전용 JS -->
-  <script src="/livee-beta/frontend/js/portfolio-edit.js"></script>
-</body>
+  </section>  <!-- ✅ 공통 하단탭 -->  <div id="bottom-tab-container"></div>  <!-- ✅ 공통 JS -->  <script src="/livee-beta/frontend/js/header.js"></script>  <script src="/livee-beta/frontend/js/top-tab.js"></script>  <script src="/livee-beta/frontend/js/bottom-tab.js"></script>  <script src="/livee-beta/frontend/js/portfolio-edit.js"></script></body>
 </html>
