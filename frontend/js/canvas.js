@@ -1,35 +1,30 @@
-// canvas.js
-
 let cropper;
-const upload = document.getElementById('upload');
 const image = document.getElementById('image');
-const cropBtn = document.getElementById('cropBtn');
+const saveBtn = document.getElementById('saveBtn');
+const backBtn = document.getElementById('backBtn');
 
-upload.addEventListener('change', (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
+// 이미지 파일 선택
+window.addEventListener('load', () => {
+  const file = localStorage.getItem('cropImageData');
+  if (!file) {
+    alert('이미지가 없습니다');
+    window.history.back();
+    return;
+  }
 
-  const reader = new FileReader();
-  reader.onload = function (event) {
-    image.src = event.target.result;
-    image.style.display = 'block'; // 보이도록
-
-    if (cropper) {
-      cropper.destroy();
-    }
-
+  image.src = file;
+  image.addEventListener('load', () => {
     cropper = new Cropper(image, {
       aspectRatio: 4 / 3,
       viewMode: 1,
-      movable: true,
-      cropBoxResizable: false,
       dragMode: 'move',
+      autoCropArea: 1,
     });
-  };
-  reader.readAsDataURL(file);
+  });
 });
 
-cropBtn.addEventListener('click', () => {
+// 저장 버튼
+saveBtn.addEventListener('click', () => {
   if (!cropper) return;
 
   const canvas = cropper.getCroppedCanvas({
@@ -37,11 +32,14 @@ cropBtn.addEventListener('click', () => {
     height: 300,
   });
 
-  canvas.toBlob((blob) => {
-    const fileName = 'cropped_image.png';
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = fileName;
-    a.click();
-  });
+  const croppedDataURL = canvas.toDataURL('image/jpeg');
+
+  // 저장할 위치로 넘김
+  localStorage.setItem('croppedImage', croppedDataURL);
+  window.history.back(); // 또는 원하는 페이지로 이동
+});
+
+// 뒤로가기
+backBtn.addEventListener('click', () => {
+  window.history.back();
 });
