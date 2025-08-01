@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let cropper = null;
 
-  // 이미지가 로드된 후 cropper 실행
   imageElement.onload = () => {
     cropper = new Cropper(imageElement, {
       aspectRatio: 3 / 4,
@@ -27,16 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   cropBtn.addEventListener("click", () => {
-    if (!cropper) {
-      alert("이미지가 아직 로드되지 않았어요!");
-      return;
-    }
-
+    if (!cropper) return;
     const croppedCanvas = cropper.getCroppedCanvas({
       width: 300,
       height: 400,
     });
-
     const croppedImage = croppedCanvas.toDataURL("image/png");
     localStorage.setItem("croppedImage", croppedImage);
     window.location.href = "/livee-beta/frontend/portfolio-edit.html";
