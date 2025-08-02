@@ -13,25 +13,28 @@
   <div id="top-tab-container"></div>
 
   <section class="profile-card">
-    <!-- ✅ 이미지 업로드 영역 -->
-    <div class="image-upload-area">
-      <label class="upload-label">
-        <input type="file" accept="image/*" id="imageInput" hidden />
-        <div id="imagePreviewWrapper">
-          <button type="button" id="uploadButton">파일 선택</button>
-        </div>
-      </label>
-    </div>
+  <div class="image-upload-area">
+    <label class="upload-label">
+      <input type="file" accept="image/*" id="imageInput" hidden />
+      <div id="imagePreviewWrapper">
+        <button type="button" id="uploadButton">파일 선택</button>
+      </div>
+    </label>
+  </div>
 
-    <!-- ✅ 프로필 정보 입력 -->
-    <div class="info-fields">
-      <input type="text" id="name" placeholder="이름" />
-      <input type="text" id="age" placeholder="나이" />
-      <input type="text" id="career" placeholder="경력" />
-      <input type="text" id="location" placeholder="지역" />
-      <input type="text" id="sns" placeholder="SNS 주소" />
-    </div>
-  </section>
+  <div class="info-fields">
+    <input type="text" placeholder="이름" />
+    <input type="text" placeholder="나이" />
+    <input type="text" placeholder="경력" />
+    <input type="text" placeholder="지역" />
+  </div>
+</section>
+
+<div class="extra-fields">
+  <input type="text" placeholder="SNS 주소" />
+  <input type="text" placeholder="태그 (예: #뷰티 #먹방)" />
+  <input type="text" placeholder="전문분야 (예: 패션, 요리)" />
+</div>
 
   <!-- ✅ 옵션 및 저장 -->
   <div class="options-row">
