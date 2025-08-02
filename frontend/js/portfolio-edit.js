@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         image: document.querySelector("#imagePreviewWrapper img")?.src || "",
         name: document.getElementById("name")?.value,
         age: document.getElementById("age")?.value,
-        career: document.getElementById("career")?.value,
+        experience: document.getElementById("career")?.value, // ✅ 수정됨
         region: document.getElementById("region")?.value,
         sns: document.getElementById("sns")?.value,
         tags: document.getElementById("tags")?.value,
