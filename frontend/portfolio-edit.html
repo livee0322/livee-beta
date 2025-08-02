@@ -1,52 +1,82 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <title>포트폴리오 수정</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/livee-beta/main.css" />
-  <link rel="stylesheet" href="/livee-beta/frontend/css/portfolio-edit.css?v=1.02" />
-</head>
-<body>
-  <div class="beta-banner">현재 클로즈 베타 테스트 중입니다</div>
-  <div id="header-container"></div>
-  <div id="top-tab-container"></div>
+// 📍 /livee-beta/frontend/js/portfolio-edit.js
 
-  <section class="profile-card">
-    <div class="image-upload-area">
-      <label class="upload-label">
-        <input type="file" accept="image/*" id="imageInput" hidden />
-        <div id="imagePreviewWrapper">
-          <button type="button" id="uploadButton">파일 선택</button>
-        </div>
-      </label>
-    </div>
+document.addEventListener("DOMContentLoaded", async () => { const token = localStorage.getItem("liveeToken");
 
-    <div class="info-fields">
-      <input type="text" id="name" placeholder="이름" />
-      <input type="text" id="age" placeholder="나이" />
-      <input type="text" id="career" placeholder="경력" />
-      <input type="text" id="region" placeholder="지역" />
-    </div>
-  </section>
+if (!token) { alert("로그인이 필요합니다."); window.location.href = "/livee-beta/login.html"; return; }
 
-  <div class="extra-fields">
-    <input type="text" id="sns" placeholder="SNS 주소" />
-    <input type="text" id="tags" placeholder="태그 (예: #뷰티 #먹방)" />
-    <input type="text" id="specialty" placeholder="전문분야 (예: 패션, 요리)" />
-  </div>
+// ✅ 이미지 미리보기 처리 const imageInput = document.getElementById("imageInput"); const imagePreviewWrapper = document.getElementById("imagePreviewWrapper"); let uploadedImageUrl = "";
 
-  <div class="options-row">
-    <label><input type="checkbox" id="isPublic" /> 공개 여부</label>
-    <button id="savePortfolioBtn">저장하기</button>
-  </div>
+imageInput.addEventListener("change", async (event) => { const file = event.target.files[0]; if (!file) return;
 
-  <div id="bottom-tab-container"></div>
+const reader = new FileReader();
+reader.onload = function (e) {
+  imagePreviewWrapper.innerHTML = `
+    <img src="${e.target.result}" alt="미리보기 이미지" class="preview-image" />
+  `;
+};
+reader.readAsDataURL(file);
 
-  <!-- ✅ JS 모듈 -->
-  <script src="/livee-beta/frontend/js/header.js"></script>
-  <script src="/livee-beta/frontend/js/top-tab.js"></script>
-  <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
-  <script src="/livee-beta/frontend/js/portfolio-edit.js"></script>
-</body>
-</html>
+// ✅ Cloudinary 업로드
+const formData = new FormData();
+formData.append("file", file);
+formData.append("upload_preset", "livee_unsigned");
+formData.append("folder", "livee");
+
+try {
+  const res = await fetch("https://api.cloudinary.com/v1_1/dis1og9uq/image/upload", {
+    method: "POST",
+    body: formData,
+  });
+
+  const data = await res.json();
+  uploadedImageUrl = data.secure_url;
+} catch (err) {
+  console.error("이미지 업로드 실패:", err);
+  alert("이미지 업로드 중 오류가 발생했습니다.");
+}
+
+});
+
+// ✅ 저장 버튼 클릭 시 document.getElementById("savePortfolioBtn").addEventListener("click", async () => { const name = document.getElementById("name").value.trim(); const age = document.getElementById("age").value.trim(); const experience = document.getElementById("career").value.trim(); const region = document.getElementById("region").value.trim(); const sns = document.getElementById("sns").value.trim(); const tags = document.getElementById("tags").value.trim(); const specialty = document.getElementById("specialty").value.trim(); const isPublic = document.getElementById("isPublic").checked;
+
+if (!name) {
+  alert("이름은 필수 입력입니다.");
+  return;
+}
+
+const payload = {
+  name,
+  age,
+  experience,
+  region,
+  sns,
+  tags,
+  specialty,
+  isPublic,
+  image: uploadedImageUrl,
+};
+
+try {
+  const res = await fetch("https://main-server-ekgr.onrender.com/api/portfolio", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(payload),
+  });
+
+  const result = await res.json();
+  if (res.ok) {
+    alert("포트폴리오가 저장되었습니다.");
+    window.location.href = "/livee-beta/myportfolio.html";
+  } else {
+    throw new Error(result.message || "저장 실패");
+  }
+} catch (err) {
+  console.error("저장 오류:", err);
+  alert("저장 중 오류가 발생했습니다.");
+}
+
+}); });
+
