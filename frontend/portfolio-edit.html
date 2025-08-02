@@ -13,38 +13,37 @@
   <div id="top-tab-container"></div>
 
   <section class="profile-card">
-  <div class="image-upload-area">
-    <label class="upload-label">
-      <input type="file" accept="image/*" id="imageInput" hidden />
-      <div id="imagePreviewWrapper">
-        <button type="button" id="uploadButton">파일 선택</button>
-      </div>
-    </label>
+    <div class="image-upload-area">
+      <label class="upload-label">
+        <input type="file" accept="image/*" id="imageInput" hidden />
+        <div id="imagePreviewWrapper">
+          <button type="button" id="uploadButton">파일 선택</button>
+        </div>
+      </label>
+    </div>
+
+    <div class="info-fields">
+      <input type="text" id="name" placeholder="이름" />
+      <input type="text" id="age" placeholder="나이" />
+      <input type="text" id="career" placeholder="경력" />
+      <input type="text" id="region" placeholder="지역" />
+    </div>
+  </section>
+
+  <div class="extra-fields">
+    <input type="text" id="sns" placeholder="SNS 주소" />
+    <input type="text" id="tags" placeholder="태그 (예: #뷰티 #먹방)" />
+    <input type="text" id="specialty" placeholder="전문분야 (예: 패션, 요리)" />
   </div>
 
-  <div class="info-fields">
-    <input type="text" placeholder="이름" />
-    <input type="text" placeholder="나이" />
-    <input type="text" placeholder="경력" />
-    <input type="text" placeholder="지역" />
-  </div>
-</section>
-
-<div class="extra-fields">
-  <input type="text" placeholder="SNS 주소" />
-  <input type="text" placeholder="태그 (예: #뷰티 #먹방)" />
-  <input type="text" placeholder="전문분야 (예: 패션, 요리)" />
-</div>
-
-  <!-- ✅ 옵션 및 저장 -->
   <div class="options-row">
-    <label><input type="checkbox" id="public" /> 공개 여부</label>
-    <button id="saveBtn">저장하기</button>
+    <label><input type="checkbox" id="isPublic" /> 공개 여부</label>
+    <button id="savePortfolioBtn">저장하기</button>
   </div>
 
   <div id="bottom-tab-container"></div>
 
-  <!-- ✅ JS 모듈 연결 -->
+  <!-- ✅ JS 모듈 -->
   <script src="/livee-beta/frontend/js/header.js"></script>
   <script src="/livee-beta/frontend/js/top-tab.js"></script>
   <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
