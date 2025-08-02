@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         alert("포트폴리오가 저장되었습니다!");
-        window.location.href = "/livee-beta/portfolio.html";
+        window.location.href = "/livee-beta/frontend/portfolio.html";
       } catch (err) {
         console.error("저장 실패:", err);
         alert("저장 중 오류가 발생했습니다.");
