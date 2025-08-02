@@ -1,7 +1,6 @@
 .portfolio-wrapper {
   padding: 20px;
-  max-width: 720px;
-  margin: 0 auto;
+  background: #fff;
 }
 
 .portfolio-wrapper h2 {
@@ -17,41 +16,55 @@
 
 .portfolio-card {
   display: flex;
-  gap: 16px;
-  padding: 16px;
-  border: 1px solid #ddd;
+  border: 1px solid #eee;
   border-radius: 12px;
-  background: #fff;
+  overflow: hidden;
+  background: #fafafa;
   align-items: center;
+  padding: 12px;
 }
 
 .portfolio-card img {
-  width: 100px;
-  height: 130px;
+  width: 80px;
+  height: 100px;
   object-fit: cover;
   border-radius: 8px;
   flex-shrink: 0;
+  background: #ddd;
 }
 
-.portfolio-card .info {
+.portfolio-info {
+  margin-left: 16px;
   flex: 1;
 }
 
-.portfolio-card .info h3 {
-  margin: 0 0 6px;
+.portfolio-info h3 {
+  margin: 0;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 600;
 }
 
-.portfolio-card .info p {
-  margin: 0;
+.portfolio-info p {
+  margin: 4px 0;
   font-size: 14px;
   color: #555;
 }
 
-.empty {
+.add-btn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #7a5fff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.empty-message {
   text-align: center;
-  color: #888;
-  font-size: 14px;
-  padding: 40px 0;
+  color: #999;
+  margin-top: 40px;
+  font-size: 15px;
 }
