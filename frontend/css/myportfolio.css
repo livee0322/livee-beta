@@ -1,91 +1,57 @@
-/* ✅ 포트폴리오 전체 래퍼 */
 .portfolio-wrapper {
-  padding: 1.5rem;
-  max-width: 600px;
+  padding: 20px;
+  max-width: 720px;
   margin: 0 auto;
 }
 
-/* ✅ 제목 */
 .portfolio-wrapper h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-  font-weight: bold;
-  color: #333;
+  font-size: 20px;
+  margin-bottom: 16px;
 }
 
-/* ✅ 카드 전체 */
-.portfolio-card {
+.portfolio-list {
   display: flex;
   flex-direction: column;
+  gap: 16px;
+}
+
+.portfolio-card {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: #fff;
   align-items: center;
-  border-radius: 16px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  padding: 1.5rem;
-  background-color: #fff;
-  transition: all 0.2s ease;
 }
 
-.portfolio-card:hover {
-  transform: translateY(-2px);
-}
-
-/* ✅ 이미지 */
-.portfolio-card .image-wrapper {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-bottom: 1rem;
-  border: 2px solid #eee;
-}
-
-.portfolio-card .image-wrapper img {
-  width: 100%;
-  height: 100%;
+.portfolio-card img {
+  width: 100px;
+  height: 130px;
   object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
 }
 
-/* ✅ 텍스트 정보 */
 .portfolio-card .info {
-  text-align: center;
+  flex: 1;
 }
 
 .portfolio-card .info h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.3rem;
-  font-weight: 600;
-  color: #333;
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .portfolio-card .info p {
-  margin: 0.2rem 0;
-  color: #666;
-  font-size: 0.95rem;
+  margin: 0;
+  font-size: 14px;
+  color: #555;
 }
 
-/* ✅ 태그 */
-.portfolio-card .info .tags {
-  margin-top: 0.5rem;
-  color: #6a5acd;
-  font-weight: 500;
-}
-
-/* ✅ 반응형 */
-@media (min-width: 600px) {
-  .portfolio-card {
-    flex-direction: row;
-    align-items: center;
-    gap: 1.5rem;
-    text-align: left;
-  }
-
-  .portfolio-card .image-wrapper {
-    width: 140px;
-    height: 140px;
-    flex-shrink: 0;
-  }
-
-  .portfolio-card .info {
-    flex: 1;
-  }
+.empty {
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+  padding: 40px 0;
 }
