@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const token = localStorage.getItem("liveeToken");
       if (!token) {
         alert("로그인이 필요합니다.");
-        window.location.href = "/livee-beta/login.html";
+        window.location.href = "/livee-beta/frontend/login.html";
         return;
       }
 
