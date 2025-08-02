@@ -11,10 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  imageElement.src = originalImage;
-
   let cropper = null;
 
+  // ✅ onload 먼저 정의하고
   imageElement.onload = () => {
     cropper = new Cropper(imageElement, {
       aspectRatio: 3 / 4,
@@ -25,6 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
       background: false,
     });
   };
+
+  // ✅ 그 다음에 src 설정
+  imageElement.src = originalImage;
 
   cropBtn.addEventListener("click", () => {
     if (!cropper) {
