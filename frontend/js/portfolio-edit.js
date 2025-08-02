@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const result = await res.json();
       if (res.ok) {
         alert("포트폴리오가 저장되었습니다.");
-        window.location.href = "/livee-beta/myportfolio.html";
+        window.location.href = "/livee-beta/frontend/myportfolio.html";
       } else {
         throw new Error(result.message || "저장 실패");
       }
