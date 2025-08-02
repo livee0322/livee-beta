@@ -7,20 +7,22 @@
   background: #fff;
   border-radius: 16px;
   margin: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  align-items: stretch; /* ✅ 이미지와 텍스트 높이 맞춤 */
+  border: 1px solid #eee; /* ✅ 테두리만, 그림자 제거 */
+  box-shadow: none; /* ✅ 그림자 제거 */
+  align-items: stretch;
 }
 
 /* 이미지 업로드 영역 */
 .image-upload-area {
-  width: 120px;
+  width: 130px;
   flex-shrink: 0;
 }
 
-/* 이미지 미리보기 박스 */
+/* 미리보기 박스 */
 #imagePreviewWrapper {
   width: 100%;
   aspect-ratio: 3 / 4;
+  height: auto; /* ✅ 세로 비율 유지하며 최대한 길게 */
   background: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -30,26 +32,27 @@
   overflow: hidden;
 }
 
-/* 업로드된 이미지 스타일 */
+/* 이미지 미리보기 */
 #imagePreviewWrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* 업로드 버튼 스타일 */
+/* 파일 선택 버튼 - 텍스트만 */
 #uploadButton {
-  background: white;
+  background: none; /* ✅ 배경 제거 */
   color: #666;
-  border: 1px solid #ccc;
-  padding: 8px 12px;
-  border-radius: 6px;
+  border: none; /* ✅ 테두리 제거 */
+  padding: 0;
   font-size: 14px;
   cursor: pointer;
+  text-decoration: underline;
+  text-align: center;
   width: 100%;
 }
 
-/* 텍스트 입력 필드 (이름, 나이, 경력, 지역) */
+/* 텍스트 필드 영역 */
 .info-fields {
   flex: 1;
   display: flex;
@@ -68,13 +71,13 @@
   box-sizing: border-box;
 }
 
-/* SNS 주소, 태그, 전문분야 */
+/* 추가 입력 항목 */
 .extra-fields {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin: 0 20px;
-  margin-top: -10px; /* 위와 조금 더 붙도록 조정 */
+  margin-top: -10px;
 }
 
 .extra-fields input {
@@ -86,7 +89,7 @@
   box-sizing: border-box;
 }
 
-/* 공개여부 + 저장 버튼 */
+/* 공개 여부 + 저장 버튼 */
 .options-row {
   display: flex;
   align-items: center;
