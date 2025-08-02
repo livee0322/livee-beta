@@ -1,113 +1,43 @@
-// ✅ /livee-beta/frontend/js/portfolio-edit.js
 document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("liveeToken");
-  const saveBtn = document.getElementById("savePortfolioBtn");
-
   if (!token) {
     alert("로그인이 필요합니다.");
     window.location.href = "/livee-beta/login.html";
     return;
   }
 
-  let uploadedImageUrl = "";
-  const imageInput = document.getElementById("imageInput");
-  const imagePreviewWrapper = document.getElementById("imagePreviewWrapper");
-  const uploadButton = document.getElementById("uploadButton");
+  fetch("https://main-server-ekgr.onrender.com/api/portfolio/me", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      const container = document.getElementById("portfolioContent");
 
-  // ✅ 파일 선택 버튼 클릭 시 input 클릭
-  uploadButton.addEventListener("click", () => {
-    imageInput.click();
-  });
-
-  // ✅ 이미지 선택 → 크롭 → Cloudinary 업로드
-  imageInput.addEventListener("change", async (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    const img = new Image();
-    img.src = URL.createObjectURL(file);
-    img.onload = () => {
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
-
-      // 정사각형 크롭
-      const size = Math.min(img.width, img.height);
-      canvas.width = size;
-      canvas.height = size;
-      ctx.drawImage(img, 0, 0, size, size, 0, 0, size, size);
-
-      canvas.toBlob(async (blob) => {
-        const formData = new FormData();
-        formData.append("file", blob, "cropped.png");
-        formData.append("upload_preset", "livee_unsigned");
-        formData.append("folder", "livee");
-
-        try {
-          const res = await fetch("https://api.cloudinary.com/v1_1/dis1og9uq/image/upload", {
-            method: "POST",
-            body: formData,
-          });
-          const data = await res.json();
-          uploadedImageUrl = data.secure_url;
-
-          imagePreviewWrapper.innerHTML = `<img src="${uploadedImageUrl}" class="preview-image" />`;
-        } catch (err) {
-          console.error("이미지 업로드 실패:", err);
-          alert("이미지 업로드 중 오류가 발생했습니다.");
-        }
-      }, "image/png");
-    };
-  });
-
-  // ✅ 저장 버튼 클릭 시
-  saveBtn.addEventListener("click", async () => {
-    const name = document.getElementById("name").value.trim();
-    const age = document.getElementById("age").value.trim();
-    const experience = document.getElementById("career").value.trim();
-    const region = document.getElementById("region").value.trim();
-    const sns = document.getElementById("sns").value.trim();
-    const tags = document.getElementById("tags").value.trim();
-    const specialty = document.getElementById("specialty").value.trim();
-    const isPublic = document.getElementById("isPublic").checked;
-
-    if (!name) {
-      alert("이름을 입력해주세요.");
-      return;
-    }
-
-    const payload = {
-      name,
-      age,
-      experience,
-      region,
-      sns,
-      tags,
-      specialty,
-      isPublic,
-      image: uploadedImageUrl,
-    };
-
-    try {
-      const res = await fetch("https://main-server-ekgr.onrender.com/api/portfolio", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(payload),
-      });
-
-      const result = await res.json();
-
-      if (res.ok) {
-        alert("포트폴리오가 저장되었습니다.");
-        window.location.href = "/livee-beta/frontend/myportfolio.html"; // ✅ 절대경로로 이동
-      } else {
-        alert(result.message || "저장에 실패했습니다.");
+      if (!data || !data.name) {
+        container.innerHTML = `<p>등록된 포트폴리오가 없습니다.</p>`;
+        return;
       }
-    } catch (err) {
-      console.error("저장 오류:", err);
-      alert("오류가 발생했습니다.");
-    }
-  });
+
+      container.innerHTML = `
+        <div class="portfolio-card">
+          <div class="image-wrapper">
+            <img src="${data.image || '/default-profile.png'}" alt="프로필" />
+          </div>
+          <div class="info">
+            <h3>${data.name}</h3>
+            <p>${data.specialty || '소개 없음'}</p>
+            <p>${data.region || ''} ${data.age ? `| ${data.age}세` : ''}</p>
+            <p class="tags">${data.tags || ''}</p>
+            <p><strong>SNS:</strong> ${data.sns || '-'}</p>
+            <p><strong>경력:</strong> ${data.experience || '-'}</p>
+          </div>
+        </div>
+      `;
+    })
+    .catch((err) => {
+      console.error("❌ 포트폴리오 불러오기 실패:", err);
+      alert("포트폴리오를 불러오지 못했습니다.");
+    });
 });
