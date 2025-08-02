@@ -5,7 +5,7 @@
   <title>포트폴리오 수정</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/livee-beta/main.css" />
-  <link rel="stylesheet" href="/livee-beta/frontend/css/portfolio-edit.css?v=1.02" />
+  <link rel="stylesheet" href="/livee-beta/frontend/css/portfolio-edit.css?v=1.10" />
 </head>
 <body>
   <div class="beta-banner">현재 클로즈 베타 테스트 중입니다</div>
@@ -14,8 +14,8 @@
 
   <section class="profile-card">
     <div class="image-upload-area">
-      <input type="file" accept="image/*" id="imageInput" hidden />
-      <label for="imageInput" class="upload-label">
+      <label class="upload-label">
+        <input type="file" accept="image/*" id="imageInput" hidden />
         <div id="imagePreviewWrapper">
           <button type="button" id="uploadButton">파일 선택</button>
         </div>
@@ -43,9 +43,10 @@
 
   <div id="bottom-tab-container"></div>
 
+  <!-- ✅ JS 모듈 -->
   <script src="/livee-beta/frontend/js/header.js"></script>
   <script src="/livee-beta/frontend/js/top-tab.js"></script>
   <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
-  <script src="/livee-beta/frontend/js/portfolio-edit.js?v=1.06"></script>
+  <script src="/livee-beta/frontend/js/portfolio-edit.js?v=1.10"></script>
 </body>
 </html>
