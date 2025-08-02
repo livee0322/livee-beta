@@ -1,5 +1,3 @@
-// ✅ /livee-beta/frontend/js/portfolio-edit.js (v1.05)
-
 document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("liveeToken");
   if (!token) {
@@ -13,12 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const imagePreviewWrapper = document.getElementById("imagePreviewWrapper");
   let uploadedImageUrl = "";
 
-  // ✅ "파일 선택" 버튼 누르면 파일 선택창 뜨도록
-  uploadButton.addEventListener("click", () => {
-    imageInput.click();
-  });
+  // 파일 선택 버튼 트리거
+  uploadButton.addEventListener("click", () => imageInput.click());
 
-  // ✅ 이미지 선택 → 크롭 → Cloudinary 업로드
+  // 이미지 크롭 후 Cloudinary 업로드
   imageInput.addEventListener("change", async (event) => {
     const file = event.target.files[0];
     if (!file) return;
@@ -34,7 +30,17 @@ document.addEventListener("DOMContentLoaded", () => {
       canvas.width = size;
       canvas.height = size;
 
-      ctx.drawImage(img, 0, 0, size, size, 0, 0, size, size);
+      ctx.drawImage(
+        img,
+        (img.width - size) / 2,
+        (img.height - size) / 2,
+        size,
+        size,
+        0,
+        0,
+        size,
+        size
+      );
 
       canvas.toBlob(async (blob) => {
         const formData = new FormData();
@@ -47,20 +53,19 @@ document.addEventListener("DOMContentLoaded", () => {
             method: "POST",
             body: formData,
           });
-
           const data = await res.json();
           uploadedImageUrl = data.secure_url;
 
           imagePreviewWrapper.innerHTML = `<img src="${uploadedImageUrl}" class="preview-image" />`;
         } catch (err) {
           console.error("이미지 업로드 실패:", err);
-          alert("이미지 업로드 중 오류가 발생했습니다.");
+          alert("이미지 업로드 실패");
         }
       }, "image/png");
     };
   });
 
-  // ✅ 저장하기 버튼 클릭 시
+  // 저장하기 버튼
   document.getElementById("savePortfolioBtn").addEventListener("click", async () => {
     const name = document.getElementById("name").value.trim();
     const age = document.getElementById("age").value.trim();
@@ -72,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const isPublic = document.getElementById("isPublic").checked;
 
     if (!name) {
-      alert("이름을 입력해주세요.");
+      alert("이름은 필수 입력입니다.");
       return;
     }
 
@@ -99,16 +104,15 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const result = await res.json();
-
       if (res.ok) {
         alert("포트폴리오가 저장되었습니다.");
-        window.location.href = "/livee-beta/myportfolio.html"; // ✅ 경로 확정
+        window.location.href = "/livee-beta/frontend/myportfolio.html"; // ✅ 정확한 경로
       } else {
-        alert(result.message || "저장에 실패했습니다.");
+        alert(result.message || "저장 실패");
       }
     } catch (err) {
-      console.error("저장 오류:", err);
-      alert("서버 통신 오류가 발생했습니다.");
+      console.error("저장 실패:", err);
+      alert("저장 중 오류가 발생했습니다.");
     }
   });
 });
