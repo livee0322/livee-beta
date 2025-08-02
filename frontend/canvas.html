@@ -4,23 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>이미지 크롭</title>
-  <link rel="stylesheet" href="/livee-beta/frontend/css/canvas.css" />
+
+  <!-- 🔧 Cropper 스타일 -->
   <link
     rel="stylesheet"
-    href="https://unpkg.com/cropperjs/dist/cropper.min.css"
+    href="https://unpkg.com/cropperjs@1.5.13/dist/cropper.min.css"
   />
+  <!-- 🔧 커스텀 스타일 -->
+  <link rel="stylesheet" href="/livee-beta/frontend/css/canvas.css" />
 </head>
 <body>
+  <!-- 🔼 상단 버튼 -->
   <div class="canvas-top-bar">
     <button id="backBtn">← 뒤로가기</button>
     <button id="cropBtn">저장하기</button>
   </div>
 
+  <!-- 🖼️ 이미지 표시 영역 -->
   <div class="cropper-container">
     <img id="imageToCrop" alt="이미지 크롭 대상" />
   </div>
 
-  <script src="https://unpkg.com/cropperjs/dist/cropper.min.js"></script>
+  <!-- 📦 Cropper JS -->
+  <script src="https://unpkg.com/cropperjs@1.5.13/dist/cropper.min.js"></script>
+  <!-- ⚙️ 캔버스 기능 -->
   <script src="/livee-beta/frontend/js/canvas.js"></script>
 </body>
 </html>
