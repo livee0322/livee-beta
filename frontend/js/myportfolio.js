@@ -1,6 +1,8 @@
+// 📍 /livee-beta/frontend/js/myportfolio.js
+
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("liveeToken");
-  const portfolioList = document.getElementById("portfolioList"); // ✅ 수정
+  const portfolioList = document.getElementById("portfolioList"); // ✅ ID 통일
 
   if (!token) {
     alert("로그인이 필요합니다.");
@@ -9,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   try {
-    const res = await fetch("https://main-server-ekgr.onrender.com/api/portfolio/my", {  // ✅ 엔드포인트 수정
+    const res = await fetch("https://main-server-ekgr.onrender.com/api/portfolio/my", { // ✅ 경로 수정
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -18,6 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!res.ok) throw new Error("불러오기 실패");
 
     const data = await res.json();
+
     if (!data) {
       portfolioList.innerHTML = "<p class='no-portfolio'>등록된 포트폴리오가 없습니다.</p>";
       return;
