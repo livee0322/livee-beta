@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>내 포트폴리오</title>
   <link rel="stylesheet" href="/livee-beta/main.css?v=1.04" />
-  <link rel="stylesheet" href="/livee-beta/frontend/css/myportfolio.css?v=1.01" />
+  <link rel="stylesheet" href="/livee-beta/frontend/css/myportfolio.css?v=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
 <body>
   <div class="beta-banner">현재 클로즈 베타 테스트 중입니다. 피드백을 환영합니다!</div>
@@ -14,9 +15,8 @@
 
   <main class="portfolio-wrapper">
     <h2>내 포트폴리오</h2>
-    <div id="portfolioContent" class="portfolio-list">
-      <p class="empty">불러오는 중...</p>
-    </div>
+    <section id="portfolioList" class="portfolio-list"></section>
+    <button class="add-btn" onclick="location.href='/livee-beta/frontend/portfolio-edit.html'">포트폴리오 등록하기</button>
   </main>
 
   <div id="bottom-tab-container"></div>
