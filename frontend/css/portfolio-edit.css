@@ -1,4 +1,5 @@
-/* 프로필 카드 전체 박스 */
+/* 📍 /livee-beta/frontend/css/portfolio-edit.css */
+
 .profile-card {
   display: flex;
   flex-wrap: nowrap;
@@ -7,22 +8,20 @@
   background: #fff;
   border-radius: 16px;
   margin: 20px;
-  border: 1px solid #eee; /* ✅ 테두리만, 그림자 제거 */
-  box-shadow: none; /* ✅ 그림자 제거 */
+  border: 1px solid #eee;
+  box-shadow: none;
   align-items: stretch;
 }
 
-/* 이미지 업로드 영역 */
 .image-upload-area {
   width: 130px;
   flex-shrink: 0;
 }
 
-/* 미리보기 박스 */
 #imagePreviewWrapper {
   width: 100%;
   aspect-ratio: 3 / 4;
-  height: auto; /* ✅ 세로 비율 유지하며 최대한 길게 */
+  height: auto;
   background: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -32,18 +31,16 @@
   overflow: hidden;
 }
 
-/* 이미지 미리보기 */
 #imagePreviewWrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* 파일 선택 버튼 - 텍스트만 */
 #uploadButton {
-  background: none; /* ✅ 배경 제거 */
+  background: none;
   color: #666;
-  border: none; /* ✅ 테두리 제거 */
+  border: none;
   padding: 0;
   font-size: 14px;
   cursor: pointer;
@@ -52,7 +49,6 @@
   width: 100%;
 }
 
-/* 텍스트 필드 영역 */
 .info-fields {
   flex: 1;
   display: flex;
@@ -61,7 +57,6 @@
   gap: 10px;
 }
 
-/* 개별 필드 */
 .info-fields input {
   padding: 10px;
   font-size: 14px;
@@ -71,7 +66,6 @@
   box-sizing: border-box;
 }
 
-/* 추가 입력 항목 */
 .extra-fields {
   display: flex;
   flex-direction: column;
@@ -89,11 +83,27 @@
   box-sizing: border-box;
 }
 
-/* 공개 여부 + 저장 버튼 */
 .options-row {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 0 20px;
   margin-top: 16px;
+}
+
+/* ✅ 저장 버튼 스타일 */
+#savePortfolioBtn {
+  padding: 10px 20px;
+  font-size: 15px;
+  border: none;
+  border-radius: 6px;
+  background-color: #6c5ce7;
+  color: white;
+  cursor: pointer;
+  flex: 1;
+  text-align: center;
+}
+
+#savePortfolioBtn:hover {
+  background-color: #5a4dcf;
 }
