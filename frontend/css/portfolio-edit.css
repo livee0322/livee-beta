@@ -1,14 +1,14 @@
 /* 프로필 카드 전체 박스 */
 .profile-card {
   display: flex;
-  flex-wrap: wrap; /* 줄바꿈 허용 */
+  flex-wrap: nowrap;
   gap: 16px;
   padding: 20px;
   background: #fff;
   border-radius: 16px;
   margin: 20px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  align-items: flex-start;
+  align-items: stretch; /* ✅ 이미지와 텍스트 높이 맞춤 */
 }
 
 /* 이미지 업로드 영역 */
@@ -17,10 +17,10 @@
   flex-shrink: 0;
 }
 
-/* 버튼 또는 이미지 미리보기 감싸는 박스 */
+/* 이미지 미리보기 박스 */
 #imagePreviewWrapper {
   width: 100%;
-  aspect-ratio: 3 / 4; /* 세로가 긴 비율 */
+  aspect-ratio: 3 / 4;
   background: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -37,7 +37,7 @@
   object-fit: cover;
 }
 
-/* 파일 선택 버튼 스타일 */
+/* 업로드 버튼 스타일 */
 #uploadButton {
   background: white;
   color: #666;
@@ -46,25 +46,43 @@
   border-radius: 6px;
   font-size: 14px;
   cursor: pointer;
-  width: 100%; /* 부모 영역 기준으로 꽉 차게 */
+  width: 100%;
 }
 
-/* 입력 필드 정렬 */
+/* 텍스트 입력 필드 (이름, 나이, 경력, 지역) */
 .info-fields {
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 10px;
-  min-width: 0; /* 넘침 방지 */
 }
 
-/* 개별 입력창 */
+/* 개별 필드 */
 .info-fields input {
-  padding: 8px;
+  padding: 10px;
   font-size: 14px;
   border: 1px solid #ddd;
   border-radius: 6px;
-  width: 100%; /* ✅ 넘침 방지 */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* SNS 주소, 태그, 전문분야 */
+.extra-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 20px;
+  margin-top: -10px; /* 위와 조금 더 붙도록 조정 */
+}
+
+.extra-fields input {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  width: 100%;
   box-sizing: border-box;
 }
 
@@ -74,5 +92,5 @@
   align-items: center;
   gap: 10px;
   padding: 0 20px;
-  margin-top: 10px;
+  margin-top: 16px;
 }
