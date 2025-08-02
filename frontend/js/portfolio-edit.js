@@ -1,5 +1,5 @@
-// 📍 /livee-beta/frontend/js/portfolio-edit.js
-document.addEventListener("DOMContentLoaded", () => {
+// 📍 portfolio-edit.js
+document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("liveeToken");
   if (!token) {
     alert("로그인이 필요합니다.");
@@ -7,21 +7,16 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  // ✅ 이미지 업로드 및 미리보기
   const imageInput = document.getElementById("imageInput");
-  const uploadButton = document.getElementById("uploadButton");
   const imagePreviewWrapper = document.getElementById("imagePreviewWrapper");
   let uploadedImageUrl = "";
 
-  // ✅ 버튼 → 파일 선택 input 트리거
-  uploadButton.addEventListener("click", () => {
-    imageInput.click();
-  });
-
-  // ✅ 파일 선택 시 → 미리보기 & Cloudinary 업로드
   imageInput.addEventListener("change", async (event) => {
     const file = event.target.files[0];
     if (!file) return;
 
+    // 미리보기 처리
     const reader = new FileReader();
     reader.onload = function (e) {
       imagePreviewWrapper.innerHTML = `
@@ -30,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     reader.readAsDataURL(file);
 
-    // 🔄 Cloudinary 업로드
+    // Cloudinary 업로드
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", "livee_unsigned");
@@ -50,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // ✅ 저장 버튼 클릭 시 → 서버 전송
+  // ✅ 저장하기
   document.getElementById("savePortfolioBtn").addEventListener("click", async () => {
     const name = document.getElementById("name").value.trim();
     const age = document.getElementById("age").value.trim();
