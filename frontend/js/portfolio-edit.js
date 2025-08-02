@@ -11,61 +11,67 @@ document.addEventListener("DOMContentLoaded", () => {
   const imagePreviewWrapper = document.getElementById("imagePreviewWrapper");
   let uploadedImageUrl = "";
 
-  // 파일 선택 버튼 트리거
-  uploadButton.addEventListener("click", () => imageInput.click());
+  // ✅ 1. 버튼 클릭 → input 클릭
+  if (uploadButton && imageInput) {
+    uploadButton.addEventListener("click", () => {
+      imageInput.click();
+    });
+  }
 
-  // 이미지 크롭 후 Cloudinary 업로드
-  imageInput.addEventListener("change", async (event) => {
-    const file = event.target.files[0];
+  // ✅ 2. 이미지 선택 시 → cropImage 저장 후 canvas.html로 이동
+  imageInput.addEventListener("change", (e) => {
+    const file = e.target.files[0];
     if (!file) return;
 
-    const img = new Image();
-    img.src = URL.createObjectURL(file);
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      localStorage.setItem("cropImage", e.target.result);
+      window.location.href = "/livee-beta/frontend/canvas.html"; // ✅ canvas로 이동
+    };
+    reader.readAsDataURL(file);
+  });
 
-    img.onload = () => {
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
+  // ✅ 3. canvas.html에서 크롭된 이미지 가져오기
+  const savedImage = localStorage.getItem("croppedImage");
+  if (savedImage && imagePreviewWrapper) {
+    imagePreviewWrapper.innerHTML = `<img src="${savedImage}" alt="미리보기" class="preview-image"/>`;
+    localStorage.removeItem("croppedImage");
 
-      const size = Math.min(img.width, img.height);
-      canvas.width = size;
-      canvas.height = size;
-
-      ctx.drawImage(
-        img,
-        (img.width - size) / 2,
-        (img.height - size) / 2,
-        size,
-        size,
-        0,
-        0,
-        size,
-        size
-      );
-
-      canvas.toBlob(async (blob) => {
+    // 🔁 바로 업로드 처리
+    fetch("https://api.cloudinary.com/v1_1/dis1og9uq/image/upload", {
+      method: "POST",
+      body: (() => {
+        const blob = dataURItoBlob(savedImage);
         const formData = new FormData();
         formData.append("file", blob, "cropped.png");
         formData.append("upload_preset", "livee_unsigned");
         formData.append("folder", "livee");
+        return formData;
+      })(),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        uploadedImageUrl = data.secure_url;
+      })
+      .catch((err) => {
+        console.error("업로드 오류:", err);
+        alert("이미지 업로드 실패");
+      });
+  }
 
-        try {
-          const res = await fetch("https://api.cloudinary.com/v1_1/dis1og9uq/image/upload", {
-            method: "POST",
-            body: formData,
-          });
-          const data = await res.json();
-          uploadedImageUrl = data.secure_url;
+  // ✅ base64 → Blob 변환 함수
+  function dataURItoBlob(dataURI) {
+    const byteString = atob(dataURI.split(",")[1]);
+    const mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: mimeString });
+  }
 
-          imagePreviewWrapper.innerHTML = `<img src="${uploadedImageUrl}" class="preview-image" />`;
-        } catch (err) {
-          console.error("이미지 업로드 실패:", err);
-          alert("이미지 업로드 실패");
-        }
-      }, "image/png");
-    };
-  });
-
-  // 저장하기 버튼
+  // ✅ 4. 저장 버튼 클릭 시
   document.getElementById("savePortfolioBtn").addEventListener("click", async () => {
     const name = document.getElementById("name").value.trim();
     const age = document.getElementById("age").value.trim();
@@ -77,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const isPublic = document.getElementById("isPublic").checked;
 
     if (!name) {
-      alert("이름은 필수 입력입니다.");
+      alert("이름을 입력해주세요.");
       return;
     }
 
@@ -104,15 +110,16 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const result = await res.json();
+
       if (res.ok) {
         alert("포트폴리오가 저장되었습니다.");
-        window.location.href = "/livee-beta/frontend/myportfolio.html"; // ✅ 정확한 경로
+        window.location.href = "/livee-beta/myportfolio.html"; // ✅ 경로 확실하게 고정
       } else {
         alert(result.message || "저장 실패");
       }
     } catch (err) {
-      console.error("저장 실패:", err);
-      alert("저장 중 오류가 발생했습니다.");
+      console.error("저장 오류:", err);
+      alert("서버 오류");
     }
   });
 });
