@@ -1,5 +1,3 @@
-// 📍 /livee-beta/frontend/js/myportfolio.js
-
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("liveeToken");
   const portfolioList = document.getElementById("portfolioList"); // ✅ ID 통일
