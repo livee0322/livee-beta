@@ -1,8 +1,10 @@
+// ✅ /livee-beta/frontend/js/canvas.js
 document.addEventListener("DOMContentLoaded", () => {
   const imageElement = document.getElementById("imageToCrop");
   const cropBtn = document.getElementById("cropBtn");
   const backBtn = document.getElementById("backBtn");
 
+  // ✅ 저장된 이미지 불러오기
   const originalImage = localStorage.getItem("cropImage");
 
   if (!originalImage) {
@@ -13,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let cropper = null;
 
-  // ✅ onload 먼저 정의하고
+  // ✅ 크롭퍼 초기화: onload 먼저 설정 후 src 지정
   imageElement.onload = () => {
     cropper = new Cropper(imageElement, {
       aspectRatio: 3 / 4,
@@ -25,9 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // ✅ 그 다음에 src 설정
   imageElement.src = originalImage;
 
+  // ✅ 저장 버튼 클릭 → 이미지 크롭 → 저장
   cropBtn.addEventListener("click", () => {
     if (!cropper) {
       alert("크롭 기능이 초기화되지 않았습니다.");
@@ -42,9 +44,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const croppedImage = croppedCanvas.toDataURL("image/png");
     localStorage.setItem("croppedImage", croppedImage);
 
+    // ✅ 포트폴리오 수정 페이지로 이동
     window.location.href = "/livee-beta/frontend/portfolio-edit.html";
   });
 
+  // ✅ 뒤로가기 버튼
   backBtn.addEventListener("click", () => {
     window.history.back();
   });
