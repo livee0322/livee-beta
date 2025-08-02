@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("liveeToken");
-  const portfolioCard = document.getElementById("portfolioCard");
+  const portfolioList = document.getElementById("portfolioList"); // ✅ 수정
 
   if (!token) {
     alert("로그인이 필요합니다.");
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   try {
-    const res = await fetch("https://main-server-ekgr.onrender.com/api/portfolio/mine", {
+    const res = await fetch("https://main-server-ekgr.onrender.com/api/portfolio/my", {  // ✅ 엔드포인트 수정
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -19,24 +19,29 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const data = await res.json();
     if (!data) {
-      portfolioCard.innerHTML = "<p>등록된 포트폴리오가 없습니다.</p>";
+      portfolioList.innerHTML = "<p class='no-portfolio'>등록된 포트폴리오가 없습니다.</p>";
       return;
     }
 
-    portfolioCard.innerHTML = `
-      <div class="card">
-        <img src="${data.image}" alt="프로필 이미지" />
-        <h3>${data.name} (${data.age})</h3>
-        <p>경력: ${data.experience}</p>
-        <p>지역: ${data.region}</p>
-        <p>SNS: <a href="${data.sns}" target="_blank">${data.sns}</a></p>
-        <p>태그: ${data.tags}</p>
-        <p>전문분야: ${data.specialty}</p>
-        <p>공개 여부: ${data.isPublic ? "✅ 공개" : "🔒 비공개"}</p>
+    portfolioList.innerHTML = `
+      <div class="portfolio-card">
+        <div class="card-header">
+          <div class="card-title">"${data.name || '쇼호스트'}" 님</div>
+        </div>
+        <div class="card-body">
+          <p><strong>이름:</strong> ${data.name}</p>
+          <p><strong>나이:</strong> ${data.age}</p>
+          <p><strong>경력:</strong> ${data.experience}</p>
+          <p><strong>지역:</strong> ${data.region}</p>
+          <p><strong>SNS:</strong> <a href="${data.sns}" target="_blank">${data.sns}</a></p>
+          <p><strong>태그:</strong> ${data.tags}</p>
+          <p><strong>전문분야:</strong> ${data.specialty}</p>
+          <p><strong>공개여부:</strong> ${data.isPublic ? "✅ 공개" : "🔒 비공개"}</p>
+        </div>
       </div>
     `;
   } catch (err) {
     console.error("오류:", err);
-    portfolioCard.innerHTML = "<p>포트폴리오를 불러오는 데 실패했습니다.</p>";
+    portfolioList.innerHTML = "<p class='no-portfolio'>포트폴리오를 불러오는 데 실패했습니다.</p>";
   }
 });
