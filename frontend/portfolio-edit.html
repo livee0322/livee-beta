@@ -13,13 +13,16 @@
   <div id="header-container"></div>
   <div id="top-tab-container"></div>
 
-  <section class="profile-card">
-    <div class="image-upload-area">
+  <!-- 수정된 이미지 업로드 영역 -->
+<section class="profile-card">
+  <div class="image-upload-area">
+    <label for="imageInput" class="upload-label">
       <input type="file" accept="image/*" id="imageInput" hidden />
       <div id="imagePreviewWrapper">
         <button type="button" id="uploadButton">파일 선택</button>
       </div>
-    </div>
+    </label>
+  </div>
 
     <div class="info-fields">
       <input type="text" id="name" placeholder="이름" />
