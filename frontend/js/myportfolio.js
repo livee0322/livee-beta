@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     listContainer.innerHTML = data.map(item => `
       <div class="portfolio-card">
-        <img src="${item.image || '/livee-beta/default-profile.png'}" alt="${item.name}" />
+        <img src="${item.image || '/livee-beta/frontend/default.jpg'}" alt="${item.name}" />
         <div class="portfolio-info">
           <h3>${item.name}</h3>
           <p>경력: ${item.experience || '-'}</p>
