@@ -58,16 +58,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       // ✅ 서버에 등록/수정 요청
+     
       const payload = {
-        title,
-        brand,
-        category,
-        date,
-        description,
-        link: applyLink,
-      };
-
-      if (thumbnailUrl) payload.thumbnailUrl = thumbnailUrl;
+  title,
+  brand,
+  category,
+  date,
+  description,
+  link: applyLink,
+  thumbnailUrl, // 무조건 포함!
+};
 
       const method = recruitId ? "PUT" : "POST";
       const url = recruitId
