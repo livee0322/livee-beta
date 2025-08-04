@@ -10,11 +10,37 @@ document.addEventListener("DOMContentLoaded", () => {
   const uploadButton = document.getElementById("uploadButton");
   const imagePreviewWrapper = document.getElementById("imagePreviewWrapper");
   const saveBtn = document.getElementById("savePortfolioBtn");
+
   let uploadedImageUrl = "";
   let imageUploaded = false;
 
   // ⛔ 저장 버튼 비활성화 (업로드 전)
   if (saveBtn) saveBtn.disabled = true;
+
+  // ✅ 기존 데이터 자동입력
+  const savedPortfolio = localStorage.getItem("portfolioData");
+  if (savedPortfolio) {
+    try {
+      const data = JSON.parse(savedPortfolio);
+      document.getElementById("name").value = data.name || "";
+      document.getElementById("age").value = data.age || "";
+      document.getElementById("career").value = data.experience || "";
+      document.getElementById("region").value = data.region || "";
+      document.getElementById("sns").value = data.sns || "";
+      document.getElementById("tags").value = data.tags || "";
+      document.getElementById("specialty").value = data.specialty || "";
+      document.getElementById("isPublic").checked = !!data.isPublic;
+
+      if (data.image && imagePreviewWrapper) {
+        imagePreviewWrapper.innerHTML = `<img src="${data.image}" alt="이전 이미지" class="preview-image" />`;
+        uploadedImageUrl = data.image;
+        imageUploaded = true;
+        saveBtn.disabled = false;
+      }
+    } catch (e) {
+      console.warn("포트폴리오 데이터 파싱 실패:", e);
+    }
+  }
 
   // ✅ 업로드 버튼 클릭
   uploadButton?.addEventListener("click", () => imageInput?.click());
@@ -55,10 +81,10 @@ document.addEventListener("DOMContentLoaded", () => {
           uploadedImageUrl = data.secure_url;
           imageUploaded = true;
           console.log("✅ 이미지 업로드 성공:", uploadedImageUrl);
-          saveBtn.disabled = false; // 저장 버튼 활성화
+          saveBtn.disabled = false;
         } else {
           console.error("❌ Cloudinary 응답 오류:", data);
-          alert("이미지 업로드에 실패했습니다. 다시 시도해주세요.");
+          alert("이미지 업로드에 실패했습니다.");
         }
       })
       .catch((err) => {
@@ -67,7 +93,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  // base64 → Blob 변환
   function dataURItoBlob(dataURI) {
     const byteString = atob(dataURI.split(",")[1]);
     const mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
@@ -126,6 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (res.ok) {
         alert("포트폴리오가 저장되었습니다.");
+        localStorage.removeItem("portfolioData");
         window.location.href = "/livee-beta/frontend/myportfolio.html";
       } else {
         alert(result.message || "저장 실패");
