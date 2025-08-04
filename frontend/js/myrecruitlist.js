@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const posts = await res.json();
 
     // ✅ 나의 공고만 필터링
-    const myPosts = posts.filter((post) => post.user === userId);
+const myPosts = posts.filter((post) => post.user?._id === userId);
 
     if (myPosts.length === 0) {
       listContainer.innerHTML = `<p class="empty-text">등록한 공고가 없습니다.</p>`;
