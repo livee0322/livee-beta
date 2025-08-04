@@ -101,7 +101,7 @@
   width: 100%; /* 가로 꽉차게 */
   flex-direction: row;
   align-items: center;
-  padding: 12px;
+  padding: 0px;
   gap: 12px;
   box-sizing: border-box;
 }
