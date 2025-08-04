@@ -11,7 +11,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   const container = document.getElementById("myRecruitList");
 
   try {
-    const res = await fetch(`https://main-server-ekgr.onrender.com/api/recruit?user=${userId}`);
+    const res = await fetch(`https://main-server-ekgr.onrender.com/api/recruit?user=${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,  // ✅ 추가된 부분
+      },
+    });
+
     const data = await res.json();
 
     if (!res.ok) throw new Error(data.message);
