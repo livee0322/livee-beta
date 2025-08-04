@@ -145,7 +145,7 @@
 /* ✅ 플로팅 등록 버튼 (FAB) */
 .fab {
   position: fixed;
-  bottom: 80px;
+  bottom: 120px;
   right: 20px;
   width: 56px;
   height: 56px;
