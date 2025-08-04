@@ -3,6 +3,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   const categoryButtons = document.querySelectorAll(".category-scroll button");
 
   let allPosts = [];
+  let currentUserId = null;
+
+  // ✅ 내 userId 추출 (토큰 → payload 디코딩)
+  const token = localStorage.getItem("liveeToken");
+  if (token) {
+    try {
+      const base64Payload = token.split('.')[1];
+      const decodedPayload = JSON.parse(atob(base64Payload));
+      currentUserId = decodedPayload.id;
+    } catch (err) {
+      console.warn("❌ 토큰 파싱 오류:", err);
+    }
+  }
 
   // ✅ 공고 불러오기
   try {
@@ -53,13 +66,21 @@ document.addEventListener("DOMContentLoaded", async () => {
               minute: "2-digit",
             });
 
+        const isMine = currentUserId && post.user === currentUserId;
+        const buttonText = isMine ? "수정하기" : "지원하기";
+        const buttonHref = isMine
+          ? `/livee-beta/frontend/recruitform.html?id=${post._id}`
+          : post.link;
+
+        const targetAttr = isMine ? "" : 'target="_blank"';
+
         return `
           <div class="recruit-card">
             <img src="${post.thumbnailUrl}" alt="${post.title}" />
             <h3>${post.title}</h3>
             <p>${post.brand}</p>
             <small>${dateText}</small>
-            <a href="${post.link}" target="_blank">지원하기</a>
+            <a href="${buttonHref}" ${targetAttr}>${buttonText}</a>
           </div>
         `;
       })
