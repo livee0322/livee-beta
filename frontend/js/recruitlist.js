@@ -1,17 +1,8 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("liveeToken");
-  let currentUserId = null;
+  const currentUserId = getUserIdFromToken(token);
 
-  if (token) {
-    try {
-      const payload = JSON.parse(atob(token.split(".")[1]));
-      currentUserId = payload.id;
-    } catch (err) {
-      console.warn("❌ 토큰 파싱 실패:", err);
-    }
-  }
-
-  // 전체 공고 가져오기
+  // ✅ 전체 공고 불러오기
   let allPosts = [];
   try {
     const res = await fetch("https://main-server-ekgr.onrender.com/api/recruit");
@@ -20,12 +11,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("❌ 공고 불러오기 실패", err);
   }
 
-  // 리스트 섹션별 랜더링
-  renderRecruitCards("latest-list", [...allPosts].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 10));
-  renderRecruitCards("urgent-list", [...allPosts].filter(p => p.date).sort((a, b) => new Date(a.date) - new Date(b.date)).slice(0, 10));
-  renderRecruitCards("highfee-list", [...allPosts].sort((a, b) => parseInt(b.fee) - parseInt(a.fee)).slice(0, 10));
+  // ✅ 섹션별 공고 렌더링
+  renderRecruitCards("latest-list", getLatestPosts(allPosts));
+  renderRecruitCards("urgent-list", getUrgentPosts(allPosts));
+  renderRecruitCards("highfee-list", getHighFeePosts(allPosts));
 
-  // 카테고리 필터
+  // ✅ 카테고리 필터 핸들링
   const categoryButtons = document.querySelectorAll(".category-scroll button");
   categoryButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -42,7 +33,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 });
 
-// 공고 카드 랜더링 함수 (공통)
+// ✅ 로그인 토큰에서 사용자 ID 추출
+function getUserIdFromToken(token) {
+  if (!token) return null;
+  try {
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    return payload.id;
+  } catch (err) {
+    console.warn("❌ 토큰 파싱 실패:", err);
+    return null;
+  }
+}
+
+// ✅ 공고 렌더링 함수
 function renderRecruitCards(containerId, posts) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -50,10 +53,11 @@ function renderRecruitCards(containerId, posts) {
   container.innerHTML = posts
     .map((post) => {
       const fee = post.fee ? `<div class="fee">💰 ${post.fee}</div>` : "";
+      const thumb = post.thumbnailUrl || "/default.jpg";
       return `
         <div class="recruit-card">
           <div class="thumb-wrap">
-            <img src="${post.thumbnailUrl || "/default.jpg"}" alt="${post.title}" />
+            <img src="${thumb}" alt="${post.title}" />
             <span class="scrap ri-star-line"></span>
           </div>
           <p>${post.brand || ""}</p>
@@ -65,7 +69,33 @@ function renderRecruitCards(containerId, posts) {
     .join("");
 }
 
-// FAB 버튼
+// ✅ 최신 공고 10개
+function getLatestPosts(posts) {
+  return [...posts]
+    .sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0))
+    .slice(0, 10);
+}
+
+// ✅ 촬영일 임박 공고
+function getUrgentPosts(posts) {
+  return [...posts]
+    .filter((p) => p.date)
+    .sort((a, b) => new Date(a.date) - new Date(b.date))
+    .slice(0, 10);
+}
+
+// ✅ 출연료 높은 순 공고
+function getHighFeePosts(posts) {
+  return [...posts]
+    .sort((a, b) => {
+      const feeA = parseInt(a.fee?.replace(/\D/g, "")) || 0;
+      const feeB = parseInt(b.fee?.replace(/\D/g, "")) || 0;
+      return feeB - feeA;
+    })
+    .slice(0, 10);
+}
+
+// ✅ FAB 버튼 클릭 시 이동
 function handleFabClick() {
   const token = localStorage.getItem("liveeToken");
   if (!token) {
