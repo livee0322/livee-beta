@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   const params = new URLSearchParams(location.search);
-  const recruitId = params.get("id");
+  const recruitId = params.get("edit"); // ✅ 수정됨!
 
   // ✅ 수정 모드인 경우 기존 데이터 불러오기
   if (recruitId) {
