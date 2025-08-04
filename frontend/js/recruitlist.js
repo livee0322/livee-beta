@@ -11,11 +11,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("❌ 공고 불러오기 실패", err);
   }
 
-  // ✅ 섹션별 공고 렌더링 (HTML ID에 맞춤!)
+  // ✅ 섹션별 공고 렌더링
   renderRecruitCards("latest-posts", getLatestPosts(allPosts));
   renderRecruitCards("urgent-posts", getUrgentPosts(allPosts));
   renderRecruitCards("highfee-posts", getHighFeePosts(allPosts));
-  renderRecruitCards("recruit-list", allPosts); // 기본 전체 리스트
+  renderRecruitCards("recruit-list", allPosts); // 기본 리스트는 가로형 스타일
 
   // ✅ 카테고리 필터 핸들링
   const categoryButtons = document.querySelectorAll(".category-scroll button");
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         ? allPosts
         : allPosts.filter((post) => post.category === selected);
 
-      renderRecruitCards("recruit-list", filtered); // 필터 결과도 동일 id
+      renderRecruitCards("recruit-list", filtered); // 필터 결과도 리스트형 유지
     });
   });
 });
@@ -51,6 +51,8 @@ function renderRecruitCards(containerId, posts) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
+  const isList = containerId === "recruit-list";
+
   if (posts.length === 0) {
     container.innerHTML = `<p class="empty-text">등록된 공고가 없습니다.</p>`;
     return;
@@ -60,17 +62,33 @@ function renderRecruitCards(containerId, posts) {
     .map((post) => {
       const fee = post.fee ? `<div class="fee">💰 ${post.fee}</div>` : "";
       const thumb = post.thumbnailUrl || "/default.jpg";
-      return `
-        <div class="recruit-card">
-          <div class="thumb-wrap">
+
+      if (isList) {
+        // ✅ 리스트형 공고 카드: 이미지 왼쪽 + 텍스트 오른쪽
+        return `
+          <div class="recruit-card">
             <img src="${thumb}" alt="${post.title}" />
-            <span class="scrap ri-star-line"></span>
+            <div class="recruit-card-content">
+              <p>${post.brand || ""}</p>
+              <h3>${post.title}</h3>
+              ${fee}
+            </div>
           </div>
-          <p>${post.brand || ""}</p>
-          <h3>${post.title}</h3>
-          ${fee}
-        </div>
-      `;
+        `;
+      } else {
+        // ✅ 섹션 카드 (기존 가로슬라이드)
+        return `
+          <div class="recruit-card">
+            <div class="thumb-wrap">
+              <img src="${thumb}" alt="${post.title}" />
+              <span class="scrap ri-star-line"></span>
+            </div>
+            <p>${post.brand || ""}</p>
+            <h3>${post.title}</h3>
+            ${fee}
+          </div>
+        `;
+      }
     })
     .join("");
 }
@@ -90,7 +108,7 @@ function getUrgentPosts(posts) {
     .slice(0, 10);
 }
 
-// ✅ 출연료 높은 순 공고
+// ✅ 출연료 높은 공고
 function getHighFeePosts(posts) {
   return [...posts]
     .sort((a, b) => {
