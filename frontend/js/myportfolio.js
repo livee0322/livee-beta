@@ -3,6 +3,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("liveeToken");
   const listContainer = document.getElementById("portfolioList");
+  const actionBtn = document.getElementById("portfolioActionBtn"); // 버튼
 
   if (!token) {
     alert("로그인이 필요합니다.");
@@ -19,12 +20,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const data = await res.json();
 
-    if (!res.ok) {
-      throw new Error(data.message || "불러오기 실패");
-    }
+    if (!res.ok) throw new Error(data.message || "불러오기 실패");
 
     if (!data || !data.name) {
       listContainer.innerHTML = `<p class="empty-message">현재 등록된 포트폴리오가 없습니다.</p>`;
+      actionBtn.textContent = "포트폴리오 등록하기";
+      actionBtn.onclick = () => {
+        localStorage.removeItem("portfolioData");
+        location.href = "/livee-beta/frontend/portfolio-edit.html";
+      };
       return;
     }
 
@@ -41,8 +45,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       </div>
     `;
 
+    // 👉 수정 버튼
+    actionBtn.textContent = "포트폴리오 수정하기";
+    actionBtn.onclick = () => {
+      localStorage.setItem("portfolioData", JSON.stringify(data));
+      location.href = "/livee-beta/frontend/portfolio-edit.html";
+    };
+
   } catch (err) {
     console.error("❌ 포트폴리오 불러오기 오류:", err);
     listContainer.innerHTML = `<p class="empty-message">포트폴리오를 불러오지 못했습니다.</p>`;
+    if (actionBtn) actionBtn.textContent = "포트폴리오 등록하기";
   }
 });
