@@ -9,13 +9,13 @@
   <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet" />
 </head>
 <body>
-
-  <!-- ✅ 공통 모듈 -->
+  <!-- ✅ 공통 헤더/탭 -->
   <div id="header-container"></div>
   <div id="top-tab-container"></div>
 
-
-    <!-- ✅ 카테고리 필터 -->
+  <!-- ✅ 전체 콘텐츠 -->
+  <main>
+    <!-- 🔹 카테고리 필터 -->
     <section class="category-scroll">
       <button class="active">전체</button>
       <button>패션</button>
@@ -24,7 +24,7 @@
       <button>생활</button>
     </section>
 
-    <!-- ✅ 공고 섹션들 -->
+    <!-- 🔹 가로 스크롤 섹션들 -->
     <section class="recruit-section">
       <h2>최신 공고</h2>
       <div id="latest-posts" class="recruit-scroll"></div>
@@ -40,16 +40,20 @@
       <div id="highfee-posts" class="recruit-scroll"></div>
     </section>
 
-    <!-- ✅ 리스트형 공고 -->
+    <!-- 🔹 세로 리스트형 공고 -->
     <section class="recruit-section">
       <h2>전체 공고</h2>
       <div id="recruit-list" class="recruit-list"></div>
     </section>
   </main>
 
+  <!-- ✅ FAB 버튼 -->
   <button class="fab" onclick="handleFabClick()">+</button>
+
+  <!-- ✅ 공통 하단탭 -->
   <div id="bottom-tab-container"></div>
 
+  <!-- ✅ 스크립트 -->
   <script src="/livee-beta/frontend/js/header.js"></script>
   <script src="/livee-beta/frontend/js/top-tab.js"></script>
   <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
