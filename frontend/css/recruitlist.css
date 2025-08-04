@@ -95,30 +95,44 @@
   flex-direction: column;
   gap: 16px;
 }
+/* ✅ 리스트형 공고카드를 가로형 레이아웃으로 변경 */
 .recruit-list .recruit-card {
+  flex-direction: row;
+  align-items: center;
+  padding: 12px;
+  gap: 12px;
+}
+
+.recruit-list .recruit-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.recruit-list .recruit-card-content {
   display: flex;
   flex-direction: column;
+  gap: 4px;
 }
-.recruit-list .recruit-card img {
-  height: 160px;
+
+.recruit-list .recruit-card-content h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: bold;
 }
-.recruit-list .recruit-card h3 {
-  font-size: 1.1rem;
+
+.recruit-list .recruit-card-content p {
+  margin: 0;
+  font-size: 13px;
+  color: #666;
 }
-.recruit-list .recruit-card p {
-  font-size: 0.95rem;
-  color: #444;
-}
-.recruit-list .recruit-card small {
-  color: #888;
-  font-size: 0.85rem;
-}
-.recruit-list .recruit-card a {
-  align-self: flex-start;
-  margin-top: 4px;
-  font-size: 0.9rem;
-  color: #4a2ff4;
-  text-decoration: underline;
+
+.recruit-list .recruit-card-content .fee {
+  color: #7c3aed;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 /* ✅ 공고 없을 때 */
