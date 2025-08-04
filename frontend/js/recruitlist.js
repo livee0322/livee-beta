@@ -11,10 +11,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("❌ 공고 불러오기 실패", err);
   }
 
-  // ✅ 섹션별 공고 렌더링
-  renderRecruitCards("latest-list", getLatestPosts(allPosts));
-  renderRecruitCards("urgent-list", getUrgentPosts(allPosts));
-  renderRecruitCards("highfee-list", getHighFeePosts(allPosts));
+  // ✅ 섹션별 공고 렌더링 (HTML ID에 맞춤!)
+  renderRecruitCards("latest-posts", getLatestPosts(allPosts));
+  renderRecruitCards("urgent-posts", getUrgentPosts(allPosts));
+  renderRecruitCards("highfee-posts", getHighFeePosts(allPosts));
+  renderRecruitCards("recruit-list", allPosts); // 기본 전체 리스트
 
   // ✅ 카테고리 필터 핸들링
   const categoryButtons = document.querySelectorAll(".category-scroll button");
@@ -28,7 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         ? allPosts
         : allPosts.filter((post) => post.category === selected);
 
-      renderRecruitCards("category-list", filtered);
+      renderRecruitCards("recruit-list", filtered); // 필터 결과도 동일 id
     });
   });
 });
@@ -49,6 +50,11 @@ function getUserIdFromToken(token) {
 function renderRecruitCards(containerId, posts) {
   const container = document.getElementById(containerId);
   if (!container) return;
+
+  if (posts.length === 0) {
+    container.innerHTML = `<p class="empty-text">등록된 공고가 없습니다.</p>`;
+    return;
+  }
 
   container.innerHTML = posts
     .map((post) => {
