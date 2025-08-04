@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("liveeToken");
-  const userId = localStorage.getItem("userId");
+  const userId = getUserIdFromToken(token); // ✅ 이걸로 변경
 
   if (!token || !userId) {
     alert("로그인이 필요합니다.");
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     const res = await fetch(`https://main-server-ekgr.onrender.com/api/recruit?user=${userId}`, {
       headers: {
-        Authorization: `Bearer ${token}`,  // ✅ 추가된 부분
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -76,5 +76,15 @@ async function deleteRecruit(id) {
   } catch (err) {
     console.error("❌ 삭제 오류:", err);
     alert("삭제 실패: " + err.message);
+  }
+}
+
+// ✅ 토큰에서 userId 추출 함수 추가
+function getUserIdFromToken(token) {
+  try {
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    return payload.id;
+  } catch {
+    return null;
   }
 }
