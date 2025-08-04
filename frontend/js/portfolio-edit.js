@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let uploadedImageUrl = "";
   let imageUploaded = false;
+  let existingPortfolioId = null; // 👉 수정 시 사용될 ID
 
   // ⛔ 저장 버튼 비활성화 (업로드 전)
   if (saveBtn) saveBtn.disabled = true;
@@ -37,6 +38,11 @@ document.addEventListener("DOMContentLoaded", () => {
         imageUploaded = true;
         saveBtn.disabled = false;
       }
+
+      if (data._id) {
+        existingPortfolioId = data._id; // 👉 수정용 ID 저장
+      }
+
     } catch (e) {
       console.warn("포트폴리오 데이터 파싱 실패:", e);
     }
@@ -137,9 +143,15 @@ document.addEventListener("DOMContentLoaded", () => {
       image: uploadedImageUrl,
     };
 
+    const endpoint = existingPortfolioId
+      ? `https://main-server-ekgr.onrender.com/api/portfolio/${existingPortfolioId}`
+      : "https://main-server-ekgr.onrender.com/api/portfolio";
+
+    const method = existingPortfolioId ? "PUT" : "POST";
+
     try {
-      const res = await fetch("https://main-server-ekgr.onrender.com/api/portfolio", {
-        method: "POST",
+      const res = await fetch(endpoint, {
+        method,
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -150,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await res.json();
 
       if (res.ok) {
-        alert("포트폴리오가 저장되었습니다.");
+        alert(existingPortfolioId ? "포트폴리오가 수정되었습니다." : "포트폴리오가 등록되었습니다.");
         localStorage.removeItem("portfolioData");
         window.location.href = "/livee-beta/frontend/myportfolio.html";
       } else {
