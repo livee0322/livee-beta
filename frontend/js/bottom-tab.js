@@ -19,6 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
     myBtn.href = "/livee-beta/frontend/mypage.html";
   } else {
     myText.textContent = "로그인";
-    myBtn.href = "/livee-beta/login.html";
+    myBtn.href = "/livee-beta/frontend/login.html";
   }
 });
