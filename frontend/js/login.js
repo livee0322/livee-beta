@@ -23,7 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
         throw new Error(data.message || "로그인에 실패했습니다.");
       }
 
+      // ✅ 로그인 성공 시 토큰 + 유저 ID 저장
       localStorage.setItem("liveeToken", data.token);
+      localStorage.setItem("userId", data.user._id);  // ⭐ 이 부분 추가됨!
+
       alert("로그인 성공!");
       window.location.href = "/livee-beta/frontend/mypage.html";
     } catch (err) {
