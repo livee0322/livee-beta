@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>쇼핑라이브 공고 리스트</title>
+  <link rel="stylesheet" href="/livee-beta/main.css?v=1.10" />
+  <link rel="stylesheet" href="/livee-beta/frontend/css/recruitlist.css?v=1.01" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ✅ 베타 배너 -->
+  <div class="beta-banner">현재 클로즈 베타 테스트 중입니다. 피드백을 환영합니다!</div>
+
+  <!-- ✅ 공통 헤더 -->
+  <div id="header-container"></div>
+
+  <!-- ✅ 공통 상단탭 -->
+  <div id="top-tab-container"></div>
+
+  <!-- ✅ 카테고리 필터 -->
+  <div class="category-scroll">
+    <button class="active">전체</button>
+    <button>패션</button>
+    <button>뷰티</button>
+    <button>푸드</button>
+    <button>생활</button>
+    <button>기타</button>
+  </div>
+
+  <!-- ✅ 공고 리스트 -->
+  <section id="recruit-list" class="recruit-list"></section>
+
+  <!-- ✅ 등록 FAB 버튼 -->
+  <button class="fab" onclick="handleFabClick()">+</button>
+
+  <!-- ✅ 공통 하단탭 -->
+  <div id="bottom-tab-container"></div>
+
+  <!-- ✅ 공통 JS 모듈 -->
+  <script defer src="/livee-beta/frontend/js/header.js"></script>
+  <script defer src="/livee-beta/frontend/js/top-tab.js"></script>
+  <script defer src="/livee-beta/frontend/js/bottom-tab.js"></script>
+
+  <!-- ✅ 공고 리스트 JS -->
+  <script defer src="/livee-beta/frontend/js/recruitlist.js?v=1.0"></script>
+
+</body>
+</html>
