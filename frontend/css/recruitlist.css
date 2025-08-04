@@ -91,7 +91,7 @@
 
 /* ✅ 세로형 전체 공고 리스트 */
 .recruit-list {
-  padding: 0 12px 24px; /* 좌우 여백 축소 */
+  padding: 0 12px 14px; /* 좌우 여백 축소 */
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -145,7 +145,7 @@
 /* ✅ 플로팅 등록 버튼 (FAB) */
 .fab {
   position: fixed;
-  bottom: 120px;
+  bottom: 80px;
   right: 20px;
   width: 56px;
   height: 56px;
