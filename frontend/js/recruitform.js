@@ -6,10 +6,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
+  const currentUserId = getUserIdFromToken(token); // ✅ 사용자 ID 추출
   const params = new URLSearchParams(location.search);
-  const recruitId = params.get("edit"); // ✅ 수정됨!
+  const recruitId = params.get("edit");
 
-  // ✅ 수정 모드인 경우 기존 데이터 불러오기
+  // ✅ 수정 모드일 경우 기존 데이터 불러오기
   if (recruitId) {
     try {
       const res = await fetch(`https://main-server-ekgr.onrender.com/api/recruit/${recruitId}`);
@@ -67,6 +68,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         description,
         link: applyLink,
         thumbnailUrl,
+        user: currentUserId, // ✅ 여기 중요!
       };
 
       const method = recruitId ? "PUT" : "POST";
@@ -94,3 +96,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 });
+
+// ✅ 토큰에서 user ID 추출
+function getUserIdFromToken(token) {
+  try {
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    return payload.id;
+  } catch {
+    return null;
+  }
+}
