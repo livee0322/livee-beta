@@ -1,5 +1,3 @@
-// 📍 /livee-beta/frontend/js/bottom-tab.js
-
 document.addEventListener("DOMContentLoaded", () => {
   const bottomTab = document.getElementById("bottom-tab-container");
   if (!bottomTab) return;
@@ -17,6 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
       </a>
       <a href="/livee-beta/frontend/showhost.html">
         <i class="ri-user-star-line"></i><span>쇼호스트</span>
+      </a>
+      <a href="/livee-beta/frontend/recruitlist.html">
+        <i class="ri-megaphone-line"></i><span>모집공고</span>
       </a>
       <a href="${myHref}">
         <i class="ri-user-line"></i><span>${myText}</span>
