@@ -1,0 +1,50 @@
+/* 공고작성 전용 스타일 */
+
+.form-wrapper {
+  padding: 20px;
+}
+
+.form-wrapper h2 {
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  font-size: 0.95rem;
+  gap: 6px;
+}
+
+.form input,
+.form select,
+.form textarea {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form textarea {
+  resize: vertical;
+}
+
+.btn-primary.full {
+  background-color: #6a4df4;
+  color: white;
+  padding: 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+}
