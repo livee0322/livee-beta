@@ -1,37 +1,32 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const listEl = document.getElementById("recruit-list");
-  const categoryButtons = document.querySelectorAll(".category-scroll button");
-
-  let allPosts = [];
+  const token = localStorage.getItem("liveeToken");
   let currentUserId = null;
 
-  // ✅ 내 userId 추출 (토큰 → payload 디코딩)
-  const token = localStorage.getItem("liveeToken");
   if (token) {
     try {
-      const base64Payload = token.split('.')[1];
-      const decodedPayload = JSON.parse(atob(base64Payload));
-      currentUserId = decodedPayload.id;
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      currentUserId = payload.id;
     } catch (err) {
-      console.warn("❌ 토큰 파싱 오류:", err);
+      console.warn("❌ 토큰 파싱 실패:", err);
     }
   }
 
-  // ✅ 공고 불러오기
+  // 전체 공고 가져오기
+  let allPosts = [];
   try {
     const res = await fetch("https://main-server-ekgr.onrender.com/api/recruit");
-    const result = await res.json();
-
-    if (!res.ok) throw new Error(result.message || "불러오기 실패");
-
-    allPosts = result;
-    renderList(allPosts);
+    allPosts = await res.json();
   } catch (err) {
-    console.error("❌ 공고 불러오기 실패:", err);
-    listEl.innerHTML = `<p class="empty">등록된 공고가 없습니다.</p>`;
+    console.error("❌ 공고 불러오기 실패", err);
   }
 
-  // ✅ 카테고리 필터 작동
+  // 리스트 섹션별 랜더링
+  renderRecruitCards("latest-list", [...allPosts].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 10));
+  renderRecruitCards("urgent-list", [...allPosts].filter(p => p.date).sort((a, b) => new Date(a.date) - new Date(b.date)).slice(0, 10));
+  renderRecruitCards("highfee-list", [...allPosts].sort((a, b) => parseInt(b.fee) - parseInt(a.fee)).slice(0, 10));
+
+  // 카테고리 필터
+  const categoryButtons = document.querySelectorAll(".category-scroll button");
   categoryButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       document.querySelector(".category-scroll .active")?.classList.remove("active");
@@ -42,53 +37,35 @@ document.addEventListener("DOMContentLoaded", async () => {
         ? allPosts
         : allPosts.filter((post) => post.category === selected);
 
-      renderList(filtered);
+      renderRecruitCards("category-list", filtered);
     });
   });
-
-  // ✅ 리스트 렌더링 함수
-  function renderList(data) {
-    if (!data || data.length === 0) {
-      listEl.innerHTML = `<p class="empty">해당 카테고리의 공고가 없습니다.</p>`;
-      return;
-    }
-
-    listEl.innerHTML = data
-      .map((post) => {
-        const date = new Date(post.date);
-        const dateText = isNaN(date.getTime())
-          ? "방송일 미정"
-          : date.toLocaleString("ko-KR", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-              hour: "2-digit",
-              minute: "2-digit",
-            });
-
-        const isMine = currentUserId && post.user === currentUserId;
-        const buttonText = isMine ? "수정하기" : "지원하기";
-        const buttonHref = isMine
-          ? `/livee-beta/frontend/recruitform.html?id=${post._id}`
-          : post.link;
-
-        const targetAttr = isMine ? "" : 'target="_blank"';
-
-        return `
-          <div class="recruit-card">
-            <img src="${post.thumbnailUrl}" alt="${post.title}" />
-            <h3>${post.title}</h3>
-            <p>${post.brand}</p>
-            <small>${dateText}</small>
-            <a href="${buttonHref}" ${targetAttr}>${buttonText}</a>
-          </div>
-        `;
-      })
-      .join("");
-  }
 });
 
-// ✅ FAB 클릭 시
+// 공고 카드 랜더링 함수 (공통)
+function renderRecruitCards(containerId, posts) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  container.innerHTML = posts
+    .map((post) => {
+      const fee = post.fee ? `<div class="fee">💰 ${post.fee}</div>` : "";
+      return `
+        <div class="recruit-card">
+          <div class="thumb-wrap">
+            <img src="${post.thumbnailUrl || "/default.jpg"}" alt="${post.title}" />
+            <span class="scrap ri-star-line"></span>
+          </div>
+          <p>${post.brand || ""}</p>
+          <h3>${post.title}</h3>
+          ${fee}
+        </div>
+      `;
+    })
+    .join("");
+}
+
+// FAB 버튼
 function handleFabClick() {
   const token = localStorage.getItem("liveeToken");
   if (!token) {
