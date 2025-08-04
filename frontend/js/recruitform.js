@@ -20,7 +20,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.getElementById("title").value = data.title;
       document.getElementById("brand").value = data.brand;
       document.getElementById("category").value = data.category;
-      document.getElementById("date").value = data.date?.slice(0, 16); // datetime-local 포맷
+      document.getElementById("date").value = data.date?.slice(0, 16);
+      document.getElementById("fee").value = data.fee || "";
       document.getElementById("description").value = data.description;
       document.getElementById("applyLink").value = data.link;
     } catch (err) {
@@ -35,6 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const brand = document.getElementById("brand").value.trim();
     const category = document.getElementById("category").value;
     const date = document.getElementById("date").value;
+    const fee = document.getElementById("fee").value.trim();
     const imageFile = document.getElementById("thumbnail").files[0];
     const description = document.getElementById("description").value.trim();
     const applyLink = document.getElementById("applyLink").value.trim();
@@ -42,7 +44,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     let thumbnailUrl = "";
 
     try {
-      // ✅ 이미지 업로드 (새 이미지 선택 시에만)
       if (imageFile) {
         const formData = new FormData();
         formData.append("file", imageFile);
@@ -57,17 +58,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         thumbnailUrl = cloudData.secure_url;
       }
 
-      // ✅ 서버에 등록/수정 요청
-     
       const payload = {
-  title,
-  brand,
-  category,
-  date,
-  description,
-  link: applyLink,
-  thumbnailUrl, // 무조건 포함!
-};
+        title,
+        brand,
+        category,
+        date,
+        fee,
+        description,
+        link: applyLink,
+        thumbnailUrl,
+      };
 
       const method = recruitId ? "PUT" : "POST";
       const url = recruitId
@@ -84,8 +84,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
 
       const result = await res.json();
-
       if (!res.ok) throw new Error(result.message);
+
       alert(recruitId ? "공고가 수정되었습니다!" : "공고가 등록되었습니다!");
       location.href = "/livee-beta/frontend/recruitlist.html";
     } catch (err) {
