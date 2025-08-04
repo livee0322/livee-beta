@@ -1,36 +1,30 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("liveeToken");
   const currentUserId = getUserIdFromToken(token);
+  const listContainer = document.querySelector(".my-recruit-list");
 
-  // 전체 공고 불러오기
-  let allPosts = [];
-  try {
-    const res = await fetch("https://main-server-ekgr.onrender.com/api/recruit");
-    allPosts = await res.json();
-  } catch (err) {
-    console.error("❌ 공고 불러오기 실패", err);
+  if (!currentUserId) {
+    alert("로그인이 필요합니다.");
+    location.href = "/livee-beta/frontend/login.html";
+    return;
   }
 
-  renderRecruitCards("latest-posts", getLatestPosts(allPosts));
-  renderRecruitCards("urgent-posts", getUrgentPosts(allPosts));
-  renderRecruitCards("highfee-posts", getHighFeePosts(allPosts));
-  renderRecruitCards("recruit-list", allPosts);
+  try {
+    const res = await fetch("https://main-server-ekgr.onrender.com/api/recruit");
+    const allPosts = await res.json();
 
-  // 카테고리 필터
-  const categoryButtons = document.querySelectorAll(".category-scroll button");
-  categoryButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      document.querySelector(".category-scroll .active")?.classList.remove("active");
-      btn.classList.add("active");
+    const myPosts = allPosts.filter((post) => post.user?._id === currentUserId);
 
-      const selected = btn.textContent.trim();
-      const filtered = selected === "전체"
-        ? allPosts
-        : allPosts.filter((post) => post.category === selected);
+    if (myPosts.length === 0) {
+      listContainer.innerHTML = `<p class="empty-text">등록한 공고가 없습니다.</p>`;
+      return;
+    }
 
-      renderRecruitCards("recruit-list", filtered);
-    });
-  });
+    renderMyCards(myPosts);
+  } catch (err) {
+    console.error("❌ 내 공고 불러오기 실패", err);
+    listContainer.innerHTML = `<p class="empty-text">오류가 발생했습니다.</p>`;
+  }
 });
 
 function getUserIdFromToken(token) {
@@ -44,78 +38,50 @@ function getUserIdFromToken(token) {
   }
 }
 
-function renderRecruitCards(containerId, posts) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-
-  if (containerId === "recruit-list") {
-    container.classList.add("recruit-list");
-  }
-
-  if (posts.length === 0) {
-    container.innerHTML = `<p class="empty-text">등록된 공고가 없습니다.</p>`;
-    return;
-  }
-
+function renderMyCards(posts) {
+  const container = document.querySelector(".my-recruit-list");
   container.innerHTML = posts
     .map((post) => {
-      const fee = post.fee ? `<div class="fee">💰 ${post.fee}</div>` : "";
+      const fee = post.fee ? `💰 ${post.fee}` : "";
       const thumb = post.thumbnailUrl || "/default.jpg";
-
-      if (containerId === "recruit-list") {
-        // 리스트형 카드
-        return `
-          <div class="recruit-card">
-            <img src="${thumb}" alt="${post.title}" />
-            <div class="recruit-card-content">
-              <p>${post.brand || ""}</p>
-              <h3>${post.title}</h3>
-              ${fee}
-            </div>
-          </div>
-        `;
-      } else {
-        // 가로 스크롤 카드
-        return `
-          <div class="recruit-card">
-            <div class="thumb-wrap">
-              <img src="${thumb}" alt="${post.title}" />
-              <span class="scrap ri-star-line"></span>
-            </div>
-            <p>${post.brand || ""}</p>
+      return `
+        <div class="my-recruit-card" data-id="${post._id}">
+          <img src="${thumb}" alt="${post.title}" />
+          <div class="my-recruit-info">
             <h3>${post.title}</h3>
-            ${fee}
+            <p>${post.brand || ""}</p>
+            <div class="fee">${fee}</div>
           </div>
-        `;
-      }
+          <div class="my-recruit-actions">
+            <i class="ri-edit-2-line" onclick="editPost('${post._id}')"></i>
+            <i class="ri-delete-bin-line" onclick="deletePost('${post._id}')"></i>
+          </div>
+        </div>
+      `;
     })
     .join("");
 }
 
-function getLatestPosts(posts) {
-  return [...posts].sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0)).slice(0, 10);
+function editPost(postId) {
+  location.href = `/livee-beta/frontend/recruitform.html?edit=${postId}`;
 }
 
-function getUrgentPosts(posts) {
-  return [...posts].filter((p) => p.date).sort((a, b) => new Date(a.date) - new Date(b.date)).slice(0, 10);
-}
+async function deletePost(postId) {
+  if (!confirm("정말 이 공고를 삭제하시겠습니까?")) return;
 
-function getHighFeePosts(posts) {
-  return [...posts]
-    .sort((a, b) => {
-      const feeA = parseInt(a.fee?.replace(/\D/g, "")) || 0;
-      const feeB = parseInt(b.fee?.replace(/\D/g, "")) || 0;
-      return feeB - feeA;
-    })
-    .slice(0, 10);
-}
+  try {
+    const res = await fetch(`https://main-server-ekgr.onrender.com/api/recruit/${postId}`, {
+      method: "DELETE",
+    });
 
-function handleFabClick() {
-  const token = localStorage.getItem("liveeToken");
-  if (!token) {
-    alert("로그인이 필요합니다.");
-    location.href = "/livee-beta/frontend/login.html";
-  } else {
-    location.href = "/livee-beta/frontend/recruitform.html";
+    if (res.ok) {
+      alert("삭제되었습니다.");
+      document.querySelector(`.my-recruit-card[data-id="${postId}"]`).remove();
+    } else {
+      alert("삭제에 실패했습니다.");
+    }
+  } catch (err) {
+    console.error("❌ 삭제 중 오류 발생", err);
+    alert("오류로 인해 삭제하지 못했습니다.");
   }
 }
