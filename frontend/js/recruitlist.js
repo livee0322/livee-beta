@@ -11,11 +11,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("❌ 공고 불러오기 실패", err);
   }
 
-  // ✅ 섹션별 공고 렌더링 (HTML ID에 맞춤!)
+  // ✅ 섹션별 공고 렌더링
   renderRecruitCards("latest-posts", getLatestPosts(allPosts));
   renderRecruitCards("urgent-posts", getUrgentPosts(allPosts));
   renderRecruitCards("highfee-posts", getHighFeePosts(allPosts));
-  renderRecruitCards("recruit-list", allPosts); // 기본 전체 리스트
+
+  // ✅ 기본 리스트 (최초 4개만)
+  renderRecruitCards("recruit-list", allPosts.slice(0, 4), true);
 
   // ✅ 카테고리 필터 핸들링
   const categoryButtons = document.querySelectorAll(".category-scroll button");
@@ -29,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         ? allPosts
         : allPosts.filter((post) => post.category === selected);
 
-      renderRecruitCards("recruit-list", filtered); // 필터 결과도 동일 id
+      renderRecruitCards("recruit-list", filtered.slice(0, 4), true);
     });
   });
 });
@@ -47,7 +49,7 @@ function getUserIdFromToken(token) {
 }
 
 // ✅ 공고 렌더링 함수
-function renderRecruitCards(containerId, posts) {
+function renderRecruitCards(containerId, posts, isFullWidth = false) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
@@ -60,8 +62,9 @@ function renderRecruitCards(containerId, posts) {
     .map((post) => {
       const fee = post.fee ? `<div class="fee">💰 ${post.fee}</div>` : "";
       const thumb = post.thumbnailUrl || "/default.jpg";
+      const cardClass = isFullWidth ? "recruit-card full" : "recruit-card";
       return `
-        <div class="recruit-card">
+        <div class="${cardClass}" onclick="location.href='/livee-beta/frontend/recruit-detail.html?id=${post._id}'">
           <div class="thumb-wrap">
             <img src="${thumb}" alt="${post.title}" />
             <span class="scrap ri-star-line"></span>
