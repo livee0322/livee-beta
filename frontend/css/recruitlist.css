@@ -1,5 +1,6 @@
 /* 📌 쇼핑라이브 공고 리스트 전용 CSS */
 
+/* ✅ 카테고리 필터 */
 .category-scroll {
   display: flex;
   overflow-x: auto;
@@ -18,6 +19,7 @@
   padding: 6px 14px;
   font-size: 0.9rem;
   cursor: pointer;
+  white-space: nowrap;
 }
 .category-scroll button.active {
   background-color: #6a4df4;
@@ -25,20 +27,23 @@
   border: none;
 }
 
+/* ✅ 섹션 타이틀 */
 .recruit-section {
-  margin: 24px 16px;
+  margin: 24px 12px; /* 좌우 여백 축소 */
 }
 .recruit-section h2 {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 10px;
+  text-align: left; /* 왼쪽 정렬 */
 }
 
+/* ✅ 가로 스크롤 공고 리스트 */
 .recruit-scroll {
   display: flex;
   overflow-x: auto;
   gap: 12px;
-  padding-bottom: 8px;
+  padding: 0 12px 8px; /* 좌우 여백 축소 */
   scroll-snap-type: x mandatory;
 }
 .recruit-scroll::-webkit-scrollbar {
@@ -46,7 +51,7 @@
 }
 .recruit-card {
   flex: 0 0 auto;
-  width: 180px;
+  width: 160px; /* 카드 너비 조정 */
   background: #fff;
   border-radius: 12px;
   padding: 12px;
@@ -84,18 +89,21 @@
   cursor: pointer;
 }
 
+/* ✅ 세로형 전체 공고 리스트 */
 .recruit-list {
-  padding: 16px;
+  padding: 0 12px 24px; /* 좌우 여백 축소 */
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 .recruit-list .recruit-card {
   display: flex;
+  width: 100%; /* 가로 꽉차게 */
   flex-direction: row;
   align-items: center;
   padding: 12px;
   gap: 12px;
+  box-sizing: border-box;
 }
 .recruit-list .recruit-card img {
   width: 100px;
@@ -108,6 +116,7 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+  text-align: left;
 }
 .recruit-list .recruit-card-content h3 {
   margin: 0;
@@ -125,6 +134,7 @@
   font-weight: 600;
 }
 
+/* ✅ 공고 없을 때 */
 .empty-text {
   text-align: center;
   color: #888;
@@ -132,6 +142,7 @@
   font-size: 1rem;
 }
 
+/* ✅ 플로팅 등록 버튼 (FAB) */
 .fab {
   position: fixed;
   bottom: 80px;
