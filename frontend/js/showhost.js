@@ -8,14 +8,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   let allData = [];
 
   try {
-    const res = await fetch("https://main-server-ekgr.onrender.com/api/portfolio");
+    // ✅ 공개 포트폴리오만 가져오기
+    const res = await fetch("https://main-server-ekgr.onrender.com/api/portfolio/all");
     const result = await res.json();
 
     if (!res.ok) throw new Error(result.message || "불러오기 실패");
 
-    allData = result; // 전체 저장
+    allData = result;
     renderList(allData);
-
   } catch (err) {
     console.error("❌ 쇼호스트 불러오기 실패:", err);
     listEl.innerHTML = `<p class="empty-message">등록된 쇼호스트가 없습니다.</p>`;
