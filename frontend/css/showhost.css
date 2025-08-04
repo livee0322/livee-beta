@@ -1,104 +1,71 @@
-/* 쇼호스트 리스트 페이지 */
 .showhost-container {
-  padding: 20px 16px 100px;
-  background: #f9f9fb;
+  padding: 20px;
+  background: #fff;
 }
 
 .showhost-container h2 {
-  font-size: 1.4rem;
+  font-size: 20px;
   margin-bottom: 16px;
 }
 
-/* 필터 섹션 */
 .filter-section {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   margin-bottom: 20px;
 }
 
 .filter-section select {
-  flex: 1;
-  padding: 10px;
-  font-size: 1rem;
+  padding: 8px;
+  border-radius: 6px;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  font-size: 14px;
 }
 
-/* 리스트 카드 */
 .showhost-list {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.showhost-card {
-  background: white;
-  padding: 16px;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+.portfolio-card {
   display: flex;
-  gap: 16px;
-  align-items: center;
-  cursor: pointer;
-}
-
-.showhost-card img {
-  width: 80px;
-  height: 80px;
+  border: 1px solid #eee;
   border-radius: 12px;
-  object-fit: cover;
-  background: #eee;
-  flex-shrink: 0;
+  overflow: hidden;
+  background: #fafafa;
+  align-items: center;
+  padding: 12px;
 }
 
-.showhost-card .info {
+.portfolio-card img {
+  width: 80px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+  background: #ddd;
+}
+
+.portfolio-info {
+  margin-left: 16px;
   flex: 1;
 }
 
-.showhost-card .info h3 {
-  font-size: 1.1rem;
-  margin: 0 0 6px;
+.portfolio-info h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
 }
 
-.showhost-card .info p {
-  font-size: 0.95rem;
-  margin: 2px 0;
+.portfolio-info p {
+  margin: 4px 0;
+  font-size: 14px;
   color: #555;
 }
 
-/* 상세페이지 */
-.showhost-detail {
-  padding: 20px 16px 100px;
-  background: #f9f9fb;
-}
-
-.showhost-detail .showhost-card {
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.showhost-detail .showhost-card img {
-  width: 120px;
-  height: 120px;
-  margin-bottom: 16px;
-}
-
-.showhost-detail .info {
-  width: 100%;
-}
-
-.btn-request {
-  margin-top: 20px;
-  padding: 12px;
-  width: 100%;
-  background: #6a4fe0;
-  color: white;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.btn-request:hover {
-  background: #5a3fd9;
+.empty-message {
+  text-align: center;
+  color: #999;
+  margin-top: 40px;
+  font-size: 15px;
 }
