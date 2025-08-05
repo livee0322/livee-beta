@@ -1,70 +1,120 @@
-.portfolio-wrapper {
-  padding: 20px;
-  background: #fff;
+/* 포트폴리오 등록 전체 컨테이너 */
+.portfolio-edit-container {
+  background-color: #f9f9fb;
+  padding-bottom: 100px;
+  font-family: 'Pretendard', sans-serif;
 }
 
-.portfolio-wrapper h2 {
-  font-size: 20px;
-  margin-bottom: 16px;
-}
-
-.portfolio-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.portfolio-card {
-  display: flex;
-  border: 1px solid #eee;
-  border-radius: 12px;
-  overflow: hidden;
-  background: #fafafa;
-  align-items: center;
-  padding: 12px;
-}
-
-.portfolio-card img {
-  width: 80px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 8px;
-  flex-shrink: 0;
-  background: #ddd;
-}
-
-.portfolio-info {
-  margin-left: 16px;
-  flex: 1;
-}
-
-.portfolio-info h3 {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.portfolio-info p {
-  margin: 4px 0;
-  font-size: 14px;
-  color: #555;
-}
-
-.add-btn {
-  margin-top: 20px;
+/* 배경 이미지 영역 */
+.background-label {
+  display: block;
+  position: relative;
   width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  background-color: #7a5fff;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
+  aspect-ratio: 5 / 3; /* 가로:세로 = 5:3 */
+  background-color: #e6e6e6;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
   cursor: pointer;
 }
 
-.empty-message {
-  text-align: center;
-  color: #999;
-  margin-top: 40px;
-  font-size: 15px;
+.background-label img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.background-label::before {
+  content: "🖼";
+  font-size: 36px;
+  color: #888;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 프로필 이미지 영역 */
+.profile-image-label {
+  position: absolute;
+  top: calc(5 / 3 * 100vw * 0.5 - 50px); /* 대략 중앙 아래 */
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 100px;
+  height: 100px;
+  background-color: #fff;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #ccc;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.profile-image-label img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profile-image-label .camera-icon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #fff;
+  border-radius: 50%;
+  font-size: 14px;
+  padding: 4px;
+  border: 1px solid #aaa;
+}
+
+/* 입력 폼 영역 */
+.form-section {
+  margin-top: 60px;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-section input,
+.form-section textarea {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #fff;
+}
+
+.form-section textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-section button {
+  background-color: #7f5af0;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.form-section label {
+  font-size: 14px;
+  color: #333;
+}
+
+.form-section input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-right: 6px;
+}
+
+/* 반응형 여백 */
+@media (min-width: 600px) {
+  .form-section {
+    max-width: 480px;
+    margin: 60px auto 0;
+  }
 }
