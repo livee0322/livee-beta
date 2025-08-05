@@ -1,65 +1,64 @@
-/* portfolio-edit.css */
-.portfolio-edit {
-  padding: 20px;
-  max-width: 600px;
+.portfolio-edit-container {
+  font-family: 'Pretendard', sans-serif;
+  max-width: 500px;
   margin: 0 auto;
+  padding-bottom: 60px;
 }
 
-.portfolio-edit h2 {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-.portfolio-edit form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.portfolio-edit label {
-  font-weight: 500;
-  color: #555;
-}
-
-.portfolio-edit input[type="text"],
-.portfolio-edit input[type="number"],
-.portfolio-edit input[type="url"],
-.portfolio-edit input[type="file"],
-.portfolio-edit textarea {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 14px;
-  background-color: #fff;
-}
-
-.portfolio-edit textarea {
-  resize: vertical;
-}
-
-#addYoutubeLink {
-  align-self: flex-start;
-  background-color: #eee;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 13px;
+.background-label img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
   cursor: pointer;
-  border: none;
 }
 
-#isPublic {
-  margin-right: 6px;
+.profile-image-label {
+  position: relative;
+  display: block;
+  width: 100px;
+  height: 100px;
+  margin: -50px auto 10px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #f0f0f0;
+  border: 3px solid white;
+  cursor: pointer;
 }
 
-button[type="submit"] {
-  background-color: #6a4de1;
+.profile-image-label img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.camera-icon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 50%;
+  padding: 4px;
+  font-size: 12px;
+}
+
+.form-section input,
+.form-section textarea {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+.form-section button {
+  width: 100%;
+  background-color: #7B61FF;
   color: white;
   padding: 12px;
   border: none;
-  border-radius: 8px;
-  font-size: 15px;
-  margin-top: 12px;
-  cursor: pointer;
+  border-radius: 6px;
+  font-size: 16px;
+  margin-top: 10px;
 }
