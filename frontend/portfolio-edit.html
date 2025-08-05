@@ -1,38 +1,59 @@
-/* ✅ home.css - Livee 메인 전용 스타일 */
+<!-- portfolio-edit.html - 리팩토링된 포트폴리오 등록 페이지 --><!DOCTYPE html><html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>포트폴리오 등록 - Livee</title>
+  <link rel="stylesheet" href="/livee-beta/main.css?v=1.10" />
+  <link rel="stylesheet" href="/livee-beta/frontend/css/portfolio-edit.css?v=1.0" />
+</head>
+<body>
+  <div id="header-container"></div>
+  <main class="portfolio-edit">
+    <h2>포트폴리오 등록</h2>
+    <form id="portfolioForm"><!-- 프로필 이미지 업로드 -->
+  <label for="profileImage">프로필 이미지</label>
+  <input type="file" id="profileImage" accept="image/*" required />
 
-/* 섹션 공통 */ .section-title { font-size: 18px; font-weight: 700; margin: 24px 16px 12px; }
+  <!-- 배경 이미지 업로드 -->
+  <label for="backgroundImage">배경 이미지</label>
+  <input type="file" id="backgroundImage" accept="image/*" required />
 
-.card-list { display: flex; flex-direction: column; gap: 12px; padding: 0 16px; }
+  <!-- 이름 -->
+  <label for="name">이름</label>
+  <input type="text" id="name" placeholder="이름 입력" required />
 
-.card-item { background: #fff; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); overflow: hidden; display: flex; flex-direction: column; }
+  <!-- 직무 태그 -->
+  <label for="jobTag">직무</label>
+  <input type="text" id="jobTag" placeholder="예: 쇼호스트, 브랜드" required />
 
-.card-item img { width: 100%; height: 160px; object-fit: cover; }
+  <!-- 지역 -->
+  <label for="region">지역</label>
+  <input type="text" id="region" placeholder="예: 서울특별시 마포구" required />
 
-.card-info { padding: 12px; }
+  <!-- 경력 년수 -->
+  <label for="experienceYears">총 경력 (년)</label>
+  <input type="number" id="experienceYears" min="0" required />
 
-.card-info .brand { font-size: 13px; color: #888; margin-bottom: 4px; }
+  <!-- 소개글 -->
+  <label for="introText">자기소개</label>
+  <textarea id="introText" placeholder="자신을 소개해보세요" rows="5" required></textarea>
 
-.card-info .title { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+  <!-- 유튜브 숏폼 링크 입력 -->
+  <label>쇼핑라이브 영상 링크</label>
+  <div id="youtubeLinks">
+    <input type="url" class="youtube-link" placeholder="https://youtu.be/xxxx" />
+  </div>
+  <button type="button" id="addYoutubeLink">+ 링크 추가</button>
 
-.card-info .fee { font-size: 14px; color: #6a4df4; }
+  <!-- 공개 여부 -->
+  <label>
+    <input type="checkbox" id="isPublic" checked /> 공개 여부
+  </label>
 
-/* 카테고리 버튼 */ .category-section { display: flex; gap: 8px; padding: 12px 16px; overflow-x: auto; background: #fafafa; }
+  <!-- 저장 버튼 -->
+  <button type="submit">저장하기</button>
+</form>
 
-.category-section button { padding: 8px 14px; font-size: 14px; border-radius: 20px; border: 1px solid #ccc; background: #fff; white-space: nowrap; cursor: pointer; }
-
-.category-section button:hover { background: #f0f0f0; }
-
-/* 인기 쇼호스트 */ .card-scroll { display: flex; gap: 12px; overflow-x: auto; padding: 0 16px 16px; }
-
-.host-card { flex: 0 0 auto; width: 120px; text-align: center; }
-
-.host-card img { width: 100%; height: 120px; object-fit: cover; border-radius: 12px; margin-bottom: 6px; }
-
-/* 후기 카드 */ .review-list { display: flex; flex-direction: column; gap: 12px; padding: 0 16px; }
-
-.review-card { background: #f8f8f8; padding: 12px 16px; border-radius: 10px; font-size: 14px; color: #333; }
-
-.review-user { display: block; margin-top: 8px; font-size: 13px; color: #888; }
-
-/* 포트폴리오 카드 */ .portfolio-section .card-info { font-size: 14px; color: #555; }
-
+  </main>
+  <div id="bottom-tab-container"></div>  <script src="/livee-beta/frontend/js/header.js"></script>  <script src="/livee-beta/frontend/js/bottom-tab.js"></script>  <script src="/livee-beta/frontend/js/portfolio-edit.js?v=1.0"></script></body>
+</html>
