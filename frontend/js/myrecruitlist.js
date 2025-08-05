@@ -1,6 +1,8 @@
+// 📍 /livee-beta/frontend/js/myrecruitlist.js
+
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("liveeToken");
-  const userId = getUserIdFromToken(token); // ✅ 이걸로 변경
+  const userId = getUserIdFromToken(token); // ✅ 토큰에서 유저ID 추출
 
   if (!token || !userId) {
     alert("로그인이 필요합니다.");
@@ -21,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (!res.ok) throw new Error(data.message);
 
-    if (data.length === 0) {
+    if (!data || data.length === 0) {
       container.innerHTML = `<p class="no-post">등록한 공고가 없습니다.</p>`;
       return;
     }
@@ -29,10 +31,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const html = data.map((item) => {
       return `
         <div class="recruit-card">
-          <img src="${item.thumbnailUrl}" alt="썸네일" />
+          <img src="${item.thumbnailUrl || '/livee-beta/frontend/default.jpg'}" alt="썸네일" 
+               onerror="this.onerror=null;this.src='/livee-beta/frontend/default.jpg';"/>
           <div class="recruit-info">
             <h3>${item.title}</h3>
-            <p class="brand">${item.brand || ""}</p>
+            <p class="brand">${item.brand || "-"}</p>
             <p class="fee"><i class="ri-coins-line"></i> ${item.fee || "미정"}</p>
           </div>
           <div class="recruit-actions">
@@ -79,7 +82,7 @@ async function deleteRecruit(id) {
   }
 }
 
-// ✅ 토큰에서 userId 추출 함수 추가
+// ✅ 토큰에서 userId 추출 함수
 function getUserIdFromToken(token) {
   try {
     const payload = JSON.parse(atob(token.split(".")[1]));
