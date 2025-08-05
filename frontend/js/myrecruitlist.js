@@ -1,10 +1,7 @@
-// 📍 /livee-beta/frontend/js/myrecruitlist.js
-
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("liveeToken");
-  const userId = getUserIdFromToken(token); // ✅ 토큰에서 유저ID 추출
 
-  if (!token || !userId) {
+  if (!token) {
     alert("로그인이 필요합니다.");
     location.href = "/livee-beta/frontend/login.html";
     return;
@@ -13,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const container = document.getElementById("myRecruitList");
 
   try {
-    const res = await fetch(`https://main-server-ekgr.onrender.com/api/recruit?user=${userId}`, {
+    const res = await fetch(`https://main-server-ekgr.onrender.com/api/recruit/me`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -31,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const html = data.map((item) => {
       return `
         <div class="recruit-card">
-          <img src="${item.thumbnailUrl || '/livee-beta/frontend/default.jpg'}" alt="썸네일" 
+          <img src="${item.thumbnailUrl || '/livee-beta/frontend/default.jpg'}" alt="썸네일"
                onerror="this.onerror=null;this.src='/livee-beta/frontend/default.jpg';"/>
           <div class="recruit-info">
             <h3>${item.title}</h3>
@@ -79,15 +76,5 @@ async function deleteRecruit(id) {
   } catch (err) {
     console.error("❌ 삭제 오류:", err);
     alert("삭제 실패: " + err.message);
-  }
-}
-
-// ✅ 토큰에서 userId 추출 함수
-function getUserIdFromToken(token) {
-  try {
-    const payload = JSON.parse(atob(token.split(".")[1]));
-    return payload.id;
-  } catch {
-    return null;
   }
 }
