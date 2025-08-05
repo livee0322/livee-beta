@@ -1,3 +1,5 @@
+// 📍 /livee-beta/frontend/js/myrecruitlist.js
+
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("liveeToken");
 
@@ -7,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
-  const container = document.getElementById("myRecruitList");
+  const container = document.getElementById("recruit-list");  // ✅ 수정된 부분
 
   try {
     const res = await fetch(`https://main-server-ekgr.onrender.com/api/recruit/me`, {
