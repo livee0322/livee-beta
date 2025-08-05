@@ -1,8 +1,33 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("loginForm");
-  const errorMsg = document.getElementById("loginError");
+  let role = "brand"; // 기본값
 
-  form?.addEventListener("submit", async (e) => {
+  // 탭 전환
+  const brandTab = document.getElementById("tab-brand");
+  const showhostTab = document.getElementById("tab-showhost");
+
+  brandTab.addEventListener("click", () => {
+    brandTab.classList.add("active");
+    showhostTab.classList.remove("active");
+    role = "brand";
+  });
+
+  showhostTab.addEventListener("click", () => {
+    showhostTab.classList.add("active");
+    brandTab.classList.remove("active");
+    role = "showhost";
+  });
+
+  // 자동 로그인
+  const autoLoginCheckbox = document.getElementById("autoLogin");
+  const savedEmail = localStorage.getItem("liveeAutoLoginEmail");
+  if (savedEmail) {
+    document.getElementById("email").value = savedEmail;
+    autoLoginCheckbox.checked = true;
+  }
+
+  // 로그인 처리
+  const form = document.getElementById("loginForm");
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const email = form.email.value.trim();
@@ -11,37 +36,40 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const res = await fetch("https://main-server-ekgr.onrender.com/api/auth/login", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }) // role은 전송 안 함
       });
 
       const data = await res.json();
 
-      if (!res.ok) {
-        throw new Error(data.message || "로그인에 실패했습니다.");
+      if (!res.ok) throw new Error(data.message || "로그인 실패");
+
+      // 저장
+      localStorage.setItem("liveeToken", data.token);
+      localStorage.setItem("userId", data.user._id);
+      localStorage.setItem("userRole", role);
+
+      if (autoLoginCheckbox.checked) {
+        localStorage.setItem("liveeAutoLoginEmail", email);
+      } else {
+        localStorage.removeItem("liveeAutoLoginEmail");
       }
 
-      // ✅ 로그인 성공 시 토큰 + 유저 ID 저장
-      localStorage.setItem("liveeToken", data.token);
-      localStorage.setItem("userId", data.user._id);  // ⭐ 이 부분 추가됨!
-
       alert("로그인 성공!");
-      window.location.href = "/livee-beta/frontend/mypage.html";
+      location.href = "/livee-beta/frontend/mypage.html";
     } catch (err) {
-      errorMsg.textContent = err.message || "로그인에 실패했습니다.";
+      alert(err.message);
     }
   });
 
-  // ✅ 비밀번호 토글
-  const toggleButtons = document.querySelectorAll(".toggle-password");
-  toggleButtons.forEach((btn) => {
+  // 비밀번호 보기
+  document.querySelectorAll(".toggle-password").forEach((btn) => {
     btn.addEventListener("click", () => {
-      const targetId = btn.getAttribute("data-target");
-      const input = document.getElementById(targetId);
-      if (input) {
-        input.type = input.type === "password" ? "text" : "password";
+      const target = document.getElementById(btn.dataset.target);
+      if (target.type === "password") {
+        target.type = "text";
+      } else {
+        target.type = "password";
       }
     });
   });
