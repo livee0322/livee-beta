@@ -1,101 +1,133 @@
-/* ✅ 로그인 컨테이너 */
+/* ✅ login.css v2.0 - 요기요 + hourplace 스타일 */
+
+body {
+  background: #fff;
+  font-family: 'Pretendard', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #000;
+}
+
 .login-container {
   max-width: 400px;
-  margin: 3rem auto 5rem;
-  padding: 2rem 1.5rem;
-  background: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
-  text-align: center;
+  margin: 40px auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* ✅ 타이틀 */
-.login-container h2 {
-  font-size: 1.6rem;
+.logo {
+  font-size: 32px;
   font-weight: bold;
-  margin-bottom: 1.5rem;
-  color: #5c6eff;
+  margin-bottom: 24px;
 }
 
-/* ✅ 폼 */
-#loginForm {
+.login-tabs {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  text-align: left;
-}
-
-#loginForm label {
-  font-size: 0.9rem;
-  color: #333;
-  margin-bottom: 0.25rem;
-}
-
-#loginForm input {
-  padding: 0.7rem 1rem;
-  border-radius: 0.5rem;
-  border: 1px solid #ccc;
-  font-size: 1rem;
   width: 100%;
+  margin-bottom: 24px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-/* ✅ 에러 메시지 */
-.error-message {
-  margin-top: 0.5rem;
-  font-size: 0.85rem;
-  color: #f44336;
-  text-align: center;
+.tab {
+  flex: 1;
+  padding: 12px 0;
+  background: #f9f9f9;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
 }
 
-/* ✅ 로그인 버튼 */
-#loginForm button[type="submit"] {
-  margin-top: 1rem;
-  padding: 0.8rem;
-  background-color: #5c6eff;
+.tab.active {
+  background: #6a4df4;
   color: white;
+  font-weight: bold;
+}
+
+.input-group {
+  position: relative;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px 40px 14px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  background: #fafafa;
+}
+
+.clear-btn,
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
   border: none;
-  border-radius: 0.5rem;
-  font-size: 1rem;
+  cursor: pointer;
+  font-size: 16px;
+  color: #888;
+}
+
+.auto-login {
+  align-self: flex-start;
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  background: #6a4df4;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 24px;
+}
+
+.social-login button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  border: none;
   cursor: pointer;
 }
 
-/* ✅ 로그인 링크들 */
+.naver {
+  background: #03c75a;
+  color: white;
+}
+.kakao {
+  background: #fae100;
+  color: #000;
+}
+.google {
+  background: #fff;
+  color: #000;
+  border: 1px solid #ddd;
+}
+
 .login-links {
-  margin-top: 1.2rem;
-  font-size: 0.9rem;
-  color: #666;
+  font-size: 13px;
+  color: #888;
   text-align: center;
+  margin-top: 20px;
 }
 
-/* ✅ SNS 로그인 (옵션용) */
-.social-login {
-  margin-top: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.btn-social {
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  border: none;
-  font-size: 0.95rem;
-  cursor: pointer;
-  color: #fff;
-}
-
-.btn-social.naver {
-  background-color: #03c75a;
-}
-
-.btn-social.apple {
-  background-color: #000;
-}
-
-/* ✅ 모바일 대응 */
-@media (max-width: 400px) {
-  .login-container {
-    margin: 2rem 1rem 5rem;
-    padding: 1.5rem 1rem;
-  }
+.login-links a {
+  color: #888;
+  text-decoration: none;
 }
