@@ -1,70 +1,51 @@
-/* ✅ portfolio-edit.css - 포트폴리오 등록/수정 전용 */
+const previewImage = (input, targetId) => {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    document.getElementById(targetId).src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+};
 
-.portfolio-edit {
-  padding: 20px;
-  background: #fff;
-}
+document.getElementById("profileImage").addEventListener("change", function () {
+  previewImage(this, "profilePreview");
+});
+document.getElementById("backgroundImage").addEventListener("change", function () {
+  previewImage(this, "backgroundPreview");
+});
 
-.portfolio-edit h2 {
-  font-size: 20px;
-  margin-bottom: 16px;
-  font-weight: bold;
-}
+document.getElementById("saveBtn").addEventListener("click", async () => {
+  const cloudinaryURL = "https://api.cloudinary.com/v1_1/dis1og9uq/upload";
+  const uploadPreset = "livee_unsigned";
 
-.portfolio-edit label {
-  display: block;
-  margin-top: 16px;
-  margin-bottom: 6px;
-  font-size: 14px;
-  font-weight: 500;
-}
+  const uploadImage = async (file) => {
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", uploadPreset);
+    const res = await fetch(cloudinaryURL, { method: "POST", body: data });
+    const json = await res.json();
+    return json.secure_url;
+  };
 
-.portfolio-edit input[type="text"],
-.portfolio-edit input[type="number"],
-.portfolio-edit input[type="url"],
-.portfolio-edit input[type="file"],
-.portfolio-edit textarea {
-  width: 100%;
-  padding: 12px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-sizing: border-box;
-}
+  const profileImage = document.getElementById("profileImage").files[0];
+  const backgroundImage = document.getElementById("backgroundImage").files[0];
+  const profileUrl = profileImage ? await uploadImage(profileImage) : "";
+  const backgroundUrl = backgroundImage ? await uploadImage(backgroundImage) : "";
 
-textarea {
-  resize: vertical;
-}
+  const payload = {
+    name: document.getElementById("name").value,
+    statusMessage: document.getElementById("statusMessage").value,
+    jobTag: document.getElementById("jobTag").value,
+    region: document.getElementById("region").value,
+    experienceYears: document.getElementById("experienceYears").value,
+    introText: document.getElementById("introText").value,
+    youtubeLink: document.querySelector(".youtube-link").value,
+    isPublic: document.getElementById("isPublic").checked,
+    profileImageUrl: profileUrl,
+    backgroundImageUrl: backgroundUrl,
+  };
 
-#youtubeLinks {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-#addYoutubeLink {
-  margin-top: 8px;
-  padding: 10px;
-  background: #f0f0f0;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-#addYoutubeLink:hover {
-  background: #e0e0e0;
-}
-
-button[type="submit"] {
-  margin-top: 24px;
-  width: 100%;
-  padding: 14px;
-  background: #6a4df4;
-  color: #fff;
-  border: none;
-  font-size: 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-}
+  console.log("✅ 최종 payload:", payload);
+  alert("포트폴리오 저장 완료!");
+});
