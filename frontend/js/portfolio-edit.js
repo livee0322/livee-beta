@@ -84,7 +84,7 @@ document.getElementById("saveBtn").addEventListener("click", async () => {
 
     if (response.ok) {
       alert("포트폴리오가 등록되었습니다!");
-      window.location.href = "/livee-beta/mypage.html";
+      window.location.href = "/livee-beta/frontend/mypage.html";
     } else {
       const err = await response.json();
       alert("등록 실패: " + err.message);
