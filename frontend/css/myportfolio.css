@@ -1,52 +1,105 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>포트폴리오 등록 - Livee</title>
-  <link rel="stylesheet" href="/livee-beta/main.css?v=1.10" />
-  <link rel="stylesheet" href="/livee-beta/frontend/css/portfolio-edit.css?v=1.03" />
-</head>
-<body>
-  <div id="header-container"></div>
+/* 전체 컨테이너 */
+.portfolio-edit-container {
+  background-color: #f9f9fb;
+  padding-bottom: 100px;
+  font-family: 'Pretendard', sans-serif;
+  position: relative;
+}
 
-  <main class="portfolio-edit-container">
-    <!-- 배경 이미지 -->
-    <input type="file" id="backgroundImage" accept="image/*" hidden />
-    <label for="backgroundImage" class="background-label">
-      <img id="backgroundPreview" src="/default-bg.jpg" alt="배경 이미지" />
-    </label>
+/* 배경 이미지 영역 (4:3 비율) */
+.background-label {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: #eaeaea;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+.background-label img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-    <!-- 프로필 이미지 -->
-    <input type="file" id="profileImage" accept="image/*" hidden />
-    <label for="profileImage" class="profile-image-label">
-      <img id="profilePreview" src="/default-profile.jpg" alt="프로필 이미지" />
-      <span class="camera-icon">📷</span>
-    </label>
+/* 프로필 이미지 - 배경 하단에 배치 */
+.profile-image-label {
+  position: absolute;
+  bottom: -55px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid white;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+.profile-image-label img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.camera-icon {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background-color: white;
+  border-radius: 50%;
+  padding: 5px;
+  font-size: 14px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  z-index: 20;
+}
 
-    <!-- 입력 폼 -->
-    <div class="form-section">
-      <input type="text" id="name" placeholder="이름 입력" required />
-      <input type="text" id="statusMessage" placeholder="상태 메시지를 입력하세요" />
-      <input type="text" id="jobTag" placeholder="직무 (예: 쇼호스트, 브랜드)" />
-      <input type="text" id="region" placeholder="지역 (예: 서울특별시 마포구)" />
-      <input type="number" id="experienceYears" placeholder="총 경력 (년)" />
-      <textarea id="introText" placeholder="자기소개" rows="4"></textarea>
-      <input type="url" class="youtube-link" placeholder="https://youtu.be/xxxx" />
-      <label>
-        <input type="checkbox" id="isPublic" checked /> 공개 여부
-      </label>
-      <button id="saveBtn">저장하기</button>
-    </div>
-  </main>
+/* 입력 폼 */
+.form-section {
+  margin-top: 80px;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.form-section input,
+.form-section textarea {
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: #fff;
+}
+.form-section textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.form-section label {
+  font-size: 14px;
+  color: #333;
+}
+.form-section input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-right: 6px;
+}
+.form-section button {
+  background-color: #7f5af0;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 16px;
+  cursor: pointer;
+}
 
-  <div id="bottom-tab-container"></div>
-
-  <!-- 공통 스크립트 -->
-  <script src="/livee-beta/frontend/js/header.js"></script>
-  <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
-
-  <!-- 포트폴리오 저장 처리 -->
-  <script src="/livee-beta/frontend/js/portfolio-edit.js?v=1.1"></script>
-</body>
-</html>
+/* 반응형 - 데스크탑 여백 */
+@media (min-width: 600px) {
+  .form-section {
+    max-width: 500px;
+    margin: 80px auto 0;
+  }
+}
