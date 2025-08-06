@@ -1,120 +1,52 @@
-/* 포트폴리오 등록 전체 컨테이너 */
-.portfolio-edit-container {
-  background-color: #f9f9fb;
-  padding-bottom: 100px;
-  font-family: 'Pretendard', sans-serif;
-}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>포트폴리오 등록 - Livee</title>
+  <link rel="stylesheet" href="/livee-beta/main.css?v=1.10" />
+  <link rel="stylesheet" href="/livee-beta/frontend/css/portfolio-edit.css?v=1.03" />
+</head>
+<body>
+  <div id="header-container"></div>
 
-/* 배경 이미지 영역 */
-.background-label {
-  display: block;
-  position: relative;
-  width: 100%;
-  aspect-ratio: 5 / 3; /* 가로:세로 = 5:3 */
-  background-color: #e6e6e6;
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-  cursor: pointer;
-}
+  <main class="portfolio-edit-container">
+    <!-- 배경 이미지 -->
+    <input type="file" id="backgroundImage" accept="image/*" hidden />
+    <label for="backgroundImage" class="background-label">
+      <img id="backgroundPreview" src="/default-bg.jpg" alt="배경 이미지" />
+    </label>
 
-.background-label img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+    <!-- 프로필 이미지 -->
+    <input type="file" id="profileImage" accept="image/*" hidden />
+    <label for="profileImage" class="profile-image-label">
+      <img id="profilePreview" src="/default-profile.jpg" alt="프로필 이미지" />
+      <span class="camera-icon">📷</span>
+    </label>
 
-.background-label::before {
-  content: "🖼";
-  font-size: 36px;
-  color: #888;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+    <!-- 입력 폼 -->
+    <div class="form-section">
+      <input type="text" id="name" placeholder="이름 입력" required />
+      <input type="text" id="statusMessage" placeholder="상태 메시지를 입력하세요" />
+      <input type="text" id="jobTag" placeholder="직무 (예: 쇼호스트, 브랜드)" />
+      <input type="text" id="region" placeholder="지역 (예: 서울특별시 마포구)" />
+      <input type="number" id="experienceYears" placeholder="총 경력 (년)" />
+      <textarea id="introText" placeholder="자기소개" rows="4"></textarea>
+      <input type="url" class="youtube-link" placeholder="https://youtu.be/xxxx" />
+      <label>
+        <input type="checkbox" id="isPublic" checked /> 공개 여부
+      </label>
+      <button id="saveBtn">저장하기</button>
+    </div>
+  </main>
 
-/* 프로필 이미지 영역 */
-.profile-image-label {
-  position: absolute;
-  top: calc(5 / 3 * 100vw * 0.5 - 50px); /* 대략 중앙 아래 */
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: 100px;
-  height: 100px;
-  background-color: #fff;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid #ccc;
-  cursor: pointer;
-  z-index: 10;
-}
+  <div id="bottom-tab-container"></div>
 
-.profile-image-label img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
+  <!-- 공통 스크립트 -->
+  <script src="/livee-beta/frontend/js/header.js"></script>
+  <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
 
-.profile-image-label .camera-icon {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  background-color: #fff;
-  border-radius: 50%;
-  font-size: 14px;
-  padding: 4px;
-  border: 1px solid #aaa;
-}
-
-/* 입력 폼 영역 */
-.form-section {
-  margin-top: 60px;
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.form-section input,
-.form-section textarea {
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 14px;
-  background-color: #fff;
-}
-
-.form-section textarea {
-  resize: vertical;
-  min-height: 100px;
-}
-
-.form-section button {
-  background-color: #7f5af0;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 14px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.form-section label {
-  font-size: 14px;
-  color: #333;
-}
-
-.form-section input[type="checkbox"] {
-  transform: scale(1.2);
-  margin-right: 6px;
-}
-
-/* 반응형 여백 */
-@media (min-width: 600px) {
-  .form-section {
-    max-width: 480px;
-    margin: 60px auto 0;
-  }
-}
+  <!-- 포트폴리오 저장 처리 -->
+  <script src="/livee-beta/frontend/js/portfolio-edit.js?v=1.1"></script>
+</body>
+</html>
