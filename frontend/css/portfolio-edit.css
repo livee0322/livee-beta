@@ -11,7 +11,7 @@
   display: block;
   position: relative;
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 9 / 4;
   background-color: #eee;
   overflow: hidden;
   cursor: pointer;
@@ -102,4 +102,4 @@
 .form-section label input[type="checkbox"] {
   margin-right: 6px;
   vertical-align: middle;
-}
+}3e
