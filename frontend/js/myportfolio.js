@@ -1,4 +1,4 @@
-// 📍 /livee-beta/frontend/js/myportfolio.js
+// 📍 /frontend/js/myportfolio.js
 
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("liveeToken");
@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!res.ok || !data || !data.name) throw new Error(data.message || "불러오기 실패");
 
     const {
+      _id,
       profileImage,
       backgroundImage,
       name,
@@ -34,9 +35,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     listContainer.innerHTML = `
       <div class="myportfolio-card">
-        <div class="background" style="background-image: url('${backgroundImage || '/livee-beta/default-bg.jpg'}');">
+        <div class="background" style="background-image: url('${backgroundImage || "/livee-beta/default-bg.jpg"}');">
           <div class="profile-wrapper">
-            <img class="profile" src="${profileImage || '/livee-beta/default-profile.jpg'}" />
+            <img class="profile" src="${profileImage || "/livee-beta/default-profile.jpg"}" 
+              onerror="this.onerror=null;this.src='/livee-beta/default-profile.jpg';" />
           </div>
         </div>
         <div class="info">
@@ -50,6 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       </div>
     `;
 
+    // ✅ 수정 버튼
     actionBtn.textContent = "포트폴리오 수정하기";
     actionBtn.onclick = () => {
       localStorage.setItem("portfolioData", JSON.stringify(data));
