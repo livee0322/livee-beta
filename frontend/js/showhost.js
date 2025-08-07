@@ -1,4 +1,4 @@
-// 📍 /frontend/js/showhost.js
+// 📍 /frontend/js/showhost.js (수정본)
 
 document.addEventListener("DOMContentLoaded", async () => {
   const listEl = document.getElementById("showhostList");
@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   let allData = [];
 
   try {
-    // ✅ 공개 포트폴리오만 가져오기
+    // ✅ 공개 포트폴리오 불러오기
     const res = await fetch("https://main-server-ekgr.onrender.com/api/portfolio/all");
     const result = await res.json();
 
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     listEl.innerHTML = `<p class="empty-message">등록된 쇼호스트가 없습니다.</p>`;
   }
 
-  // ✅ 필터 작동
+  // ✅ 필터링
   [filterCategory, filterFee].forEach(select => {
     select.addEventListener("change", () => {
       const filtered = allData.filter(item => {
@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
+  // ✅ 리스트 렌더링 함수
   function renderList(data) {
     if (!data || data.length === 0) {
       listEl.innerHTML = `<p class="empty-message">등록된 쇼호스트가 없습니다.</p>`;
@@ -41,12 +42,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     listEl.innerHTML = data.map(item => `
       <div class="portfolio-card">
-        <img src="${item.image || '/livee-beta/frontend/default.jpg'}" 
+        <img src="${item.profileImage || '/livee-beta/frontend/default-profile.jpg'}" 
              alt="${item.name}" 
-             onerror="this.onerror=null;this.src='/livee-beta/frontend/default.jpg';"/>
+             onerror="this.onerror=null;this.src='/livee-beta/frontend/default-profile.jpg';"/>
         <div class="portfolio-info">
-          <h3>${item.name}</h3>
-          <p>경력: ${item.experience || '-'}</p>
+          <h3>${item.name || '이름 없음'}</h3>
+          <p>경력: ${item.experienceYears || '-'}년</p>
           <p>지역: ${item.region || '-'}</p>
         </div>
       </div>
