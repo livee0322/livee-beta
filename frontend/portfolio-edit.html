@@ -3,45 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>포트폴리오 등록 - Livee</title>
-  <link rel="stylesheet" href="/livee-beta/main.css?v=1.10" />
-  <link rel="stylesheet" href="/livee-beta/frontend/css/portfolio-edit.css?v=1.08" />
+  <title>포트폴리오 등록</title>
+  <link rel="stylesheet" href="/livee-beta/main.css" />
+  <link rel="stylesheet" href="/livee-beta/frontend/css/portfolio-edit.css" />
 </head>
 <body>
   <div id="header-container"></div>
-
   <main class="portfolio-edit-container">
-    <!-- 배경 이미지 -->
     <input type="file" id="backgroundImage" accept="image/*" hidden />
     <label for="backgroundImage" class="background-label">
       <img id="backgroundPreview" style="display:none;" />
     </label>
 
-    <!-- 프로필 이미지 -->
     <input type="file" id="profileImage" accept="image/*" hidden />
     <label for="profileImage" class="profile-image-label">
       <img id="profilePreview" style="display:none;" />
       <span class="camera-icon">📷</span>
     </label>
 
-    <!-- 입력 폼 -->
     <div class="form-section">
-      <input type="text" id="name" placeholder="이름 입력" required />
-      <input type="text" id="statusMessage" placeholder="상태 메시지를 입력하세요" />
-      <input type="text" id="jobTag" placeholder="직무 (예: 쇼호스트, 브랜드)" />
-      <input type="text" id="region" placeholder="지역 (예: 서울특별시 마포구)" />
-      <input type="number" id="experienceYears" placeholder="총 경력 (년)" />
-      <textarea id="introText" placeholder="자기소개" rows="4"></textarea>
-      <input type="url" class="youtube-link" placeholder="https://youtu.be/xxxx" />
+      <input type="text" id="name" placeholder="이름 입력" />
+      <input type="text" id="statusMessage" placeholder="상태 메시지" />
+      <input type="text" id="jobTag" placeholder="직무" />
+      <input type="text" id="region" placeholder="지역" />
+      <input type="number" id="experienceYears" placeholder="총 경력(년)" />
+      <textarea id="introText" placeholder="자기소개"></textarea>
+      <input type="url" class="youtube-link" placeholder="https://youtu.be/..." />
       <label><input type="checkbox" id="isPublic" checked /> 공개 여부</label>
       <button id="saveBtn">저장하기</button>
     </div>
   </main>
-
   <div id="bottom-tab-container"></div>
-
-  <script src="/livee-beta/frontend/js/header.js"></script>
-  <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
-  <script src="/livee-beta/frontend/js/portfolio-edit.js?v=1.1"></script>
+  <script src="/livee-beta/frontend/js/portfolio-edit.js"></script>
 </body>
 </html>
