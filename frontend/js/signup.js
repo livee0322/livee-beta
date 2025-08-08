@@ -1,6 +1,8 @@
+// ✅ signup.js (최종 리팩토링)
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('signupForm');
   const errorDisplay = document.getElementById('signupError');
+  const API = 'https://main-server-ekgr.onrender.com';
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
@@ -22,7 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const response = await fetch('https://main-server-ekgr.onrender.com/api/auth/signup', {
+    try {
+      const response = await fetch(`${API}/api/auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -42,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       alert('회원가입 성공! 로그인 페이지로 이동합니다.');
-      window.location.href = '/livee-beta/frontend/login.html';  // 🔁 여기 수정
+      window.location.href = '/livee-beta/frontend/login.html';
 
     } catch (err) {
       errorDisplay.textContent = err.message;
