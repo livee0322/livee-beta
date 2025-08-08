@@ -1,6 +1,17 @@
 const token = localStorage.getItem("liveeToken");
 const API = "https://main-server-ekgr.onrender.com";
 
+// ✅ 이미지 미리보기 처리
+document.getElementById("profileImageInput")?.addEventListener("change", function (e) {
+  const file = e.target.files[0];
+  const reader = new FileReader();
+  reader.onload = () => {
+    document.getElementById("profileImagePreview").src = reader.result;
+    document.getElementById("profileImage").value = reader.result; // base64 저장
+  };
+  if (file) reader.readAsDataURL(file);
+});
+
 document.addEventListener("DOMContentLoaded", async () => {
   if (!token) {
     alert("로그인이 필요합니다.");
@@ -11,8 +22,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const form = document.getElementById("portfolioForm");
   const deleteBtn = document.getElementById("deletePortfolioBtn");
 
-  // 기존 포트폴리오 불러오기
   let portfolioId = null;
+
+  // ✅ 기존 포트폴리오 불러오기
   try {
     const res = await fetch(`${API}/portfolio/me`, {
       headers: { Authorization: `Bearer ${token}` },
@@ -20,19 +32,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (res.ok) {
       const data = await res.json();
       portfolioId = data._id;
-      document.getElementById("name").value = data.name || "";
-      document.getElementById("statusMessage").value = data.statusMessage || "";
-      document.getElementById("jobTag").value = data.jobTag || "";
-      document.getElementById("region").value = data.region || "";
-      document.getElementById("experienceYears").value = data.experienceYears || "";
-      document.getElementById("introText").value = data.introText || "";
+      form.name.value = data.name || "";
+      form.statusMessage.value = data.statusMessage || "";
+      form.jobTag.value = data.jobTag || "";
+      form.region.value = data.region || "";
+      form.experienceYears.value = data.experienceYears || "";
+      form.introText.value = data.introText || "";
+      form.profileImage.value = data.profileImage || "";
       document.getElementById("profileImagePreview").src = data.profileImage || "";
     }
   } catch (err) {
     console.error("❌ 포트폴리오 불러오기 실패:", err);
   }
 
-  // 제출 (등록 or 수정)
+  // ✅ 제출: 등록 or 수정
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -62,9 +75,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
 
       const result = await res.json();
-      if (!res.ok) {
-        return alert(result.message || "등록 실패");
-      }
+      if (!res.ok) return alert(result.message || "저장 실패");
 
       alert(result.message || "포트폴리오 저장 완료");
       window.location.href = "/livee-beta/mypage.html";
@@ -74,11 +85,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-  // 삭제
+  // ✅ 삭제 처리
   if (deleteBtn) {
     deleteBtn.addEventListener("click", async () => {
       if (!confirm("정말 삭제하시겠습니까?")) return;
-
       try {
         const res = await fetch(`${API}/portfolio/me`, {
           method: "DELETE",
