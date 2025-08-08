@@ -22,8 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    try {
-      const response = await fetch('https://main-server-ekgr.onrender.com/signup', {
+    const response = await fetch('https://main-server-ekgr.onrender.com/api/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
