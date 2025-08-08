@@ -1,70 +1,96 @@
-const CLOUD_NAME = "dis1og9uq";
-const UPLOAD_PRESET = "livee_unsigned";
+const token = localStorage.getItem("liveeToken");
+const API = "https://main-server-ekgr.onrender.com";
 
-let profileImageUrl = "";
-let backgroundImageUrl = "";
-
-document.getElementById("profileImage").addEventListener("change", async (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    profileImageUrl = await uploadToCloudinary(file);
-    document.getElementById("profilePreview").src = profileImageUrl;
-    document.getElementById("profilePreview").style.display = "block";
+document.addEventListener("DOMContentLoaded", async () => {
+  if (!token) {
+    alert("로그인이 필요합니다.");
+    window.location.href = "/livee-beta/login.html";
+    return;
   }
-});
 
-document.getElementById("backgroundImage").addEventListener("change", async (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    backgroundImageUrl = await uploadToCloudinary(file);
-    document.getElementById("backgroundPreview").src = backgroundImageUrl;
-    document.getElementById("backgroundPreview").style.display = "block";
+  const form = document.getElementById("portfolioForm");
+  const deleteBtn = document.getElementById("deletePortfolioBtn");
+
+  // 기존 포트폴리오 불러오기
+  let portfolioId = null;
+  try {
+    const res = await fetch(`${API}/portfolio/me`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (res.ok) {
+      const data = await res.json();
+      portfolioId = data._id;
+      document.getElementById("name").value = data.name || "";
+      document.getElementById("statusMessage").value = data.statusMessage || "";
+      document.getElementById("jobTag").value = data.jobTag || "";
+      document.getElementById("region").value = data.region || "";
+      document.getElementById("experienceYears").value = data.experienceYears || "";
+      document.getElementById("introText").value = data.introText || "";
+      document.getElementById("profileImagePreview").src = data.profileImage || "";
+    }
+  } catch (err) {
+    console.error("❌ 포트폴리오 불러오기 실패:", err);
   }
-});
 
-async function uploadToCloudinary(file) {
-  const url = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`;
-  const formData = new FormData();
-  formData.append("file", file);
-  formData.append("upload_preset", UPLOAD_PRESET);
+  // 제출 (등록 or 수정)
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  const res = await fetch(url, { method: "POST", body: formData });
-  const data = await res.json();
-  return data.secure_url;
-}
+    const body = {
+      name: form.name.value,
+      statusMessage: form.statusMessage.value,
+      jobTag: form.jobTag.value,
+      region: form.region.value,
+      experienceYears: parseInt(form.experienceYears.value) || 0,
+      introText: form.introText.value,
+      profileImage: form.profileImage.value,
+    };
 
-document.getElementById("saveBtn").addEventListener("click", async () => {
-  const token = localStorage.getItem("liveeToken");
-  if (!token) return location.href = "/livee-beta/login.html";
+    const method = portfolioId ? "PUT" : "POST";
+    const endpoint = portfolioId
+      ? `${API}/portfolio/${portfolioId}`
+      : `${API}/portfolio`;
 
-  const payload = {
-    profileImage: profileImageUrl,
-    backgroundImage: backgroundImageUrl,
-    name: document.getElementById("name").value,
-    statusMessage: document.getElementById("statusMessage").value,
-    jobTag: document.getElementById("jobTag").value,
-    region: document.getElementById("region").value,
-    experienceYears: document.getElementById("experienceYears").value,
-    introText: document.getElementById("introText").value,
-    youtubeLinks: [document.querySelector(".youtube-link").value],
-    isPublic: document.getElementById("isPublic").checked,
-  };
+    try {
+      const res = await fetch(endpoint, {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(body),
+      });
 
-  const res = await fetch("https://main-server-ekgr.onrender.com/api/portfolio", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`
-    },
-    body: JSON.stringify(payload)
+      const result = await res.json();
+      if (!res.ok) {
+        return alert(result.message || "등록 실패");
+      }
+
+      alert(result.message || "포트폴리오 저장 완료");
+      window.location.href = "/livee-beta/mypage.html";
+    } catch (err) {
+      console.error("❌ 포트폴리오 저장 오류:", err);
+      alert("서버 오류");
+    }
   });
 
-  const result = await res.json();
+  // 삭제
+  if (deleteBtn) {
+    deleteBtn.addEventListener("click", async () => {
+      if (!confirm("정말 삭제하시겠습니까?")) return;
 
-  if (res.ok) {
-    alert("포트폴리오가 등록되었습니다.");
-    location.href = "/livee-beta/frontend/mypage.html";
-  } else {
-    alert(result.message || "등록 실패");
+      try {
+        const res = await fetch(`${API}/portfolio/me`, {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const result = await res.json();
+        alert(result.message);
+        window.location.reload();
+      } catch (err) {
+        console.error("❌ 삭제 실패:", err);
+        alert("삭제 중 오류 발생");
+      }
+    });
   }
 });
