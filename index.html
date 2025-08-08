@@ -1,7 +1,8 @@
-<!-- ✅ 리팩토링된 index.html - 당근마켓+오늘의집 스타일 적용 --><!DOCTYPE html><html lang="ko">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Livee - 쇼호스트 플랫폼</title>
   <link rel="stylesheet" href="/livee-beta/main.css?v=1.10" />
   <link rel="stylesheet" href="/livee-beta/frontend/css/home.css?v=1.0" />
@@ -9,8 +10,16 @@
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
 <body>
-  <div class="beta-banner">현재 클로즈 베타 테스트 중입니다</div>  <!-- ✅ 공통 헤더/탭 -->  <div id="header-container"></div>
-  <div id="top-tab-container"></div>  <!-- ✅ 감성 슬라이드 배너 -->  <section class="main-banner-slide swiper">
+
+  <!-- 🔹 띠배너 -->
+  <div class="beta-banner">현재 클로즈 베타 테스트 중입니다</div>
+
+  <!-- 🔹 공통 헤더/상단탭 -->
+  <div id="header-container"></div>
+  <div id="top-tab-container"></div>
+
+  <!-- 🔹 감성 슬라이드 배너 -->
+  <section class="main-banner-slide swiper">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
         <div class="slide-content">
@@ -27,37 +36,22 @@
         </div>
       </div>
     </div>
+    <div class="swiper-pagination"></div>
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
-    <div class="swiper-pagination"></div>
-  </section>  <!-- ✅ 카테고리 버튼 (임시 UI) -->  <section class="category-section">
-    <button>전체</button>
-    <button>패션</button>
-    <button>뷰티</button>
-    <button>식품</button>
-    <button>디지털</button>
-  </section>  <!-- ✅ 추천 공고 리스트 (카드형) -->  <section class="recruit-section">
-    <h2 class="section-title">추천 쇼핑라이브 공고</h2>
-    <div class="card-list">
-      <div class="card-item">
-        <img src="/livee-beta/frontend/sample1.jpg" alt="공고1" />
-        <div class="card-info">
-          <p class="brand">무신사</p>
-          <h3 class="title">봄 시즌 패션라이브 진행</h3>
-          <span class="fee">💰 20만원</span>
-        </div>
-      </div>
-      <div class="card-item">
-        <img src="/livee-beta/frontend/sample2.jpg" alt="공고2" />
-        <div class="card-info">
-          <p class="brand">이니스프리</p>
-          <h3 class="title">스킨케어 신제품 홍보 방송</h3>
-          <span class="fee">💰 협의</span>
-        </div>
-      </div>
-    </div>
-  </section>  <!-- ✅ 인기 쇼호스트 -->  <section class="host-section">
+  </section>
+
+  <!-- 🔹 일정 섹션 -->
+  <section id="schedule-section" class="section">
+    <h2 class="section-title">쇼핑라이브 일정</h2>
+    <a href="/livee-beta/schedule.html" class="link-more">전체 보기</a>
+    <div class="dummy-box">[추후 일정 데이터 연동 예정]</div>
+  </section>
+
+  <!-- 🔹 인기 쇼호스트 -->
+  <section id="host-section" class="section">
     <h2 class="section-title">인기 쇼호스트</h2>
+    <a href="/livee-beta/showhost.html" class="link-more">전체 보기</a>
     <div class="card-scroll">
       <div class="host-card">
         <img src="/livee-beta/frontend/sample-host.jpg" alt="호스트1" />
@@ -68,30 +62,87 @@
         <p>찐리뷰 요정 지훈</p>
       </div>
     </div>
-  </section>  <!-- ✅ 후기 영역 (디자인만) -->  <section class="review-section">
-    <h2 class="section-title">실제 이용자 후기</h2>
-    <div class="review-list">
-      <div class="review-card">
-        <p class="review-text">처음 시작하는데도 매칭이 잘 돼서 너무 좋았어요!</p>
-        <span class="review-user">- 쇼호스트 MJ</span>
-      </div>
-      <div class="review-card">
-        <p class="review-text">라이브 퀄리티가 확 올라갔어요, 감사합니다 🙏</p>
-        <span class="review-user">- 브랜드 마케터 HJ</span>
-      </div>
-    </div>
-  </section>  <!-- ✅ 포트폴리오 미리보기 (디자인용) -->  <section class="portfolio-section">
-    <h2 class="section-title">쇼호스트 포트폴리오</h2>
+  </section>
+
+  <!-- 🔹 인기 공고 리스트 -->
+  <section id="recruit-section" class="section">
+    <h2 class="section-title">인기 모집 공고</h2>
+    <a href="/livee-beta/recruitlist.html" class="link-more">전체 보기</a>
     <div class="card-list">
       <div class="card-item">
-        <img src="/livee-beta/frontend/sample-portfolio.jpg" alt="포트폴리오" />
+        <img src="/livee-beta/frontend/sample1.jpg" alt="공고1" />
         <div class="card-info">
-          <h3>경력 3년차 패션 특화 쇼호스트</h3>
-          <p>방송 경험 20회 이상 / 브랜드 매칭 만족도 98%</p>
+          <p class="brand">무신사</p>
+          <h3 class="title">봄 시즌 패션라이브 진행</h3>
+          <span class="fee">💰 20만원</span>
         </div>
       </div>
     </div>
-  </section>  <!-- ✅ 하단탭 -->  <div id="bottom-tab-container"></div>  <!-- ✅ JS -->  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>  <script src="/livee-beta/frontend/js/header.js"></script>  <script src="/livee-beta/frontend/js/top-tab.js"></script>  <script src="/livee-beta/frontend/js/bottom-tab.js"></script>  <script>
+  </section>
+
+  <!-- 🔹 숏클립 -->
+  <section id="clip-section" class="section">
+    <h2 class="section-title">숏클립</h2>
+    <a href="/livee-beta/clip.html" class="link-more">전체 보기</a>
+    <div class="card-scroll">
+      <div class="clip-card">
+        <video src="/livee-beta/frontend/sample-clip.mp4" controls muted></video>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🔹 추천 상품 -->
+  <section id="product-section" class="section">
+    <h2 class="section-title">추천 상품</h2>
+    <a href="/livee-beta/recommend.html" class="link-more">전체 보기</a>
+    <div class="card-list">
+      <div class="card-item">
+        <img src="/livee-beta/frontend/sample-product.jpg" alt="상품" />
+        <div class="card-info">
+          <p>라이브용 조명 세트</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🔹 대행 서비스 -->
+  <section id="agency-section" class="section">
+    <h2 class="section-title">대행 서비스</h2>
+    <a href="/livee-beta/agency.html" class="link-more">전체 보기</a>
+    <div class="card-list">
+      <div class="card-item">
+        <img src="/livee-beta/frontend/sample-service.jpg" alt="서비스" />
+        <div class="card-info">
+          <p>촬영 세팅 지원</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🔹 후기 섹션 -->
+  <section id="review-section" class="section">
+    <h2 class="section-title">이용자 후기</h2>
+    <div class="review-list">
+      <div class="review-card">
+        <p class="review-text">매칭도 빠르고, 계약도 깔끔해서 만족!</p>
+        <span class="review-user">- 쇼호스트 MJ</span>
+      </div>
+      <div class="review-card">
+        <p class="review-text">브랜드 입장에서 너무 편하게 연결됐어요.</p>
+        <span class="review-user">- 브랜드 HJ</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🔹 하단탭 -->
+  <div id="bottom-tab-container"></div>
+
+  <!-- 🔹 스크립트 -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="/livee-beta/frontend/js/header.js"></script>
+  <script src="/livee-beta/frontend/js/top-tab.js"></script>
+  <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
+  <script>
     const swiper = new Swiper('.main-banner-slide', {
       loop: true,
       pagination: { el: '.swiper-pagination' },
@@ -100,5 +151,6 @@
         prevEl: '.swiper-button-prev'
       }
     });
-  </script></body>
+  </script>
+</body>
 </html>
