@@ -1,39 +1,46 @@
-<!DOCTYPE html>
-<html lang="ko">
+<!-- ✅ portfolio-edit.html (리팩토링 버전) --><!DOCTYPE html><html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>포트폴리오 등록</title>
-  <link rel="stylesheet" href="/livee-beta/main.css" />
-  <link rel="stylesheet" href="/livee-beta/frontend/css/portfolio-edit.css" />
+  <title>포트폴리오 등록 - Livee</title>
+  <link rel="stylesheet" href="/livee-beta/main.css?v=1.10" />
+  <link rel="stylesheet" href="/livee-beta/frontend/css/portfolio-edit.css?v=1.1" />
 </head>
 <body>
   <div id="header-container"></div>
   <main class="portfolio-edit-container">
-    <input type="file" id="backgroundImage" accept="image/*" hidden />
-    <label for="backgroundImage" class="background-label">
-      <img id="backgroundPreview" style="display:none;" />
-    </label>
+    <form id="portfolioForm">
+      <!-- 배경 이미지 -->
+      <input type="file" id="backgroundImage" accept="image/*" hidden />
+      <label for="backgroundImage" class="background-label">
+        <img id="backgroundPreview" />
+        <span class="icon">배경 설정</span>
+      </label><!-- 프로필 이미지 -->
+  <input type="file" id="profileImage" accept="image/*" hidden />
+  <label for="profileImage" class="profile-image-label">
+    <img id="profilePreview" />
+    <span class="camera-icon">📷</span>
+  </label>
 
-    <input type="file" id="profileImage" accept="image/*" hidden />
-    <label for="profileImage" class="profile-image-label">
-      <img id="profilePreview" style="display:none;" />
-      <span class="camera-icon">📷</span>
-    </label>
+  <!-- 입력 폼 -->
+  <div class="form-section">
+    <input type="text" id="name" name="name" placeholder="이름" required />
+    <input type="text" id="statusMessage" name="statusMessage" placeholder="상태 메시지" />
+    <input type="text" id="jobTag" name="jobTag" placeholder="직무 (예: 쇼호스트)" />
+    <input type="text" id="region" name="region" placeholder="지역" />
+    <input type="number" id="experienceYears" name="experienceYears" placeholder="총 경력 (년)" />
+    <textarea id="introText" name="introText" placeholder="자기소개"></textarea>
+    <input type="url" id="youtubeLink" placeholder="YouTube 링크" />
+    <label><input type="checkbox" id="isPublic" checked /> 공개 여부</label>
+    <button type="submit" id="saveBtn">저장하기</button>
+    <button type="button" id="deletePortfolioBtn">삭제하기</button>
+  </div>
+</form>
 
-    <div class="form-section">
-      <input type="text" id="name" placeholder="이름 입력" />
-      <input type="text" id="statusMessage" placeholder="상태 메시지" />
-      <input type="text" id="jobTag" placeholder="직무" />
-      <input type="text" id="region" placeholder="지역" />
-      <input type="number" id="experienceYears" placeholder="총 경력(년)" />
-      <textarea id="introText" placeholder="자기소개"></textarea>
-      <input type="url" class="youtube-link" placeholder="https://youtu.be/..." />
-      <label><input type="checkbox" id="isPublic" checked /> 공개 여부</label>
-      <button id="saveBtn">저장하기</button>
-    </div>
   </main>
   <div id="bottom-tab-container"></div>
-  <script src="/livee-beta/frontend/js/portfolio-edit.js"></script>
+  <script src="/livee-beta/frontend/js/header.js"></script>
+  <script src="/livee-beta/frontend/js/bottom-tab.js"></script>
+  <script src="/livee-beta/frontend/js/portfolio-edit.js?v=1.1"></script>
 </body>
 </html>
